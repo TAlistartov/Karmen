@@ -8,7 +8,7 @@ namespace Karmen.Controllers
 {
     public class AdministratorController : Controller
     {
-        // GET: Administrator
+        [HttpGet]
         public ViewResult Index()
         {
             return View();

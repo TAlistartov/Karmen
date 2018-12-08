@@ -15,14 +15,26 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="~/Images/Logo.png" alt="Logo" style="width:70px;">
+        </a>
+
+        <!-- Navbar text-->
+        <span class="navbar-text" style="padding-left:36%">
+            <font size="5" color="red" face="Arial">СТРАНИЦА АДМИНИСТРАТОРА</font>
+        </span>
+    </nav>
+
 
     @RenderBody()
     @RenderSection("scripts", required: false)
 
+
     @*<link href="~/content/usercss/sitestyle.css" rel="stylesheet" />
-    <script src="~/UserScript/MainPage.js"></script>
-    <script src="~/UserScript/WorkWithModals.js"></script>
-    <script src="~/UserScript/Author_Authentific.js"></script>*@
+        <script src="~/UserScript/MainPage.js"></script>
+        <script src="~/UserScript/WorkWithModals.js"></script>
+        <script src="~/UserScript/Author_Authentific.js"></script>*@
 
 </body>
 </html>
