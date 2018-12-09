@@ -14,21 +14,179 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+            <a class="nav-link active" data-toggle="tab" href="#admin_1st_tab"><font face="Snell Roundhand, cursive">@*<b><i>*@Изменение Данных@*</i></b>*@</font></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+            <a class="nav-link" data-toggle="tab" href="#menu1"><font face="Snell Roundhand, cursive">Допустимые Комбинации</font></a>
         </li>
-        <li class="nav-item">
+        @*<li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
-        </li>
+        </li>*@
     </ul>
 
+    <br/>
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane container active" id="home">а</div>
+        <div class="tab-pane container-fluid active" id="admin_1st_tab">
+            @* First row *@
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#color">Цвет</button>
+                    <div id="color" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="colorName">Цвет:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="colorName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#pattern">Лекало</button>
+                    <div id="pattern" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="patternName">Reference:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="patternName">
+                            @* ДОПИСАТЬ ВСЕ ПОЛЯ *@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#furniture">Фурнитура</button>
+                    <div id="furniture" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-5" for="furnitureName">Тип:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="furnitureName">
+                        </div>
+
+                        <div class="form-inline">
+                            <label class="mr-sm-1" for="furniturereReference">Reference:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="furniturereReference">
+                        </div>
+                        @* ДОПИСАТЬ ВСЕ ПОЛЯ *@
+                    </div>
+                </div>
+            </div>
+            <br />
+            @* Second row *@
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#lining">Подкладка</button>
+                    <div id="lining" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="liningName">Название:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="liningName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#footbed">Стелька</button>
+                    <div id="footbed" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="footbedName">Тип:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="footbedName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#pad">Личина</button>
+                    <div id="pad" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="padName">Вид:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="padName">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <br />
+            @* Third row *@
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#kindOfBlock">Вид Колодки</button>
+                    <div id="kindOfBlock" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="kindOfBlockName">Название:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlockName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#materialOfSole">Материал Подошвы</button>
+                    <div id="materialOfSole" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="materialOfSoleName">Название:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSoleName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#topMaterial">Материал Верха</button>
+                    <div id="topMaterial" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="topMaterialName">Тип:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterialName">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <br />
+            @* Fourth row *@
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    @*<button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#kindOfBlock">Вид Колодки</button>
+                    <div id="kindOfBlock" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="kindOfBlockName">Название:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlockName">
+                        </div>
+                    </div>*@
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#component">Комплектующие</button>
+                    <div id="component" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="componentName">Тип:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    @*<button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#topMaterial">Материал Верха</button>
+                    <div id="topMaterial" class="collapse">
+                        <br />
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="topMaterialName">Тип:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterialName">
+                        </div>
+                    </div>*@
+                </div>
+
+
+            </div>
+
+
+        </div>
         <div class="tab-pane container fade" id="menu1">б</div>
-        <div class="tab-pane container fade" id="menu2">в</div>
+        @*<div class="tab-pane container fade" id="menu2">в</div>*@
     </div>
     <div class="container-fluid">
         <div class="row">
