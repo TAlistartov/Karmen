@@ -28,160 +28,192 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div class="tab-pane container-fluid active" id="admin_1st_tab">
-            @* First row *@
             <div class="row">
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#color">Цвет</button>
-                    <div id="color" class="collapse">
-                        <br />
+                <div class="list-group list-group-flush col-lg-3" id="board1">
+                    <button type="button" class="list-group-item list-group-item-action active" data-toggle="list" data-target="#color" role="tab">Цвет</button>
+                    <button type="button" class="list-group-item list-group-item-action" data-toggle="list" data-target="#pattern" role="tab">Лекало</button>
+                    <button type="button" class="list-group-item list-group-item-action">Подкладка</button>
+                    <button type="button" class="list-group-item list-group-item-action">Стелька</button>
+                    <button type="button" class="list-group-item list-group-item-action">Личина</button>
+                    <button type="button" class="list-group-item list-group-item-action">Вид колодки</button>
+                    <button type="button" class="list-group-item list-group-item-action">Материал верха</button>
+                    <button type="button" class="list-group-item list-group-item-action">Фурнитура</button>
+                    <button type="button" class="list-group-item list-group-item-action">Материал подошвы</button>
+                    <button type="button" class="list-group-item list-group-item-action">Комплектующие</button>
+
+                </div>
+
+                <div class="col-lg-2"></div>
+                <div class="tab-content col-lg-5">
+
+                    <div id="color" class="tab-pane active" role="tabpanel">
+                        @*<br />*@
                         <div class="form-inline">
                             <label class="mr-sm-2" for="colorName">Цвет:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="colorName">
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#pattern">Лекало</button>
-                    <div id="pattern" class="collapse">
-                        <br />
+
+                    <div id="pattern" class="tab-pane" role="tabpanel">
+                        @*<br />*@
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="patternName">Reference:</label>
+                            <label class="mr-sm-2" for="patternName">Лекало:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="patternName">
-                            @* ДОПИСАТЬ ВСЕ ПОЛЯ *@
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#furniture">Фурнитура</button>
-                    <div id="furniture" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-5" for="furnitureName">Тип:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="furnitureName">
-                        </div>
 
-                        <div class="form-inline">
-                            <label class="mr-sm-1" for="furniturereReference">Reference:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="furniturereReference">
-                        </div>
-                        @* ДОПИСАТЬ ВСЕ ПОЛЯ *@
+                </div>
+                <div class="col-lg-2"></div>
+
+            </div>
+
+           
+
+
+            @* First row *@
+            @*<div class="row">
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#color">Цвет</button>
+                <div id="color" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="colorName">Цвет:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="colorName">
                     </div>
                 </div>
             </div>
-            <br />
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#pattern">Лекало</button>
+                <div id="pattern" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="patternName">Reference:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="patternName">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#furniture">Фурнитура</button>
+                <div id="furniture" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-5" for="furnitureName">Тип:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="furnitureName">
+                    </div>
+
+                    <div class="form-inline">
+                        <label class="mr-sm-1" for="furniturereReference">Reference:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="furniturereReference">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br />*@
             @* Second row *@
-            <div class="row">
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#lining">Подкладка</button>
-                    <div id="lining" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="liningName">Название:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="liningName">
-                        </div>
+            @*<div class="row">
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#lining">Подкладка</button>
+                <div id="lining" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="liningName">Название:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="liningName">
                     </div>
                 </div>
-
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#footbed">Стелька</button>
-                    <div id="footbed" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="footbedName">Тип:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="footbedName">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#pad">Личина</button>
-                    <div id="pad" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="padName">Вид:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="padName">
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
-            <br />
+
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#footbed">Стелька</button>
+                <div id="footbed" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="footbedName">Тип:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="footbedName">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#pad">Личина</button>
+                <div id="pad" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="padName">Вид:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="padName">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <br />*@
             @* Third row *@
-            <div class="row">
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#kindOfBlock">Вид Колодки</button>
-                    <div id="kindOfBlock" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="kindOfBlockName">Название:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlockName">
-                        </div>
+            @*<div class="row">
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#kindOfBlock">Вид Колодки</button>
+                <div id="kindOfBlock" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="kindOfBlockName">Название:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlockName">
                     </div>
                 </div>
-
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#materialOfSole">Материал Подошвы</button>
-                    <div id="materialOfSole" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="materialOfSoleName">Название:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSoleName">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#topMaterial">Материал Верха</button>
-                    <div id="topMaterial" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="topMaterialName">Тип:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterialName">
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
-            <br />
+
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#materialOfSole">Материал Подошвы</button>
+                <div id="materialOfSole" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="materialOfSoleName">Название:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSoleName">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#topMaterial">Материал Верха</button>
+                <div id="topMaterial" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="topMaterialName">Тип:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterialName">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <br />*@
             @* Fourth row *@
-            <div class="row">
-                <div class="col-lg-4 text-center">
-                    @*<button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#kindOfBlock">Вид Колодки</button>
-                    <div id="kindOfBlock" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="kindOfBlockName">Название:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlockName">
-                        </div>
-                    </div>*@
-                </div>
-
-                <div class="col-lg-4 text-center">
-                    <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#component">Комплектующие</button>
-                    <div id="component" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="componentName">Тип:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentName">
-                        </div>
+            @*<div class="row">
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#kindOfBlock">Вид Колодки</button>
+                <div id="kindOfBlock" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="kindOfBlockName">Название:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlockName">
                     </div>
                 </div>
-
-                <div class="col-lg-4 text-center">
-                    @*<button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#topMaterial">Материал Верха</button>
-                    <div id="topMaterial" class="collapse">
-                        <br />
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="topMaterialName">Тип:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterialName">
-                        </div>
-                    </div>*@
-                </div>
-
-
             </div>
+
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#component">Комплектующие</button>
+                <div id="component" class="collapse">
+                    <br />
+                    <div class="form-inline">
+                        <label class="mr-sm-2" for="componentName">Тип:</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="componentName">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 text-center">
+            </div>
+        </div>*@
 
 
         </div>
