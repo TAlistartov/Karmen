@@ -49,24 +49,30 @@
                     @* ЦВЕТ *@
                     <div id="color" class="tab-pane active" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="colorName">Цвет:</label>
+                            <label class="componentColourL" for="colorName">Цвет:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="colorName">
+                        </div>
+                        
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-dark"><i class="fas fa-save"></i></button>
+                            <button type="button" class="btn btn-dark"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-dark"><i class="fas fa-cut"></i></button>
                         </div>
                     </div>
 
                     @* ЛЕКАЛО *@
                     <div id="pattern" class="tab-pane" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="patternName">Reference:</label>
+                            <label class="componentReferenceL" for="patternName">Reference:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="patternName">
                         </div>
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="additionalInformation">Доп информация:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="additionalInformation">
+                            <label class="mr-sm-2" for="additionalInformationPattern">Информация:</label>
+                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="additionalInformationPattern" cols="22" rows="3"></textarea>
                         </div>
                         <div class="form-inline">
                             <label class="mr-sm-2" for="usepattern">Используется:</label>
-                            <input type="checkbox" class="mb-2 mr-sm-2" id="usepattern">
+                            <input type="checkbox" class="mb-0 mr-sm-2" id="usepattern">
                         </div>
 
                     </div>
@@ -74,72 +80,185 @@
                     @* ПОДКЛАДКА *@
                     <div id="lining" class="tab-pane" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="liningName">Название:</label>
+                            <label class="nameL" for="liningName">Название:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="liningName">
+                        </div>
+                        <div class="form-inline">
+                            <label class="seasonL" for="season">Сезон:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="season">
+                        </div>
+                        <div class="form-inline">
+                            <label class="componentReferenceL" for="crossReferenceLining">Reference:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="crossReferenceLining">
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="additionalInformationLining">Информация:</label>
+                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="additionalInformationLining" cols="22" rows="3"></textarea>
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="useLining">Используется:</label>
+                            <input type="checkbox" class="mb-0 mr-sm-2" id="useLining">
                         </div>
                     </div>
 
                     @* ФУРНИТУРА *@
                     <div id="furniture" class="tab-pane" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="furnitureName">Фурнитура:</label>
+                            <label class="furnitureL" for="furnitureName">Фурнитура:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="furnitureName">
                         </div>
                         <div class="form-inline">
-                            <label class="mr-sm-1" for="furniturereReference">Reference:</label>
+                            <p>Тут DropDownList со всеми цветами</p>
+                        </div>
+                        <div class="form-inline">
+                            <label class="componentReferenceL" for="furniturereReference">Reference:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="furniturereReference">
                         </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="useFurniture">Используется:</label>
+                            <input type="checkbox" class="mb-0 mr-sm-2" id="useFurniture">
+                        </div>
                     </div>
 
-                    @* СТЕЛЬКА *@
+                        @* СТЕЛЬКА *@
                     <div id="footbed" class="tab-pane" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="footbedName">Тип:</label>
+                            <label class="componentNameL" for="footbedName">Тип:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="footbedName">
                         </div>
+                        <div class="form-inline">
+                            <label class="componentReferenceL" for="footbedReference">Reference:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="footbedReference">
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="additionalInformationFootBed">Информация:</label>
+                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="additionalInformationFootBed" cols="22" rows="3"></textarea>
+                        </div>
                     </div>
 
-                    @* ЛИЧИНА *@
+                        @* ЛИЧИНА *@
                     <div id="pad" class="tab-pane" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="padName">Вид:</label>
+                            <label class="componentNameL" for="padName">Вид:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="padName">
                         </div>
+                        <div class="form-inline">
+                            <label class="componentSizeL" for="padSize">Размер:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="padSize">
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="additionalInformationPad">Информация:</label>
+                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="additionalInformationPad" cols="22" rows="3"></textarea>
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="usePad">Используется:</label>
+                            <input type="checkbox" class="mb-0 mr-sm-2" id="usePad">
+                        </div>
                     </div>
 
-                    @* ВИД КОЛОДКИ *@
+                        @* ВИД КОЛОДКИ *@
                     <div id="kindOfBlock" class="tab-pane" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="kindOfBlockName">Название:</label>
+                            <label class="nameL" for="kindOfBlockName">Название:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlockName">
                         </div>
+                        <div class="form-inline">
+                            <label class="componentReferenceL" for="kindOfBlockReference">Reference:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlockReference">
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="additionalInformationkindOfBlock">Информация:</label>
+                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="additionalInformationkindOfBlock" cols="22" rows="3"></textarea>
+                        </div>
                     </div>
 
-                    @* МАТЕРИАЛ ПОДОШВЫ *@
+                        @* МАТЕРИАЛ ПОДОШВЫ *@
                     <div id="materialOfSole" class="tab-pane" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="materialOfSoleName">Название:</label>
+                            <label class="nameL" for="materialOfSoleName">Название:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSoleName">
                         </div>
+                        <div class="form-inline">
+                            <p>Тут DropDownList всех цветов</p>
+                        </div>
+                        <div class="form-inline">
+                            <label class="componentReferenceL" for="materialOfSoleReference">Reference:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSoleReference">
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="useMaterialOfSole">Используется:</label>
+                            <input type="checkbox" class="mb-0 mr-sm-2" id="useMaterialOfSole">
+                        </div>
                     </div>
 
-                    @* МАТЕРИАЛ ВЕРХА *@
+                        @* МАТЕРИАЛ ВЕРХА *@
                     <div id="topMaterial" class="tab-pane" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="topMaterialName">Тип:</label>
+                            <label class="componentNameL" for="topMaterialName">Тип:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterialName">
                         </div>
-                    </div>
-
-                    @* КОМПЛЕКТУЮЩИЕ *@
-                    <div id="component" class="tab-pane" role="tabpanel">
                         <div class="form-inline">
-                            <label class="mr-sm-2" for="componentName">Тип:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentName">
+                            <p>Тут DropDownList со всеми цветами</p>
+                        </div>
+                        <div class="form-inline">
+                            <label class="componentReferenceL" for="topMaterialReference">Reference:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterialReference">
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="useTopMaterial">Используется:</label>
+                            <input type="checkbox" class="mb-0 mr-sm-2" id="useTopMaterial">
                         </div>
                     </div>
 
-                </div>
+                        @* КОМПЛЕКТУЮЩИЕ *@
+                    <div id="component" class="tab-pane" role="tabpanel">
+                        <div class="form-inline">
+                            <label class="componentNameL" for="componentName">Тип:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentName">
+                        </div>
+                        <div class="form-inline">
+                            @*<p>Тут DropDownList сщ всеми цветами</p>*@
+                            <label class="componentColourL" for="componentColour">Цвет:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentColour">
+                        </div>
+                        <div class="form-inline">
+                            <label class="componentReferenceL" for="componentReference">Reference:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentReference">
+                        </div>
+                        <div class="form-inline">
+                            <label class="componentSizeL" for="componentSize">Размер:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentSize">
+                        </div>
+                        <div class="form-inline">
+                            <p>Tут DropDownList со всеми материалами обтяжки</p>
+                        </div>
+                        <div class="form-inline">
+                            <label id="componentHighL" for="componentHigh">Высота:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentHigh">
+                        </div>
+                        <div class="form-inline">
+                            <label id="componentWidthL" for="componentWidth">Ширина:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentWidth">
+                        </div>
+                        <div class="form-inline">
+                            <label id="componentFormL" for="componentForm">Форма:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentForm">
+                        </div>
+                        <div class="form-inline">
+                            <label class="componentViewL" for="componentView">Вид:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentView">
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="additionalInformationComponent">Информация:</label>
+                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="additionalInformationComponent" cols="22" rows="3"></textarea>
+                        </div>
+                        <div class="form-inline">
+                            <label class="mr-sm-2" for="useComponent">Используется:</label>
+                            <input type="checkbox" class="mb-0 mr-sm-2" id="useComponent">
+                        </div>
+                    </div>
+
+                    </div>
 
                     <div class="col-lg-2"></div>               
 

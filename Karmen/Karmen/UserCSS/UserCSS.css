@@ -1,10 +1,33 @@
-﻿body {
-    /*background-image: url('../Images/BackFon4.jpg'); /* Путь к фоновому изображению */
-    /*background-color: #c7b39b;*/ /* Цвет фона */
-    /*color: #fcfcfd;*/
+﻿.componentColourL {
+    margin-right: 13%;
 }
-#board1 {
-    /*margin-left:1%;*/
-    /*border: 1px solid #dfdfdf; 
-    border-radius: 10px;*/
+.componentViewL {
+    margin-right: 14.5%;
+}
+#componentFormL {
+    margin-right: 10.5%;
+}
+#componentWidthL {
+    margin-right: 8.5%;
+}
+#componentHighL {
+    margin-right: 10%;
+}
+.componentSizeL {
+    margin-right: 9.6%;
+}
+.componentReferenceL {
+    margin-right: 6.5%;
+}
+.componentNameL {
+    margin-right: 14.5%;
+}
+.seasonL {
+    margin-right: 11.3%;
+}
+.nameL {
+    margin-right: 6.5%;
+}
+.furnitureL {
+    margin-right: 4.5%;
 }
