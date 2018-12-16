@@ -1,0 +1,1250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Block">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdTypeBlock" Type="int" Nullable="false" />
+          <Property Name="Fullnes" Type="float" />
+          <Property Name="IdAdditionalPad" Type="int" />
+          <Property Name="IdFootbed" Type="int" Nullable="false" />
+          <Property Name="HeightBlock" Type="int" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="UseUnuse" Type="bit" Nullable="false" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Colour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Colour" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfComponent" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdColour" Type="int" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="UseUnuse" Type="bit" Nullable="false" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalInformation" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdMaterilOfCovering" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Form" Type="nvarchar" MaxLength="30" />
+          <Property Name="Type" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Designe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPattern" Type="int" Nullable="false" />
+          <Property Name="IdFurniture" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Footbed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalInformation" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Furniture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdColour" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UseUnuse" Type="bit" Nullable="false" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KindOfBlock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdditionalInformation" Type="nvarchar" MaxLength="100" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KindOfSole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMaterialOfSole" Type="int" Nullable="false" />
+          <Property Name="IdComponents" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lining">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Season" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UseUnuse" Type="bit" Nullable="false" />
+          <Property Name="AdditionalInformation" Type="nvarchar" MaxLength="100" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MaterialOfSole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdColour" Type="int" Nullable="false" />
+          <Property Name="UseUnuse" Type="bit" Nullable="false" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kind" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PadSize" Type="float" Nullable="false" />
+          <Property Name="UseUnuse" Type="bit" />
+          <Property Name="AdditionalInformation" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Pattern">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UseUnuse" Type="bit" Nullable="false" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalInformation" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PhotoOfSole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSole" Type="int" Nullable="false" />
+          <Property Name="URLPicture" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="ProducedShoe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdShoeModel" Type="int" Nullable="false" />
+          <Property Name="URLPicture" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="ShoeModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTopMaterial" Type="int" Nullable="false" />
+          <Property Name="IdDesign" Type="int" Nullable="false" />
+          <Property Name="IdSole" Type="int" Nullable="false" />
+          <Property Name="IdLining" Type="int" Nullable="false" />
+          <Property Name="IdBlock" Type="int" Nullable="false" />
+          <Property Name="AdditionalInformation" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Sole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdKindOfSole" Type="int" Nullable="false" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalInformation" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TopMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdColour" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UseUnuse" Type="bit" Nullable="false" />
+          <Property Name="CrossReference" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Block_Footbed">
+          <End Role="Footbed" Type="Self.Footbed" Multiplicity="1" />
+          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Footbed">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="IdFootbed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Block_KindOfBlock">
+          <End Role="KindOfBlock" Type="Self.KindOfBlock" Multiplicity="1" />
+          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindOfBlock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="IdTypeBlock" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Block_Pad">
+          <End Role="Pad" Type="Self.Pad" Multiplicity="0..1" />
+          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="IdAdditionalPad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Component_Colour">
+          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="Component" Type="Self.Component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Component">
+              <PropertyRef Name="IdColour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Component_TopMaterial">
+          <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="0..1" />
+          <End Role="Component" Type="Self.Component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TopMaterial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Component">
+              <PropertyRef Name="IdMaterilOfCovering" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Designe_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="Designe" Type="Self.Designe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Designe">
+              <PropertyRef Name="IdFurniture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Designe_Pattern">
+          <End Role="Pattern" Type="Self.Pattern" Multiplicity="1" />
+          <End Role="Designe" Type="Self.Designe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pattern">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Designe">
+              <PropertyRef Name="IdPattern" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_Colour">
+          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Furniture">
+              <PropertyRef Name="IdColour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KindOfSole_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="KindOfSole" Type="Self.KindOfSole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KindOfSole">
+              <PropertyRef Name="IdComponents" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KindOfSole_MaterialOfSole">
+          <End Role="MaterialOfSole" Type="Self.MaterialOfSole" Multiplicity="1" />
+          <End Role="KindOfSole" Type="Self.KindOfSole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaterialOfSole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KindOfSole">
+              <PropertyRef Name="IdMaterialOfSole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialOfSole_Colour">
+          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="MaterialOfSole" Type="Self.MaterialOfSole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialOfSole">
+              <PropertyRef Name="IdColour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhotoOfSole_Sole">
+          <End Role="Sole" Type="Self.Sole" Multiplicity="1" />
+          <End Role="PhotoOfSole" Type="Self.PhotoOfSole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhotoOfSole">
+              <PropertyRef Name="IdSole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProducedShoe_ShoeModel">
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="1" />
+          <End Role="ProducedShoe" Type="Self.ProducedShoe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShoeModel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProducedShoe">
+              <PropertyRef Name="IdShoeModel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoeModel_Designe">
+          <End Role="Designe" Type="Self.Designe" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoeModel">
+              <PropertyRef Name="IdDesign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoeModel_Lining">
+          <End Role="Lining" Type="Self.Lining" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lining">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoeModel">
+              <PropertyRef Name="IdLining" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoeModel_Sole">
+          <End Role="Sole" Type="Self.Sole" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoeModel">
+              <PropertyRef Name="IdSole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoeModel_TopMaterial">
+          <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TopMaterial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoeModel">
+              <PropertyRef Name="IdTopMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sole_KindOfSole">
+          <End Role="KindOfSole" Type="Self.KindOfSole" Multiplicity="1" />
+          <End Role="Sole" Type="Self.Sole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindOfSole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sole">
+              <PropertyRef Name="IdKindOfSole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopMaterial_Colour">
+          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopMaterial">
+              <PropertyRef Name="IdColour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Block" EntityType="Self.Block" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colour" EntityType="Self.Colour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Designe" EntityType="Self.Designe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Footbed" EntityType="Self.Footbed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Furniture" EntityType="Self.Furniture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KindOfBlock" EntityType="Self.KindOfBlock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KindOfSole" EntityType="Self.KindOfSole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lining" EntityType="Self.Lining" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialOfSole" EntityType="Self.MaterialOfSole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pad" EntityType="Self.Pad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pattern" EntityType="Self.Pattern" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotoOfSole" EntityType="Self.PhotoOfSole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProducedShoe" EntityType="Self.ProducedShoe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShoeModel" EntityType="Self.ShoeModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sole" EntityType="Self.Sole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopMaterial" EntityType="Self.TopMaterial" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Block_Footbed" Association="Self.FK_Block_Footbed">
+            <End Role="Footbed" EntitySet="Footbed" />
+            <End Role="Block" EntitySet="Block" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Block_KindOfBlock" Association="Self.FK_Block_KindOfBlock">
+            <End Role="KindOfBlock" EntitySet="KindOfBlock" />
+            <End Role="Block" EntitySet="Block" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Block_Pad" Association="Self.FK_Block_Pad">
+            <End Role="Pad" EntitySet="Pad" />
+            <End Role="Block" EntitySet="Block" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Component_Colour" Association="Self.FK_Component_Colour">
+            <End Role="Colour" EntitySet="Colour" />
+            <End Role="Component" EntitySet="Component" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Component_TopMaterial" Association="Self.FK_Component_TopMaterial">
+            <End Role="TopMaterial" EntitySet="TopMaterial" />
+            <End Role="Component" EntitySet="Component" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Designe_Furniture" Association="Self.FK_Designe_Furniture">
+            <End Role="Furniture" EntitySet="Furniture" />
+            <End Role="Designe" EntitySet="Designe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Designe_Pattern" Association="Self.FK_Designe_Pattern">
+            <End Role="Pattern" EntitySet="Pattern" />
+            <End Role="Designe" EntitySet="Designe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_Colour" Association="Self.FK_Furniture_Colour">
+            <End Role="Colour" EntitySet="Colour" />
+            <End Role="Furniture" EntitySet="Furniture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KindOfSole_Component" Association="Self.FK_KindOfSole_Component">
+            <End Role="Component" EntitySet="Component" />
+            <End Role="KindOfSole" EntitySet="KindOfSole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KindOfSole_MaterialOfSole" Association="Self.FK_KindOfSole_MaterialOfSole">
+            <End Role="MaterialOfSole" EntitySet="MaterialOfSole" />
+            <End Role="KindOfSole" EntitySet="KindOfSole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialOfSole_Colour" Association="Self.FK_MaterialOfSole_Colour">
+            <End Role="Colour" EntitySet="Colour" />
+            <End Role="MaterialOfSole" EntitySet="MaterialOfSole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoOfSole_Sole" Association="Self.FK_PhotoOfSole_Sole">
+            <End Role="Sole" EntitySet="Sole" />
+            <End Role="PhotoOfSole" EntitySet="PhotoOfSole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProducedShoe_ShoeModel" Association="Self.FK_ProducedShoe_ShoeModel">
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+            <End Role="ProducedShoe" EntitySet="ProducedShoe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoeModel_Designe" Association="Self.FK_ShoeModel_Designe">
+            <End Role="Designe" EntitySet="Designe" />
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoeModel_Lining" Association="Self.FK_ShoeModel_Lining">
+            <End Role="Lining" EntitySet="Lining" />
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoeModel_Sole" Association="Self.FK_ShoeModel_Sole">
+            <End Role="Sole" EntitySet="Sole" />
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoeModel_TopMaterial" Association="Self.FK_ShoeModel_TopMaterial">
+            <End Role="TopMaterial" EntitySet="TopMaterial" />
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sole_KindOfSole" Association="Self.FK_Sole_KindOfSole">
+            <End Role="KindOfSole" EntitySet="KindOfSole" />
+            <End Role="Sole" EntitySet="Sole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopMaterial_Colour" Association="Self.FK_TopMaterial_Colour">
+            <End Role="Colour" EntitySet="Colour" />
+            <End Role="TopMaterial" EntitySet="TopMaterial" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Block">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdTypeBlock" Type="Int32" Nullable="false" />
+          <Property Name="Fullnes" Type="Double" />
+          <Property Name="IdAdditionalPad" Type="Int32" />
+          <Property Name="IdFootbed" Type="Int32" Nullable="false" />
+          <Property Name="HeightBlock" Type="Int32" Nullable="false" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="UseUnuse" Type="Boolean" Nullable="false" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Footbed" Relationship="Self.FK_Block_Footbed" FromRole="Block" ToRole="Footbed" />
+          <NavigationProperty Name="KindOfBlock" Relationship="Self.FK_Block_KindOfBlock" FromRole="Block" ToRole="KindOfBlock" />
+          <NavigationProperty Name="Pad" Relationship="Self.FK_Block_Pad" FromRole="Block" ToRole="Pad" />
+        </EntityType>
+        <EntityType Name="Colour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Colour1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Component" Relationship="Self.FK_Component_Colour" FromRole="Colour" ToRole="Component" />
+          <NavigationProperty Name="Furniture" Relationship="Self.FK_Furniture_Colour" FromRole="Colour" ToRole="Furniture" />
+          <NavigationProperty Name="MaterialOfSole" Relationship="Self.FK_MaterialOfSole_Colour" FromRole="Colour" ToRole="MaterialOfSole" />
+          <NavigationProperty Name="TopMaterial" Relationship="Self.FK_TopMaterial_Colour" FromRole="Colour" ToRole="TopMaterial" />
+        </EntityType>
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfComponent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdColour" Type="Int32" Nullable="false" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="UseUnuse" Type="Boolean" Nullable="false" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdMaterilOfCovering" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Form" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Colour" Relationship="Self.FK_Component_Colour" FromRole="Component" ToRole="Colour" />
+          <NavigationProperty Name="TopMaterial" Relationship="Self.FK_Component_TopMaterial" FromRole="Component" ToRole="TopMaterial" />
+          <NavigationProperty Name="KindOfSole" Relationship="Self.FK_KindOfSole_Component" FromRole="Component" ToRole="KindOfSole" />
+        </EntityType>
+        <EntityType Name="Designe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPattern" Type="Int32" Nullable="false" />
+          <Property Name="IdFurniture" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Furniture" Relationship="Self.FK_Designe_Furniture" FromRole="Designe" ToRole="Furniture" />
+          <NavigationProperty Name="Pattern" Relationship="Self.FK_Designe_Pattern" FromRole="Designe" ToRole="Pattern" />
+          <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ShoeModel_Designe" FromRole="Designe" ToRole="ShoeModel" />
+        </EntityType>
+        <EntityType Name="Footbed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Block" Relationship="Self.FK_Block_Footbed" FromRole="Footbed" ToRole="Block" />
+        </EntityType>
+        <EntityType Name="Furniture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdColour" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UseUnuse" Type="Boolean" Nullable="false" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Colour" Relationship="Self.FK_Furniture_Colour" FromRole="Furniture" ToRole="Colour" />
+          <NavigationProperty Name="Designe" Relationship="Self.FK_Designe_Furniture" FromRole="Furniture" ToRole="Designe" />
+        </EntityType>
+        <EntityType Name="KindOfBlock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Block" Relationship="Self.FK_Block_KindOfBlock" FromRole="KindOfBlock" ToRole="Block" />
+        </EntityType>
+        <EntityType Name="KindOfSole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMaterialOfSole" Type="Int32" Nullable="false" />
+          <Property Name="IdComponents" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Component" Relationship="Self.FK_KindOfSole_Component" FromRole="KindOfSole" ToRole="Component" />
+          <NavigationProperty Name="MaterialOfSole" Relationship="Self.FK_KindOfSole_MaterialOfSole" FromRole="KindOfSole" ToRole="MaterialOfSole" />
+          <NavigationProperty Name="Sole" Relationship="Self.FK_Sole_KindOfSole" FromRole="KindOfSole" ToRole="Sole" />
+        </EntityType>
+        <EntityType Name="Lining">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Season" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UseUnuse" Type="Boolean" Nullable="false" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ShoeModel_Lining" FromRole="Lining" ToRole="ShoeModel" />
+        </EntityType>
+        <EntityType Name="MaterialOfSole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdColour" Type="Int32" Nullable="false" />
+          <Property Name="UseUnuse" Type="Boolean" Nullable="false" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Colour" Relationship="Self.FK_MaterialOfSole_Colour" FromRole="MaterialOfSole" ToRole="Colour" />
+          <NavigationProperty Name="KindOfSole" Relationship="Self.FK_KindOfSole_MaterialOfSole" FromRole="MaterialOfSole" ToRole="KindOfSole" />
+        </EntityType>
+        <EntityType Name="Pad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kind" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PadSize" Type="Double" Nullable="false" />
+          <Property Name="UseUnuse" Type="Boolean" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Block" Relationship="Self.FK_Block_Pad" FromRole="Pad" ToRole="Block" />
+        </EntityType>
+        <EntityType Name="Pattern">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UseUnuse" Type="Boolean" Nullable="false" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Designe" Relationship="Self.FK_Designe_Pattern" FromRole="Pattern" ToRole="Designe" />
+        </EntityType>
+        <EntityType Name="PhotoOfSole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSole" Type="Int32" Nullable="false" />
+          <Property Name="URLPicture" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sole" Relationship="Self.FK_PhotoOfSole_Sole" FromRole="PhotoOfSole" ToRole="Sole" />
+        </EntityType>
+        <EntityType Name="ProducedShoe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdShoeModel" Type="Int32" Nullable="false" />
+          <Property Name="URLPicture" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ProducedShoe_ShoeModel" FromRole="ProducedShoe" ToRole="ShoeModel" />
+        </EntityType>
+        <EntityType Name="ShoeModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTopMaterial" Type="Int32" Nullable="false" />
+          <Property Name="IdDesign" Type="Int32" Nullable="false" />
+          <Property Name="IdSole" Type="Int32" Nullable="false" />
+          <Property Name="IdLining" Type="Int32" Nullable="false" />
+          <Property Name="IdBlock" Type="Int32" Nullable="false" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Designe" Relationship="Self.FK_ShoeModel_Designe" FromRole="ShoeModel" ToRole="Designe" />
+          <NavigationProperty Name="Lining" Relationship="Self.FK_ShoeModel_Lining" FromRole="ShoeModel" ToRole="Lining" />
+          <NavigationProperty Name="ProducedShoe" Relationship="Self.FK_ProducedShoe_ShoeModel" FromRole="ShoeModel" ToRole="ProducedShoe" />
+          <NavigationProperty Name="Sole" Relationship="Self.FK_ShoeModel_Sole" FromRole="ShoeModel" ToRole="Sole" />
+          <NavigationProperty Name="TopMaterial" Relationship="Self.FK_ShoeModel_TopMaterial" FromRole="ShoeModel" ToRole="TopMaterial" />
+        </EntityType>
+        <EntityType Name="Sole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdKindOfSole" Type="Int32" Nullable="false" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KindOfSole" Relationship="Self.FK_Sole_KindOfSole" FromRole="Sole" ToRole="KindOfSole" />
+          <NavigationProperty Name="PhotoOfSole" Relationship="Self.FK_PhotoOfSole_Sole" FromRole="Sole" ToRole="PhotoOfSole" />
+          <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ShoeModel_Sole" FromRole="Sole" ToRole="ShoeModel" />
+        </EntityType>
+        <EntityType Name="TopMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdColour" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UseUnuse" Type="Boolean" Nullable="false" />
+          <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Colour" Relationship="Self.FK_TopMaterial_Colour" FromRole="TopMaterial" ToRole="Colour" />
+          <NavigationProperty Name="Component" Relationship="Self.FK_Component_TopMaterial" FromRole="TopMaterial" ToRole="Component" />
+          <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ShoeModel_TopMaterial" FromRole="TopMaterial" ToRole="ShoeModel" />
+        </EntityType>
+        <Association Name="FK_Block_Footbed">
+          <End Role="Footbed" Type="Self.Footbed" Multiplicity="1" />
+          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Footbed">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="IdFootbed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Block_KindOfBlock">
+          <End Role="KindOfBlock" Type="Self.KindOfBlock" Multiplicity="1" />
+          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindOfBlock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="IdTypeBlock" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Block_Pad">
+          <End Role="Pad" Type="Self.Pad" Multiplicity="0..1" />
+          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="IdAdditionalPad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Component_Colour">
+          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="Component" Type="Self.Component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Component">
+              <PropertyRef Name="IdColour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_Colour">
+          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Furniture">
+              <PropertyRef Name="IdColour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialOfSole_Colour">
+          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="MaterialOfSole" Type="Self.MaterialOfSole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialOfSole">
+              <PropertyRef Name="IdColour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopMaterial_Colour">
+          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopMaterial">
+              <PropertyRef Name="IdColour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Component_TopMaterial">
+          <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="0..1" />
+          <End Role="Component" Type="Self.Component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TopMaterial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Component">
+              <PropertyRef Name="IdMaterilOfCovering" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KindOfSole_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="KindOfSole" Type="Self.KindOfSole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KindOfSole">
+              <PropertyRef Name="IdComponents" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Designe_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="Designe" Type="Self.Designe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Designe">
+              <PropertyRef Name="IdFurniture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Designe_Pattern">
+          <End Role="Pattern" Type="Self.Pattern" Multiplicity="1" />
+          <End Role="Designe" Type="Self.Designe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pattern">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Designe">
+              <PropertyRef Name="IdPattern" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoeModel_Designe">
+          <End Role="Designe" Type="Self.Designe" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoeModel">
+              <PropertyRef Name="IdDesign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KindOfSole_MaterialOfSole">
+          <End Role="MaterialOfSole" Type="Self.MaterialOfSole" Multiplicity="1" />
+          <End Role="KindOfSole" Type="Self.KindOfSole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaterialOfSole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KindOfSole">
+              <PropertyRef Name="IdMaterialOfSole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sole_KindOfSole">
+          <End Role="KindOfSole" Type="Self.KindOfSole" Multiplicity="1" />
+          <End Role="Sole" Type="Self.Sole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindOfSole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sole">
+              <PropertyRef Name="IdKindOfSole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoeModel_Lining">
+          <End Role="Lining" Type="Self.Lining" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lining">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoeModel">
+              <PropertyRef Name="IdLining" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhotoOfSole_Sole">
+          <End Role="Sole" Type="Self.Sole" Multiplicity="1" />
+          <End Role="PhotoOfSole" Type="Self.PhotoOfSole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhotoOfSole">
+              <PropertyRef Name="IdSole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProducedShoe_ShoeModel">
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="1" />
+          <End Role="ProducedShoe" Type="Self.ProducedShoe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShoeModel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProducedShoe">
+              <PropertyRef Name="IdShoeModel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoeModel_Sole">
+          <End Role="Sole" Type="Self.Sole" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoeModel">
+              <PropertyRef Name="IdSole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoeModel_TopMaterial">
+          <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TopMaterial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoeModel">
+              <PropertyRef Name="IdTopMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KarmenDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Block" EntityType="Self.Block" />
+          <EntitySet Name="Colour" EntityType="Self.Colour" />
+          <EntitySet Name="Component" EntityType="Self.Component" />
+          <EntitySet Name="Designe" EntityType="Self.Designe" />
+          <EntitySet Name="Footbed" EntityType="Self.Footbed" />
+          <EntitySet Name="Furniture" EntityType="Self.Furniture" />
+          <EntitySet Name="KindOfBlock" EntityType="Self.KindOfBlock" />
+          <EntitySet Name="KindOfSole" EntityType="Self.KindOfSole" />
+          <EntitySet Name="Lining" EntityType="Self.Lining" />
+          <EntitySet Name="MaterialOfSole" EntityType="Self.MaterialOfSole" />
+          <EntitySet Name="Pad" EntityType="Self.Pad" />
+          <EntitySet Name="Pattern" EntityType="Self.Pattern" />
+          <EntitySet Name="PhotoOfSole" EntityType="Self.PhotoOfSole" />
+          <EntitySet Name="ProducedShoe" EntityType="Self.ProducedShoe" />
+          <EntitySet Name="ShoeModel" EntityType="Self.ShoeModel" />
+          <EntitySet Name="Sole" EntityType="Self.Sole" />
+          <EntitySet Name="TopMaterial" EntityType="Self.TopMaterial" />
+          <AssociationSet Name="FK_Block_Footbed" Association="Self.FK_Block_Footbed">
+            <End Role="Footbed" EntitySet="Footbed" />
+            <End Role="Block" EntitySet="Block" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Block_KindOfBlock" Association="Self.FK_Block_KindOfBlock">
+            <End Role="KindOfBlock" EntitySet="KindOfBlock" />
+            <End Role="Block" EntitySet="Block" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Block_Pad" Association="Self.FK_Block_Pad">
+            <End Role="Pad" EntitySet="Pad" />
+            <End Role="Block" EntitySet="Block" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Component_Colour" Association="Self.FK_Component_Colour">
+            <End Role="Colour" EntitySet="Colour" />
+            <End Role="Component" EntitySet="Component" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_Colour" Association="Self.FK_Furniture_Colour">
+            <End Role="Colour" EntitySet="Colour" />
+            <End Role="Furniture" EntitySet="Furniture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialOfSole_Colour" Association="Self.FK_MaterialOfSole_Colour">
+            <End Role="Colour" EntitySet="Colour" />
+            <End Role="MaterialOfSole" EntitySet="MaterialOfSole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopMaterial_Colour" Association="Self.FK_TopMaterial_Colour">
+            <End Role="Colour" EntitySet="Colour" />
+            <End Role="TopMaterial" EntitySet="TopMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Component_TopMaterial" Association="Self.FK_Component_TopMaterial">
+            <End Role="TopMaterial" EntitySet="TopMaterial" />
+            <End Role="Component" EntitySet="Component" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KindOfSole_Component" Association="Self.FK_KindOfSole_Component">
+            <End Role="Component" EntitySet="Component" />
+            <End Role="KindOfSole" EntitySet="KindOfSole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Designe_Furniture" Association="Self.FK_Designe_Furniture">
+            <End Role="Furniture" EntitySet="Furniture" />
+            <End Role="Designe" EntitySet="Designe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Designe_Pattern" Association="Self.FK_Designe_Pattern">
+            <End Role="Pattern" EntitySet="Pattern" />
+            <End Role="Designe" EntitySet="Designe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoeModel_Designe" Association="Self.FK_ShoeModel_Designe">
+            <End Role="Designe" EntitySet="Designe" />
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KindOfSole_MaterialOfSole" Association="Self.FK_KindOfSole_MaterialOfSole">
+            <End Role="MaterialOfSole" EntitySet="MaterialOfSole" />
+            <End Role="KindOfSole" EntitySet="KindOfSole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sole_KindOfSole" Association="Self.FK_Sole_KindOfSole">
+            <End Role="KindOfSole" EntitySet="KindOfSole" />
+            <End Role="Sole" EntitySet="Sole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoeModel_Lining" Association="Self.FK_ShoeModel_Lining">
+            <End Role="Lining" EntitySet="Lining" />
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoOfSole_Sole" Association="Self.FK_PhotoOfSole_Sole">
+            <End Role="Sole" EntitySet="Sole" />
+            <End Role="PhotoOfSole" EntitySet="PhotoOfSole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProducedShoe_ShoeModel" Association="Self.FK_ProducedShoe_ShoeModel">
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+            <End Role="ProducedShoe" EntitySet="ProducedShoe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoeModel_Sole" Association="Self.FK_ShoeModel_Sole">
+            <End Role="Sole" EntitySet="Sole" />
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoeModel_TopMaterial" Association="Self.FK_ShoeModel_TopMaterial">
+            <End Role="TopMaterial" EntitySet="TopMaterial" />
+            <End Role="ShoeModel" EntitySet="ShoeModel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="KarmenDbContext">
+          <EntitySetMapping Name="Block">
+            <EntityTypeMapping TypeName="Model.Block">
+              <MappingFragment StoreEntitySet="Block">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTypeBlock" ColumnName="IdTypeBlock" />
+                <ScalarProperty Name="Fullnes" ColumnName="Fullnes" />
+                <ScalarProperty Name="IdAdditionalPad" ColumnName="IdAdditionalPad" />
+                <ScalarProperty Name="IdFootbed" ColumnName="IdFootbed" />
+                <ScalarProperty Name="HeightBlock" ColumnName="HeightBlock" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="UseUnuse" ColumnName="UseUnuse" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colour">
+            <EntityTypeMapping TypeName="Model.Colour">
+              <MappingFragment StoreEntitySet="Colour">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Colour1" ColumnName="Colour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Component">
+            <EntityTypeMapping TypeName="Model.Component">
+              <MappingFragment StoreEntitySet="Component">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeOfComponent" ColumnName="TypeOfComponent" />
+                <ScalarProperty Name="IdColour" ColumnName="IdColour" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="UseUnuse" ColumnName="UseUnuse" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+                <ScalarProperty Name="IdMaterilOfCovering" ColumnName="IdMaterilOfCovering" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Form" ColumnName="Form" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Designe">
+            <EntityTypeMapping TypeName="Model.Designe">
+              <MappingFragment StoreEntitySet="Designe">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdPattern" ColumnName="IdPattern" />
+                <ScalarProperty Name="IdFurniture" ColumnName="IdFurniture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Footbed">
+            <EntityTypeMapping TypeName="Model.Footbed">
+              <MappingFragment StoreEntitySet="Footbed">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Furniture">
+            <EntityTypeMapping TypeName="Model.Furniture">
+              <MappingFragment StoreEntitySet="Furniture">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdColour" ColumnName="IdColour" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UseUnuse" ColumnName="UseUnuse" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KindOfBlock">
+            <EntityTypeMapping TypeName="Model.KindOfBlock">
+              <MappingFragment StoreEntitySet="KindOfBlock">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KindOfSole">
+            <EntityTypeMapping TypeName="Model.KindOfSole">
+              <MappingFragment StoreEntitySet="KindOfSole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdMaterialOfSole" ColumnName="IdMaterialOfSole" />
+                <ScalarProperty Name="IdComponents" ColumnName="IdComponents" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lining">
+            <EntityTypeMapping TypeName="Model.Lining">
+              <MappingFragment StoreEntitySet="Lining">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="UseUnuse" ColumnName="UseUnuse" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialOfSole">
+            <EntityTypeMapping TypeName="Model.MaterialOfSole">
+              <MappingFragment StoreEntitySet="MaterialOfSole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdColour" ColumnName="IdColour" />
+                <ScalarProperty Name="UseUnuse" ColumnName="UseUnuse" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pad">
+            <EntityTypeMapping TypeName="Model.Pad">
+              <MappingFragment StoreEntitySet="Pad">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+                <ScalarProperty Name="PadSize" ColumnName="PadSize" />
+                <ScalarProperty Name="UseUnuse" ColumnName="UseUnuse" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pattern">
+            <EntityTypeMapping TypeName="Model.Pattern">
+              <MappingFragment StoreEntitySet="Pattern">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UseUnuse" ColumnName="UseUnuse" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotoOfSole">
+            <EntityTypeMapping TypeName="Model.PhotoOfSole">
+              <MappingFragment StoreEntitySet="PhotoOfSole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSole" ColumnName="IdSole" />
+                <ScalarProperty Name="URLPicture" ColumnName="URLPicture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProducedShoe">
+            <EntityTypeMapping TypeName="Model.ProducedShoe">
+              <MappingFragment StoreEntitySet="ProducedShoe">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdShoeModel" ColumnName="IdShoeModel" />
+                <ScalarProperty Name="URLPicture" ColumnName="URLPicture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShoeModel">
+            <EntityTypeMapping TypeName="Model.ShoeModel">
+              <MappingFragment StoreEntitySet="ShoeModel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTopMaterial" ColumnName="IdTopMaterial" />
+                <ScalarProperty Name="IdDesign" ColumnName="IdDesign" />
+                <ScalarProperty Name="IdSole" ColumnName="IdSole" />
+                <ScalarProperty Name="IdLining" ColumnName="IdLining" />
+                <ScalarProperty Name="IdBlock" ColumnName="IdBlock" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sole">
+            <EntityTypeMapping TypeName="Model.Sole">
+              <MappingFragment StoreEntitySet="Sole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdKindOfSole" ColumnName="IdKindOfSole" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopMaterial">
+            <EntityTypeMapping TypeName="Model.TopMaterial">
+              <MappingFragment StoreEntitySet="TopMaterial">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdColour" ColumnName="IdColour" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UseUnuse" ColumnName="UseUnuse" />
+                <ScalarProperty Name="CrossReference" ColumnName="CrossReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

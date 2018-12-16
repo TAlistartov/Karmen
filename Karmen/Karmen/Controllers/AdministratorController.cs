@@ -11,7 +11,16 @@ namespace Karmen.Controllers
         [HttpGet]
         public ViewResult Index()
         {
+            var context = new KarmenDbContext();
+            var colour = context.Colour.ToList();
             return View();
+        }
+
+        [HttpGet]
+        public PartialViewResult GetAllColours()
+        {
+           
+            return PartialView();
         }
 
     }

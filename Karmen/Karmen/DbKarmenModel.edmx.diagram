@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7ba7f132325548fdaba6e59a95aa6823" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Block" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Colour" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Component" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Designe" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Footbed" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Furniture" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.KindOfBlock" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.KindOfSole" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lining" Width="1.5" PointX="9.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MaterialOfSole" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Pad" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Pattern" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PhotoOfSole" Width="1.5" PointX="12" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ProducedShoe" Width="1.5" PointX="14.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ShoeModel" Width="1.5" PointX="12" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Sole" Width="1.5" PointX="9.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TopMaterial" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Block_Footbed" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Block_KindOfBlock" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Block_Pad" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Component_Colour" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Furniture_Colour" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_MaterialOfSole_Colour" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TopMaterial_Colour" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Component_TopMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_KindOfSole_Component" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Designe_Furniture" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Designe_Pattern" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ShoeModel_Designe" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_KindOfSole_MaterialOfSole" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Sole_KindOfSole" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ShoeModel_Lining" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_PhotoOfSole_Sole" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ProducedShoe_ShoeModel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ShoeModel_Sole" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ShoeModel_TopMaterial" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
