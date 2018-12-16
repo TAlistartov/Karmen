@@ -1,0 +1,6 @@
+﻿@model Karmen.Models.ColourModel
+
+<div class="form-group">
+    <label for="dropdownAllStudies">Выбор:</label>
+    @Html.DropDownListFor(x => x.SelectedColour, Model.AllColoursFromDb, new { @id = "dropDownAllColours", @class = "dropdown-toggle form-control" })
+</div>

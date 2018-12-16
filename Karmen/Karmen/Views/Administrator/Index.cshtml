@@ -49,10 +49,11 @@
 
                     @* ЦВЕТ *@
                     <div id="color" class="tab-pane active" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllColours");}
                         <div class="form-inline">
                             <label class="componentColourL" for="colorName">Цвет:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="colorName">
-                        </div>                         
+                        </div>
                     </div>
 
                     @* ЛЕКАЛО *@

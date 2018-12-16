@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Karmen.Models;
+
 
 namespace Karmen.Controllers
 {
@@ -11,16 +13,14 @@ namespace Karmen.Controllers
         [HttpGet]
         public ViewResult Index()
         {
-            var context = new KarmenDbContext();
-            var colour = context.Colour.ToList();
             return View();
         }
 
         [HttpGet]
-        public PartialViewResult GetAllColours()
+        public PartialViewResult Partial_GetAllColours()
         {
-           
-            return PartialView();
+            ColourModel colour = new ColourModel();
+            return PartialView(colour);
         }
 
     }
