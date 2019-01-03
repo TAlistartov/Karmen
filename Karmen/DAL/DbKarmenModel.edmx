@@ -519,12 +519,12 @@
           <NavigationProperty Name="KindOfBlock" Relationship="Self.FK_Block_KindOfBlock" FromRole="Block" ToRole="KindOfBlock" />
           <NavigationProperty Name="Pad" Relationship="Self.FK_Block_Pad" FromRole="Block" ToRole="Pad" />
         </EntityType>
-        <EntityType Name="Colour">
+        <EntityType Name="Colours">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Colour1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Colour" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Component" Relationship="Self.FK_Component_Colour" FromRole="Colour" ToRole="Component" />
           <NavigationProperty Name="Furniture" Relationship="Self.FK_Furniture_Colour" FromRole="Colour" ToRole="Furniture" />
           <NavigationProperty Name="MaterialOfSole" Relationship="Self.FK_MaterialOfSole_Colour" FromRole="Colour" ToRole="MaterialOfSole" />
@@ -746,7 +746,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Component_Colour">
-          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="Colour" Type="Model.Colours" Multiplicity="1" />
           <End Role="Component" Type="Self.Component" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Colour">
@@ -758,7 +758,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Furniture_Colour">
-          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="Colour" Type="Model.Colours" Multiplicity="1" />
           <End Role="Furniture" Type="Self.Furniture" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Colour">
@@ -770,7 +770,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MaterialOfSole_Colour">
-          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="Colour" Type="Model.Colours" Multiplicity="1" />
           <End Role="MaterialOfSole" Type="Self.MaterialOfSole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Colour">
@@ -782,7 +782,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TopMaterial_Colour">
-          <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+          <End Role="Colour" Type="Model.Colours" Multiplicity="1" />
           <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Colour">
@@ -939,7 +939,7 @@
         </Association>
         <EntityContainer Name="KarmenDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Block" EntityType="Self.Block" />
-          <EntitySet Name="Colour" EntityType="Self.Colour" />
+          <EntitySet Name="Colour" EntityType="Model.Colours" />
           <EntitySet Name="Component" EntityType="Self.Component" />
           <EntitySet Name="Designe" EntityType="Self.Designe" />
           <EntitySet Name="Footbed" EntityType="Self.Footbed" />
@@ -1054,10 +1054,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Colour">
-            <EntityTypeMapping TypeName="Model.Colour">
+            <EntityTypeMapping TypeName="Model.Colours">
               <MappingFragment StoreEntitySet="Colour">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Colour1" ColumnName="Colour" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

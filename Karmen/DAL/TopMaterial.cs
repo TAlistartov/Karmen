@@ -7,26 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Pad
+    public partial class TopMaterial
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pad()
+        public TopMaterial()
         {
-            this.Block = new HashSet<Block>();
+            this.Component = new HashSet<Component>();
+            this.ShoeModel = new HashSet<ShoeModel>();
         }
     
         public int Id { get; set; }
-        public string Kind { get; set; }
-        public double PadSize { get; set; }
-        public Nullable<bool> UseUnuse { get; set; }
-        public string AdditionalInformation { get; set; }
+        public int IdColour { get; set; }
+        public string Type { get; set; }
+        public bool UseUnuse { get; set; }
+        public string CrossReference { get; set; }
     
+        public virtual Colours Colour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Block> Block { get; set; }
+        public virtual ICollection<Component> Component { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShoeModel> ShoeModel { get; set; }
     }
 }

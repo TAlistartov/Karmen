@@ -7,25 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Block
+    public partial class KindOfBlock
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KindOfBlock()
+        {
+            this.Block = new HashSet<Block>();
+        }
+    
         public int Id { get; set; }
-        public int IdTypeBlock { get; set; }
-        public Nullable<double> Fullnes { get; set; }
-        public Nullable<int> IdAdditionalPad { get; set; }
-        public int IdFootbed { get; set; }
-        public int HeightBlock { get; set; }
-        public int Size { get; set; }
-        public bool UseUnuse { get; set; }
+        public string Name { get; set; }
+        public string AdditionalInformation { get; set; }
         public string CrossReference { get; set; }
     
-        public virtual Footbed Footbed { get; set; }
-        public virtual KindOfBlock KindOfBlock { get; set; }
-        public virtual Pad Pad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Block> Block { get; set; }
     }
 }

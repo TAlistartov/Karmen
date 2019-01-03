@@ -7,25 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Designe
+    public partial class Sole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Designe()
+        public Sole()
         {
+            this.PhotoOfSole = new HashSet<PhotoOfSole>();
             this.ShoeModel = new HashSet<ShoeModel>();
         }
     
         public int Id { get; set; }
-        public int IdPattern { get; set; }
-        public int IdFurniture { get; set; }
+        public int IdKindOfSole { get; set; }
+        public string CrossReference { get; set; }
+        public string AdditionalInformation { get; set; }
     
-        public virtual Furniture Furniture { get; set; }
-        public virtual Pattern Pattern { get; set; }
+        public virtual KindOfSole KindOfSole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhotoOfSole> PhotoOfSole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShoeModel> ShoeModel { get; set; }
     }

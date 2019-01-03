@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="7ba7f132325548fdaba6e59a95aa6823" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Block" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Colour" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Colours" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Component" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Designe" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Footbed" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />

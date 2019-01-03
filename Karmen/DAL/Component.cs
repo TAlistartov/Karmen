@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace Karmen
         public string Form { get; set; }
         public string Type { get; set; }
     
-        public virtual Colour Colour { get; set; }
+        public virtual Colours Colour { get; set; }
         public virtual TopMaterial TopMaterial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KindOfSole> KindOfSole { get; set; }

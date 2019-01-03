@@ -7,29 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Sole
+    public partial class ShoeModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sole()
+        public ShoeModel()
         {
-            this.PhotoOfSole = new HashSet<PhotoOfSole>();
-            this.ShoeModel = new HashSet<ShoeModel>();
+            this.ProducedShoe = new HashSet<ProducedShoe>();
         }
     
         public int Id { get; set; }
-        public int IdKindOfSole { get; set; }
-        public string CrossReference { get; set; }
+        public int IdTopMaterial { get; set; }
+        public int IdDesign { get; set; }
+        public int IdSole { get; set; }
+        public int IdLining { get; set; }
+        public int IdBlock { get; set; }
         public string AdditionalInformation { get; set; }
     
-        public virtual KindOfSole KindOfSole { get; set; }
+        public virtual Designe Designe { get; set; }
+        public virtual Lining Lining { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhotoOfSole> PhotoOfSole { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoeModel> ShoeModel { get; set; }
+        public virtual ICollection<ProducedShoe> ProducedShoe { get; set; }
+        public virtual Sole Sole { get; set; }
+        public virtual TopMaterial TopMaterial { get; set; }
     }
 }

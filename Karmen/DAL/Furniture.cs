@@ -7,18 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TopMaterial
+    public partial class Furniture
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TopMaterial()
+        public Furniture()
         {
-            this.Component = new HashSet<Component>();
-            this.ShoeModel = new HashSet<ShoeModel>();
+            this.Designe = new HashSet<Designe>();
         }
     
         public int Id { get; set; }
@@ -27,10 +26,8 @@ namespace Karmen
         public bool UseUnuse { get; set; }
         public string CrossReference { get; set; }
     
-        public virtual Colour Colour { get; set; }
+        public virtual Colours Colour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Component> Component { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoeModel> ShoeModel { get; set; }
+        public virtual ICollection<Designe> Designe { get; set; }
     }
 }

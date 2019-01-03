@@ -7,17 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ProducedShoe
+    public partial class KindOfSole
     {
-        public int Id { get; set; }
-        public int IdShoeModel { get; set; }
-        public string URLPicture { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KindOfSole()
+        {
+            this.Sole = new HashSet<Sole>();
+        }
     
-        public virtual ShoeModel ShoeModel { get; set; }
+        public int Id { get; set; }
+        public int IdMaterialOfSole { get; set; }
+        public int IdComponents { get; set; }
+    
+        public virtual Component Component { get; set; }
+        public virtual MaterialOfSole MaterialOfSole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sole> Sole { get; set; }
     }
 }

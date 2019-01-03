@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace Karmen
         public bool UseUnuse { get; set; }
         public string CrossReference { get; set; }
     
-        public virtual Colour Colour { get; set; }
+        public virtual Colours Colour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KindOfSole> KindOfSole { get; set; }
     }

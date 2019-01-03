@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Data.Entity;
@@ -26,7 +26,7 @@ namespace Karmen
         }
     
         public virtual DbSet<Block> Block { get; set; }
-        public virtual DbSet<Colour> Colour { get; set; }
+        public virtual DbSet<Colours> Colours { get; set; }
         public virtual DbSet<Component> Component { get; set; }
         public virtual DbSet<Designe> Designe { get; set; }
         public virtual DbSet<Footbed> Footbed { get; set; }

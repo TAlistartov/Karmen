@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Colour
+    public partial class Colours
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Colour()
+        public Colours()
         {
             this.Component = new HashSet<Component>();
             this.Furniture = new HashSet<Furniture>();
@@ -24,7 +24,7 @@ namespace Karmen
         }
     
         public int Id { get; set; }
-        public string Colour1 { get; set; }
+        public string Colour { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Component> Component { get; set; }

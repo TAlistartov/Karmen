@@ -7,27 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Karmen
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Furniture
+    public partial class PhotoOfSole
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Furniture()
-        {
-            this.Designe = new HashSet<Designe>();
-        }
-    
         public int Id { get; set; }
-        public int IdColour { get; set; }
-        public string Type { get; set; }
-        public bool UseUnuse { get; set; }
-        public string CrossReference { get; set; }
+        public int IdSole { get; set; }
+        public string URLPicture { get; set; }
     
-        public virtual Colour Colour { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Designe> Designe { get; set; }
+        public virtual Sole Sole { get; set; }
     }
 }
