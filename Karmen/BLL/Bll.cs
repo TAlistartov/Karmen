@@ -12,7 +12,7 @@ namespace BLL
         Dal dal = new Dal();
         public void test ()
         {
-            dal.GTR();
+            dal.SaveNewColour();
         }
     }
 }

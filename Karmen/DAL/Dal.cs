@@ -8,18 +8,27 @@ namespace DAL
 {
     public class Dal
     {
-        public void GTR()
+        public int SaveNewColour(string colour)
         {
+            int res = 0;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                // добавление элементов
-                db.Colours.Add(new Colours { Colour = "серый" });                
-                db.SaveChanges();
-                // получение элементов
-                var users = db.Colours;
-                //foreach (User u in users)
-                //    Console.WriteLine("{0}.{1} - {2}", u.Id, u.Name, u.Age);
+                var temp = db.Colours.Where(c => c.Colour == colour);
+                if (temp == null)
+                {
+                    // добавление элементов
+                    db.Colours.Add(new Colours { Colour = colour });
+                    db.SaveChanges();
+                    // получение элементов
+                    var users = db.Colours.Where(c => c.Colour == colour);
+                    res = (users == null) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct
+                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+                
             }
+            return (res);
         }
            
     }
