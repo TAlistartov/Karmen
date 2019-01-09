@@ -12,21 +12,12 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Designe
+    public partial class ProducedShoes
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Designe()
-        {
-            this.ShoeModel = new HashSet<ShoeModel>();
-        }
-    
         public int Id { get; set; }
-        public int IdPattern { get; set; }
-        public int IdFurniture { get; set; }
+        public int IdShoeModel { get; set; }
+        public string URLPicture { get; set; }
     
-        public virtual Furniture Furniture { get; set; }
-        public virtual Pattern Pattern { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoeModel> ShoeModel { get; set; }
+        public virtual ShoeModels ShoeModel { get; set; }
     }
 }

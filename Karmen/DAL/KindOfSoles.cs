@@ -12,20 +12,21 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Pattern
+    public partial class KindOfSoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pattern()
+        public KindOfSoles()
         {
-            this.Designe = new HashSet<Designe>();
+            this.Sole = new HashSet<Soles>();
         }
     
         public int Id { get; set; }
-        public bool UseUnuse { get; set; }
-        public string CrossReference { get; set; }
-        public string AdditionalInformation { get; set; }
+        public int IdMaterialOfSole { get; set; }
+        public int IdComponents { get; set; }
     
+        public virtual Components Component { get; set; }
+        public virtual MaterialsOfSole MaterialOfSole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Designe> Designe { get; set; }
+        public virtual ICollection<Soles> Sole { get; set; }
     }
 }

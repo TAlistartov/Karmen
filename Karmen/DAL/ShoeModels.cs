@@ -12,20 +12,27 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class KindOfBlock
+    public partial class ShoeModels
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KindOfBlock()
+        public ShoeModels()
         {
-            this.Block = new HashSet<Block>();
+            this.ProducedShoe = new HashSet<ProducedShoes>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int IdTopMaterial { get; set; }
+        public int IdDesign { get; set; }
+        public int IdSole { get; set; }
+        public int IdLining { get; set; }
+        public int IdBlock { get; set; }
         public string AdditionalInformation { get; set; }
-        public string CrossReference { get; set; }
     
+        public virtual Designes Designe { get; set; }
+        public virtual Linings Lining { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Block> Block { get; set; }
+        public virtual ICollection<ProducedShoes> ProducedShoe { get; set; }
+        public virtual Soles Sole { get; set; }
+        public virtual TopMaterials TopMaterial { get; set; }
     }
 }

@@ -47,13 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Block.cs">
+    <Compile Include="Blocks.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Colours.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Component.cs">
+    <Compile Include="Components.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Dal.cs" />
@@ -72,47 +72,47 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Designe.cs">
+    <Compile Include="Designes.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Footbed.cs">
+    <Compile Include="Footbeds.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Furniture.cs">
+    <Compile Include="Furnitures.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KindOfBlock.cs">
+    <Compile Include="KindOfBlocks.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KindOfSole.cs">
+    <Compile Include="KindOfSoles.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Lining.cs">
+    <Compile Include="Linings.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MaterialOfSole.cs">
+    <Compile Include="MaterialsOfSole.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pad.cs">
+    <Compile Include="Pads.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pattern.cs">
+    <Compile Include="Patterns.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PhotoOfSole.cs">
+    <Compile Include="PhotosOfSole.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProducedShoe.cs">
+    <Compile Include="ProducedShoes.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShoeModel.cs">
+    <Compile Include="ShoeModels.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sole.cs">
+    <Compile Include="Soles.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TopMaterial.cs">
+    <Compile Include="TopMaterials.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

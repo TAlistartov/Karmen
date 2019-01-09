@@ -1,0 +1,6 @@
+﻿@model Karmen.Models.FootBedModel
+
+<div class="form-inline">
+    <label for="footbed_Ddl">Выбор из БД:</label>
+    @Html.DropDownListFor(x => x.SelectedFootBed, Model.AllFootBedsFromDb, "-Выберите стельку-", new { @class = "dropdown-toggle form-control mb-2 mr-sm-2 selectFromDb" })
+</div>

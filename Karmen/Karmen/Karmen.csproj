@@ -165,6 +165,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ColourModel.cs" />
+    <Compile Include="Models\ComponentModel.cs" />
+    <Compile Include="Models\FootBedModel.cs" />
+    <Compile Include="Models\FurnitureModel.cs" />
+    <Compile Include="Models\KindOfBlockModel.cs" />
+    <Compile Include="Models\LiningModel.cs" />
+    <Compile Include="Models\MaterialOfSoleModel.cs" />
+    <Compile Include="Models\PadModel.cs" />
+    <Compile Include="Models\PatternModel.cs" />
+    <Compile Include="Models\TopMaterial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +184,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Administrator\Index.cshtml" />
     <Content Include="Views\Administrator\Partial_GetAllColours.cshtml" />
+    <Content Include="Views\Administrator\Partial_GetAllPatterns.cshtml" />
+    <Content Include="Views\Administrator\Partial_GetAllLinings.cshtml" />
+    <Content Include="Views\Administrator\Partial_GetAllFootbeds.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

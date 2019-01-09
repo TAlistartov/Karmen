@@ -12,30 +12,20 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Component
+    public partial class Footbeds
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Component()
+        public Footbeds()
         {
-            this.KindOfSole = new HashSet<KindOfSole>();
+            this.Block = new HashSet<Blocks>();
         }
     
         public int Id { get; set; }
-        public string TypeOfComponent { get; set; }
-        public int IdColour { get; set; }
-        public int Size { get; set; }
-        public bool UseUnuse { get; set; }
+        public string Type { get; set; }
         public string CrossReference { get; set; }
         public string AdditionalInformation { get; set; }
-        public Nullable<int> IdMaterilOfCovering { get; set; }
-        public Nullable<int> Height { get; set; }
-        public Nullable<int> Width { get; set; }
-        public string Form { get; set; }
-        public string Type { get; set; }
     
-        public virtual Colours Colour { get; set; }
-        public virtual TopMaterial TopMaterial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KindOfSole> KindOfSole { get; set; }
+        public virtual ICollection<Blocks> Block { get; set; }
     }
 }

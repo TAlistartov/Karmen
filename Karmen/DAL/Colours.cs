@@ -17,22 +17,22 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Colours()
         {
-            this.Component = new HashSet<Component>();
-            this.Furniture = new HashSet<Furniture>();
-            this.MaterialOfSole = new HashSet<MaterialOfSole>();
-            this.TopMaterial = new HashSet<TopMaterial>();
+            this.Component = new HashSet<Components>();
+            this.Furniture = new HashSet<Furnitures>();
+            this.MaterialOfSole = new HashSet<MaterialsOfSole>();
+            this.TopMaterial = new HashSet<TopMaterials>();
         }
     
         public int Id { get; set; }
         public string Colour { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Component> Component { get; set; }
+        public virtual ICollection<Components> Component { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Furniture> Furniture { get; set; }
+        public virtual ICollection<Furnitures> Furniture { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MaterialOfSole> MaterialOfSole { get; set; }
+        public virtual ICollection<MaterialsOfSole> MaterialOfSole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TopMaterial> TopMaterial { get; set; }
+        public virtual ICollection<TopMaterials> TopMaterial { get; set; }
     }
 }

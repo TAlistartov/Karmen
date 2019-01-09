@@ -25,22 +25,22 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Block> Block { get; set; }
-        public virtual DbSet<Colours> Colours { get; set; }
-        public virtual DbSet<Component> Component { get; set; }
-        public virtual DbSet<Designe> Designe { get; set; }
-        public virtual DbSet<Footbed> Footbed { get; set; }
-        public virtual DbSet<Furniture> Furniture { get; set; }
-        public virtual DbSet<KindOfBlock> KindOfBlock { get; set; }
-        public virtual DbSet<KindOfSole> KindOfSole { get; set; }
-        public virtual DbSet<Lining> Lining { get; set; }
-        public virtual DbSet<MaterialOfSole> MaterialOfSole { get; set; }
-        public virtual DbSet<Pad> Pad { get; set; }
-        public virtual DbSet<Pattern> Pattern { get; set; }
-        public virtual DbSet<PhotoOfSole> PhotoOfSole { get; set; }
-        public virtual DbSet<ProducedShoe> ProducedShoe { get; set; }
-        public virtual DbSet<ShoeModel> ShoeModel { get; set; }
-        public virtual DbSet<Sole> Sole { get; set; }
-        public virtual DbSet<TopMaterial> TopMaterial { get; set; }
+        public virtual DbSet<Blocks> Block { get; set; }
+        public virtual DbSet<Colours> Colour { get; set; }
+        public virtual DbSet<Components> Component { get; set; }
+        public virtual DbSet<Designes> Designe { get; set; }
+        public virtual DbSet<Footbeds> Footbed { get; set; }
+        public virtual DbSet<Furnitures> Furniture { get; set; }
+        public virtual DbSet<KindOfBlocks> KindOfBlock { get; set; }
+        public virtual DbSet<KindOfSoles> KindOfSole { get; set; }
+        public virtual DbSet<Linings> Lining { get; set; }
+        public virtual DbSet<MaterialsOfSole> MaterialOfSole { get; set; }
+        public virtual DbSet<Pads> Pad { get; set; }
+        public virtual DbSet<Patterns> Pattern { get; set; }
+        public virtual DbSet<PhotosOfSole> PhotoOfSole { get; set; }
+        public virtual DbSet<ProducedShoes> ProducedShoe { get; set; }
+        public virtual DbSet<ShoeModels> ShoeModel { get; set; }
+        public virtual DbSet<Soles> Sole { get; set; }
+        public virtual DbSet<TopMaterials> TopMaterial { get; set; }
     }
 }

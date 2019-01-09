@@ -12,24 +12,22 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Sole
+    public partial class MaterialsOfSole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sole()
+        public MaterialsOfSole()
         {
-            this.PhotoOfSole = new HashSet<PhotoOfSole>();
-            this.ShoeModel = new HashSet<ShoeModel>();
+            this.KindOfSole = new HashSet<KindOfSoles>();
         }
     
         public int Id { get; set; }
-        public int IdKindOfSole { get; set; }
+        public string Name { get; set; }
+        public int IdColour { get; set; }
+        public bool UseUnuse { get; set; }
         public string CrossReference { get; set; }
-        public string AdditionalInformation { get; set; }
     
-        public virtual KindOfSole KindOfSole { get; set; }
+        public virtual Colours Colour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhotoOfSole> PhotoOfSole { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoeModel> ShoeModel { get; set; }
+        public virtual ICollection<KindOfSoles> KindOfSole { get; set; }
     }
 }

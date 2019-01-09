@@ -12,12 +12,21 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class PhotoOfSole
+    public partial class Pads
     {
-        public int Id { get; set; }
-        public int IdSole { get; set; }
-        public string URLPicture { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Pads()
+        {
+            this.Block = new HashSet<Blocks>();
+        }
     
-        public virtual Sole Sole { get; set; }
+        public int Id { get; set; }
+        public string Kind { get; set; }
+        public double PadSize { get; set; }
+        public Nullable<bool> UseUnuse { get; set; }
+        public string AdditionalInformation { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Blocks> Block { get; set; }
     }
 }

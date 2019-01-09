@@ -12,20 +12,12 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Block
+    public partial class PhotosOfSole
     {
         public int Id { get; set; }
-        public int IdTypeBlock { get; set; }
-        public Nullable<double> Fullnes { get; set; }
-        public Nullable<int> IdAdditionalPad { get; set; }
-        public int IdFootbed { get; set; }
-        public int HeightBlock { get; set; }
-        public int Size { get; set; }
-        public bool UseUnuse { get; set; }
-        public string CrossReference { get; set; }
+        public int IdSole { get; set; }
+        public string URLPicture { get; set; }
     
-        public virtual Footbed Footbed { get; set; }
-        public virtual KindOfBlock KindOfBlock { get; set; }
-        public virtual Pad Pad { get; set; }
+        public virtual Soles Sole { get; set; }
     }
 }

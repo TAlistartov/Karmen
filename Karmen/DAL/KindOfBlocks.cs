@@ -12,20 +12,20 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Footbed
+    public partial class KindOfBlocks
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Footbed()
+        public KindOfBlocks()
         {
-            this.Block = new HashSet<Block>();
+            this.Block = new HashSet<Blocks>();
         }
     
         public int Id { get; set; }
-        public string Type { get; set; }
-        public string CrossReference { get; set; }
+        public string Name { get; set; }
         public string AdditionalInformation { get; set; }
+        public string CrossReference { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Block> Block { get; set; }
+        public virtual ICollection<Blocks> Block { get; set; }
     }
 }

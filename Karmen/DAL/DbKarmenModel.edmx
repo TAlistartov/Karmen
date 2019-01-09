@@ -502,7 +502,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Block">
+        <EntityType Name="Blocks">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -530,7 +530,7 @@
           <NavigationProperty Name="MaterialOfSole" Relationship="Self.FK_MaterialOfSole_Colour" FromRole="Colour" ToRole="MaterialOfSole" />
           <NavigationProperty Name="TopMaterial" Relationship="Self.FK_TopMaterial_Colour" FromRole="Colour" ToRole="TopMaterial" />
         </EntityType>
-        <EntityType Name="Component">
+        <EntityType Name="Components">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -550,7 +550,7 @@
           <NavigationProperty Name="TopMaterial" Relationship="Self.FK_Component_TopMaterial" FromRole="Component" ToRole="TopMaterial" />
           <NavigationProperty Name="KindOfSole" Relationship="Self.FK_KindOfSole_Component" FromRole="Component" ToRole="KindOfSole" />
         </EntityType>
-        <EntityType Name="Designe">
+        <EntityType Name="Designes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -561,7 +561,7 @@
           <NavigationProperty Name="Pattern" Relationship="Self.FK_Designe_Pattern" FromRole="Designe" ToRole="Pattern" />
           <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ShoeModel_Designe" FromRole="Designe" ToRole="ShoeModel" />
         </EntityType>
-        <EntityType Name="Footbed">
+        <EntityType Name="Footbeds">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -571,7 +571,7 @@
           <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Block" Relationship="Self.FK_Block_Footbed" FromRole="Footbed" ToRole="Block" />
         </EntityType>
-        <EntityType Name="Furniture">
+        <EntityType Name="Furnitures">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -583,7 +583,7 @@
           <NavigationProperty Name="Colour" Relationship="Self.FK_Furniture_Colour" FromRole="Furniture" ToRole="Colour" />
           <NavigationProperty Name="Designe" Relationship="Self.FK_Designe_Furniture" FromRole="Furniture" ToRole="Designe" />
         </EntityType>
-        <EntityType Name="KindOfBlock">
+        <EntityType Name="KindOfBlocks">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -593,7 +593,7 @@
           <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Block" Relationship="Self.FK_Block_KindOfBlock" FromRole="KindOfBlock" ToRole="Block" />
         </EntityType>
-        <EntityType Name="KindOfSole">
+        <EntityType Name="KindOfSoles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -604,7 +604,7 @@
           <NavigationProperty Name="MaterialOfSole" Relationship="Self.FK_KindOfSole_MaterialOfSole" FromRole="KindOfSole" ToRole="MaterialOfSole" />
           <NavigationProperty Name="Sole" Relationship="Self.FK_Sole_KindOfSole" FromRole="KindOfSole" ToRole="Sole" />
         </EntityType>
-        <EntityType Name="Lining">
+        <EntityType Name="Linings">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -616,7 +616,7 @@
           <Property Name="CrossReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ShoeModel_Lining" FromRole="Lining" ToRole="ShoeModel" />
         </EntityType>
-        <EntityType Name="MaterialOfSole">
+        <EntityType Name="MaterialsOfSole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -628,7 +628,7 @@
           <NavigationProperty Name="Colour" Relationship="Self.FK_MaterialOfSole_Colour" FromRole="MaterialOfSole" ToRole="Colour" />
           <NavigationProperty Name="KindOfSole" Relationship="Self.FK_KindOfSole_MaterialOfSole" FromRole="MaterialOfSole" ToRole="KindOfSole" />
         </EntityType>
-        <EntityType Name="Pad">
+        <EntityType Name="Pads">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -639,7 +639,7 @@
           <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Block" Relationship="Self.FK_Block_Pad" FromRole="Pad" ToRole="Block" />
         </EntityType>
-        <EntityType Name="Pattern">
+        <EntityType Name="Patterns">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -649,7 +649,7 @@
           <Property Name="AdditionalInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Designe" Relationship="Self.FK_Designe_Pattern" FromRole="Pattern" ToRole="Designe" />
         </EntityType>
-        <EntityType Name="PhotoOfSole">
+        <EntityType Name="PhotosOfSole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -658,7 +658,7 @@
           <Property Name="URLPicture" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sole" Relationship="Self.FK_PhotoOfSole_Sole" FromRole="PhotoOfSole" ToRole="Sole" />
         </EntityType>
-        <EntityType Name="ProducedShoe">
+        <EntityType Name="ProducedShoes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -667,7 +667,7 @@
           <Property Name="URLPicture" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ProducedShoe_ShoeModel" FromRole="ProducedShoe" ToRole="ShoeModel" />
         </EntityType>
-        <EntityType Name="ShoeModel">
+        <EntityType Name="ShoeModels">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -684,7 +684,7 @@
           <NavigationProperty Name="Sole" Relationship="Self.FK_ShoeModel_Sole" FromRole="ShoeModel" ToRole="Sole" />
           <NavigationProperty Name="TopMaterial" Relationship="Self.FK_ShoeModel_TopMaterial" FromRole="ShoeModel" ToRole="TopMaterial" />
         </EntityType>
-        <EntityType Name="Sole">
+        <EntityType Name="Soles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -696,7 +696,7 @@
           <NavigationProperty Name="PhotoOfSole" Relationship="Self.FK_PhotoOfSole_Sole" FromRole="Sole" ToRole="PhotoOfSole" />
           <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ShoeModel_Sole" FromRole="Sole" ToRole="ShoeModel" />
         </EntityType>
-        <EntityType Name="TopMaterial">
+        <EntityType Name="TopMaterials">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -710,8 +710,8 @@
           <NavigationProperty Name="ShoeModel" Relationship="Self.FK_ShoeModel_TopMaterial" FromRole="TopMaterial" ToRole="ShoeModel" />
         </EntityType>
         <Association Name="FK_Block_Footbed">
-          <End Role="Footbed" Type="Self.Footbed" Multiplicity="1" />
-          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <End Role="Footbed" Type="Model.Footbeds" Multiplicity="1" />
+          <End Role="Block" Type="Model.Blocks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Footbed">
               <PropertyRef Name="Id" />
@@ -722,8 +722,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Block_KindOfBlock">
-          <End Role="KindOfBlock" Type="Self.KindOfBlock" Multiplicity="1" />
-          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <End Role="KindOfBlock" Type="Model.KindOfBlocks" Multiplicity="1" />
+          <End Role="Block" Type="Model.Blocks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KindOfBlock">
               <PropertyRef Name="Id" />
@@ -734,8 +734,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Block_Pad">
-          <End Role="Pad" Type="Self.Pad" Multiplicity="0..1" />
-          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <End Role="Pad" Type="Model.Pads" Multiplicity="0..1" />
+          <End Role="Block" Type="Model.Blocks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pad">
               <PropertyRef Name="Id" />
@@ -747,7 +747,7 @@
         </Association>
         <Association Name="FK_Component_Colour">
           <End Role="Colour" Type="Model.Colours" Multiplicity="1" />
-          <End Role="Component" Type="Self.Component" Multiplicity="*" />
+          <End Role="Component" Type="Model.Components" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Colour">
               <PropertyRef Name="Id" />
@@ -759,7 +759,7 @@
         </Association>
         <Association Name="FK_Furniture_Colour">
           <End Role="Colour" Type="Model.Colours" Multiplicity="1" />
-          <End Role="Furniture" Type="Self.Furniture" Multiplicity="*" />
+          <End Role="Furniture" Type="Model.Furnitures" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Colour">
               <PropertyRef Name="Id" />
@@ -771,7 +771,7 @@
         </Association>
         <Association Name="FK_MaterialOfSole_Colour">
           <End Role="Colour" Type="Model.Colours" Multiplicity="1" />
-          <End Role="MaterialOfSole" Type="Self.MaterialOfSole" Multiplicity="*" />
+          <End Role="MaterialOfSole" Type="Model.MaterialsOfSole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Colour">
               <PropertyRef Name="Id" />
@@ -783,7 +783,7 @@
         </Association>
         <Association Name="FK_TopMaterial_Colour">
           <End Role="Colour" Type="Model.Colours" Multiplicity="1" />
-          <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="*" />
+          <End Role="TopMaterial" Type="Model.TopMaterials" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Colour">
               <PropertyRef Name="Id" />
@@ -794,8 +794,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Component_TopMaterial">
-          <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="0..1" />
-          <End Role="Component" Type="Self.Component" Multiplicity="*" />
+          <End Role="TopMaterial" Type="Model.TopMaterials" Multiplicity="0..1" />
+          <End Role="Component" Type="Model.Components" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TopMaterial">
               <PropertyRef Name="Id" />
@@ -806,8 +806,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KindOfSole_Component">
-          <End Role="Component" Type="Self.Component" Multiplicity="1" />
-          <End Role="KindOfSole" Type="Self.KindOfSole" Multiplicity="*" />
+          <End Role="Component" Type="Model.Components" Multiplicity="1" />
+          <End Role="KindOfSole" Type="Model.KindOfSoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Component">
               <PropertyRef Name="Id" />
@@ -818,8 +818,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Designe_Furniture">
-          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
-          <End Role="Designe" Type="Self.Designe" Multiplicity="*" />
+          <End Role="Furniture" Type="Model.Furnitures" Multiplicity="1" />
+          <End Role="Designe" Type="Model.Designes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Furniture">
               <PropertyRef Name="Id" />
@@ -830,8 +830,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Designe_Pattern">
-          <End Role="Pattern" Type="Self.Pattern" Multiplicity="1" />
-          <End Role="Designe" Type="Self.Designe" Multiplicity="*" />
+          <End Role="Pattern" Type="Model.Patterns" Multiplicity="1" />
+          <End Role="Designe" Type="Model.Designes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pattern">
               <PropertyRef Name="Id" />
@@ -842,8 +842,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShoeModel_Designe">
-          <End Role="Designe" Type="Self.Designe" Multiplicity="1" />
-          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <End Role="Designe" Type="Model.Designes" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Model.ShoeModels" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Designe">
               <PropertyRef Name="Id" />
@@ -854,8 +854,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KindOfSole_MaterialOfSole">
-          <End Role="MaterialOfSole" Type="Self.MaterialOfSole" Multiplicity="1" />
-          <End Role="KindOfSole" Type="Self.KindOfSole" Multiplicity="*" />
+          <End Role="MaterialOfSole" Type="Model.MaterialsOfSole" Multiplicity="1" />
+          <End Role="KindOfSole" Type="Model.KindOfSoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MaterialOfSole">
               <PropertyRef Name="Id" />
@@ -866,8 +866,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Sole_KindOfSole">
-          <End Role="KindOfSole" Type="Self.KindOfSole" Multiplicity="1" />
-          <End Role="Sole" Type="Self.Sole" Multiplicity="*" />
+          <End Role="KindOfSole" Type="Model.KindOfSoles" Multiplicity="1" />
+          <End Role="Sole" Type="Model.Soles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KindOfSole">
               <PropertyRef Name="Id" />
@@ -878,8 +878,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShoeModel_Lining">
-          <End Role="Lining" Type="Self.Lining" Multiplicity="1" />
-          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <End Role="Lining" Type="Model.Linings" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Model.ShoeModels" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lining">
               <PropertyRef Name="Id" />
@@ -890,8 +890,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PhotoOfSole_Sole">
-          <End Role="Sole" Type="Self.Sole" Multiplicity="1" />
-          <End Role="PhotoOfSole" Type="Self.PhotoOfSole" Multiplicity="*" />
+          <End Role="Sole" Type="Model.Soles" Multiplicity="1" />
+          <End Role="PhotoOfSole" Type="Model.PhotosOfSole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sole">
               <PropertyRef Name="Id" />
@@ -902,8 +902,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProducedShoe_ShoeModel">
-          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="1" />
-          <End Role="ProducedShoe" Type="Self.ProducedShoe" Multiplicity="*" />
+          <End Role="ShoeModel" Type="Model.ShoeModels" Multiplicity="1" />
+          <End Role="ProducedShoe" Type="Model.ProducedShoes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ShoeModel">
               <PropertyRef Name="Id" />
@@ -914,8 +914,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShoeModel_Sole">
-          <End Role="Sole" Type="Self.Sole" Multiplicity="1" />
-          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <End Role="Sole" Type="Model.Soles" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Model.ShoeModels" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sole">
               <PropertyRef Name="Id" />
@@ -926,8 +926,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShoeModel_TopMaterial">
-          <End Role="TopMaterial" Type="Self.TopMaterial" Multiplicity="1" />
-          <End Role="ShoeModel" Type="Self.ShoeModel" Multiplicity="*" />
+          <End Role="TopMaterial" Type="Model.TopMaterials" Multiplicity="1" />
+          <End Role="ShoeModel" Type="Model.ShoeModels" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TopMaterial">
               <PropertyRef Name="Id" />
@@ -938,23 +938,23 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="KarmenDbContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Block" EntityType="Self.Block" />
+          <EntitySet Name="Block" EntityType="Model.Blocks" />
           <EntitySet Name="Colour" EntityType="Model.Colours" />
-          <EntitySet Name="Component" EntityType="Self.Component" />
-          <EntitySet Name="Designe" EntityType="Self.Designe" />
-          <EntitySet Name="Footbed" EntityType="Self.Footbed" />
-          <EntitySet Name="Furniture" EntityType="Self.Furniture" />
-          <EntitySet Name="KindOfBlock" EntityType="Self.KindOfBlock" />
-          <EntitySet Name="KindOfSole" EntityType="Self.KindOfSole" />
-          <EntitySet Name="Lining" EntityType="Self.Lining" />
-          <EntitySet Name="MaterialOfSole" EntityType="Self.MaterialOfSole" />
-          <EntitySet Name="Pad" EntityType="Self.Pad" />
-          <EntitySet Name="Pattern" EntityType="Self.Pattern" />
-          <EntitySet Name="PhotoOfSole" EntityType="Self.PhotoOfSole" />
-          <EntitySet Name="ProducedShoe" EntityType="Self.ProducedShoe" />
-          <EntitySet Name="ShoeModel" EntityType="Self.ShoeModel" />
-          <EntitySet Name="Sole" EntityType="Self.Sole" />
-          <EntitySet Name="TopMaterial" EntityType="Self.TopMaterial" />
+          <EntitySet Name="Component" EntityType="Model.Components" />
+          <EntitySet Name="Designe" EntityType="Model.Designes" />
+          <EntitySet Name="Footbed" EntityType="Model.Footbeds" />
+          <EntitySet Name="Furniture" EntityType="Model.Furnitures" />
+          <EntitySet Name="KindOfBlock" EntityType="Model.KindOfBlocks" />
+          <EntitySet Name="KindOfSole" EntityType="Model.KindOfSoles" />
+          <EntitySet Name="Lining" EntityType="Model.Linings" />
+          <EntitySet Name="MaterialOfSole" EntityType="Model.MaterialsOfSole" />
+          <EntitySet Name="Pad" EntityType="Model.Pads" />
+          <EntitySet Name="Pattern" EntityType="Model.Patterns" />
+          <EntitySet Name="PhotoOfSole" EntityType="Model.PhotosOfSole" />
+          <EntitySet Name="ProducedShoe" EntityType="Model.ProducedShoes" />
+          <EntitySet Name="ShoeModel" EntityType="Model.ShoeModels" />
+          <EntitySet Name="Sole" EntityType="Model.Soles" />
+          <EntitySet Name="TopMaterial" EntityType="Model.TopMaterials" />
           <AssociationSet Name="FK_Block_Footbed" Association="Self.FK_Block_Footbed">
             <End Role="Footbed" EntitySet="Footbed" />
             <End Role="Block" EntitySet="Block" />
@@ -1039,7 +1039,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="KarmenDbContext">
           <EntitySetMapping Name="Block">
-            <EntityTypeMapping TypeName="Model.Block">
+            <EntityTypeMapping TypeName="Model.Blocks">
               <MappingFragment StoreEntitySet="Block">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdTypeBlock" ColumnName="IdTypeBlock" />
@@ -1062,7 +1062,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Component">
-            <EntityTypeMapping TypeName="Model.Component">
+            <EntityTypeMapping TypeName="Model.Components">
               <MappingFragment StoreEntitySet="Component">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TypeOfComponent" ColumnName="TypeOfComponent" />
@@ -1080,7 +1080,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Designe">
-            <EntityTypeMapping TypeName="Model.Designe">
+            <EntityTypeMapping TypeName="Model.Designes">
               <MappingFragment StoreEntitySet="Designe">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdPattern" ColumnName="IdPattern" />
@@ -1089,7 +1089,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Footbed">
-            <EntityTypeMapping TypeName="Model.Footbed">
+            <EntityTypeMapping TypeName="Model.Footbeds">
               <MappingFragment StoreEntitySet="Footbed">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -1099,7 +1099,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Furniture">
-            <EntityTypeMapping TypeName="Model.Furniture">
+            <EntityTypeMapping TypeName="Model.Furnitures">
               <MappingFragment StoreEntitySet="Furniture">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdColour" ColumnName="IdColour" />
@@ -1110,7 +1110,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KindOfBlock">
-            <EntityTypeMapping TypeName="Model.KindOfBlock">
+            <EntityTypeMapping TypeName="Model.KindOfBlocks">
               <MappingFragment StoreEntitySet="KindOfBlock">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1120,7 +1120,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KindOfSole">
-            <EntityTypeMapping TypeName="Model.KindOfSole">
+            <EntityTypeMapping TypeName="Model.KindOfSoles">
               <MappingFragment StoreEntitySet="KindOfSole">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdMaterialOfSole" ColumnName="IdMaterialOfSole" />
@@ -1129,7 +1129,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lining">
-            <EntityTypeMapping TypeName="Model.Lining">
+            <EntityTypeMapping TypeName="Model.Linings">
               <MappingFragment StoreEntitySet="Lining">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1141,7 +1141,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MaterialOfSole">
-            <EntityTypeMapping TypeName="Model.MaterialOfSole">
+            <EntityTypeMapping TypeName="Model.MaterialsOfSole">
               <MappingFragment StoreEntitySet="MaterialOfSole">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1152,7 +1152,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pad">
-            <EntityTypeMapping TypeName="Model.Pad">
+            <EntityTypeMapping TypeName="Model.Pads">
               <MappingFragment StoreEntitySet="Pad">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Kind" ColumnName="Kind" />
@@ -1163,7 +1163,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pattern">
-            <EntityTypeMapping TypeName="Model.Pattern">
+            <EntityTypeMapping TypeName="Model.Patterns">
               <MappingFragment StoreEntitySet="Pattern">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UseUnuse" ColumnName="UseUnuse" />
@@ -1173,7 +1173,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhotoOfSole">
-            <EntityTypeMapping TypeName="Model.PhotoOfSole">
+            <EntityTypeMapping TypeName="Model.PhotosOfSole">
               <MappingFragment StoreEntitySet="PhotoOfSole">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdSole" ColumnName="IdSole" />
@@ -1182,7 +1182,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProducedShoe">
-            <EntityTypeMapping TypeName="Model.ProducedShoe">
+            <EntityTypeMapping TypeName="Model.ProducedShoes">
               <MappingFragment StoreEntitySet="ProducedShoe">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdShoeModel" ColumnName="IdShoeModel" />
@@ -1191,7 +1191,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ShoeModel">
-            <EntityTypeMapping TypeName="Model.ShoeModel">
+            <EntityTypeMapping TypeName="Model.ShoeModels">
               <MappingFragment StoreEntitySet="ShoeModel">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdTopMaterial" ColumnName="IdTopMaterial" />
@@ -1204,7 +1204,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sole">
-            <EntityTypeMapping TypeName="Model.Sole">
+            <EntityTypeMapping TypeName="Model.Soles">
               <MappingFragment StoreEntitySet="Sole">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdKindOfSole" ColumnName="IdKindOfSole" />
@@ -1214,7 +1214,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TopMaterial">
-            <EntityTypeMapping TypeName="Model.TopMaterial">
+            <EntityTypeMapping TypeName="Model.TopMaterials">
               <MappingFragment StoreEntitySet="TopMaterial">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdColour" ColumnName="IdColour" />

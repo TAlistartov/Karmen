@@ -7,7 +7,7 @@
 <html>
 <head>
     <link rel="shortcut icon" href=""> @*fix bug favicon.ico*@
-    <script src="~/UserJavaScript/AdminPage.js"></script>
+    @*<script src="~/UserJavaScript/AdminPage.js"></script>*@
 </head>
 <body>
     <br/>
@@ -58,6 +58,7 @@
 
                     @* ЛЕКАЛО *@
                     <div id="pattern" class="tab-pane" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllPatterns");}
                         <div class="form-inline">
                             <label class="componentReferenceL" for="patternName">Reference:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="patternName">
@@ -75,6 +76,7 @@
 
                     @* ПОДКЛАДКА *@
                     <div id="lining" class="tab-pane" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllLinings");}
                         <div class="form-inline">
                             <label class="nameL" for="liningName">Название:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="liningName">
@@ -118,6 +120,7 @@
 
                         @* СТЕЛЬКА *@
                     <div id="footbed" class="tab-pane" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllFootbeds");}
                         <div class="form-inline">
                             <label class="componentNameL" for="footbedName">Тип:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="footbedName">

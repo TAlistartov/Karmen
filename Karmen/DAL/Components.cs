@@ -12,25 +12,30 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class TopMaterial
+    public partial class Components
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TopMaterial()
+        public Components()
         {
-            this.Component = new HashSet<Component>();
-            this.ShoeModel = new HashSet<ShoeModel>();
+            this.KindOfSole = new HashSet<KindOfSoles>();
         }
     
         public int Id { get; set; }
+        public string TypeOfComponent { get; set; }
         public int IdColour { get; set; }
-        public string Type { get; set; }
+        public int Size { get; set; }
         public bool UseUnuse { get; set; }
         public string CrossReference { get; set; }
+        public string AdditionalInformation { get; set; }
+        public Nullable<int> IdMaterilOfCovering { get; set; }
+        public Nullable<int> Height { get; set; }
+        public Nullable<int> Width { get; set; }
+        public string Form { get; set; }
+        public string Type { get; set; }
     
         public virtual Colours Colour { get; set; }
+        public virtual TopMaterials TopMaterial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Component> Component { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShoeModel> ShoeModel { get; set; }
+        public virtual ICollection<KindOfSoles> KindOfSole { get; set; }
     }
 }

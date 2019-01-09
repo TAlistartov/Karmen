@@ -12,22 +12,22 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Furniture
+    public partial class Linings
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Furniture()
+        public Linings()
         {
-            this.Designe = new HashSet<Designe>();
+            this.ShoeModel = new HashSet<ShoeModels>();
         }
     
         public int Id { get; set; }
-        public int IdColour { get; set; }
-        public string Type { get; set; }
+        public string Name { get; set; }
+        public string Season { get; set; }
         public bool UseUnuse { get; set; }
+        public string AdditionalInformation { get; set; }
         public string CrossReference { get; set; }
     
-        public virtual Colours Colour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Designe> Designe { get; set; }
+        public virtual ICollection<ShoeModels> ShoeModel { get; set; }
     }
 }

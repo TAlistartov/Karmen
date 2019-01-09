@@ -12,21 +12,20 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class KindOfSole
+    public partial class Blocks
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KindOfSole()
-        {
-            this.Sole = new HashSet<Sole>();
-        }
-    
         public int Id { get; set; }
-        public int IdMaterialOfSole { get; set; }
-        public int IdComponents { get; set; }
+        public int IdTypeBlock { get; set; }
+        public Nullable<double> Fullnes { get; set; }
+        public Nullable<int> IdAdditionalPad { get; set; }
+        public int IdFootbed { get; set; }
+        public int HeightBlock { get; set; }
+        public int Size { get; set; }
+        public bool UseUnuse { get; set; }
+        public string CrossReference { get; set; }
     
-        public virtual Component Component { get; set; }
-        public virtual MaterialOfSole MaterialOfSole { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sole> Sole { get; set; }
+        public virtual Footbeds Footbed { get; set; }
+        public virtual KindOfBlocks KindOfBlock { get; set; }
+        public virtual Pads Pad { get; set; }
     }
 }
