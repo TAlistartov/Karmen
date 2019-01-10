@@ -12,32 +12,12 @@ namespace BLL
         //Links
         Dal dal = new Dal();
 
-        public List<Colours> BllGetAllColoursFromDb ()
+        //Get All Data From the necessaary tables in Db for Main DropDownList in all Punkts of Navigation
+        public List<T> BllGetAllDataTableFromDb<T>(T TypeOfData)
         {
-            //List<Colours> coloursDb = new List<Colours>();
-            var coloursDb = dal.DalGetAllColoursFromDb();
-            return (coloursDb);
+            List<T> dataDb = dal.DalGetAllDataTableFromDb<T>(TypeOfData);
+            return (dataDb);
         }
-
-        public List<Patterns> BllGetAllPatternsFromDb()
-        {
-            //List<Patterns> patternsDb = new List<Patterns>();
-            var patternsDb = dal.DalGetAllPatternsFromDb();
-            return (patternsDb);
-        }
-
-        public List<Linings> BllGetAllLiningsFromDb()
-        {
-            var liningsDb = dal.DalGetAllLiningsFromDb();
-            return (liningsDb);
-        }
-
-        public List<Footbeds> BllGetAllFootBedsFromDb()
-        {
-            var footbedsDb = dal.DalGetAllFootBedsFromDb();
-            return (footbedsDb);
-        }
-
 
         public void BllSaveNewColour(string colour)
         {
