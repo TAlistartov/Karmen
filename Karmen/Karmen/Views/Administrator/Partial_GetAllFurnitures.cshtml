@@ -1,0 +1,6 @@
+﻿@model Karmen.Models.FurnitureModel
+
+<div class="form-inline">
+    <label for="furniture_Ddl">Выбор из БД:</label>
+    @Html.DropDownListFor(x => x.SelectedFurniture, Model.AllFurnituresFromDb, "-Выбор фурнитуры-", new { @class = "dropdown-toggle form-control mb-2 mr-sm-2 selectFromDb" })
+</div>

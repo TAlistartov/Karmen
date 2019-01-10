@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Karmen.Models
 {
-    public class TopMaterial
+    public class TopMaterialModel
     {
         public int Id { get; set; }
         public int IdColour { get; set; }

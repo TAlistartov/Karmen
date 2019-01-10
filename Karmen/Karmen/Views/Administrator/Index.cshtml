@@ -101,13 +101,12 @@
 
                     @* ФУРНИТУРА *@
                     <div id="furniture" class="tab-pane" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllFurnitures");}
                         <div class="form-inline">
                             <label class="furnitureL" for="furnitureName">Фурнитура:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="furnitureName">
                         </div>
-                        <div class="form-inline">
-                            <p>Тут DropDownList со всеми цветами</p>
-                        </div>
+                        @{Html.RenderAction("Partial_GetAllColours");}
                         <div class="form-inline">
                             <label class="componentReferenceL" for="furniturereReference">Reference:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="furniturereReference">
@@ -137,6 +136,7 @@
 
                         @* ЛИЧИНА *@
                     <div id="pad" class="tab-pane" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllPads");}
                         <div class="form-inline">
                             <label class="componentNameL" for="padName">Вид:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="padName">
@@ -157,6 +157,7 @@
 
                         @* ВИД КОЛОДКИ *@
                     <div id="kindOfBlock" class="tab-pane" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllKindOfBlocks");}
                         <div class="form-inline">
                             <label class="nameL" for="kindOfBlockName">Название:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlockName">
@@ -173,13 +174,13 @@
 
                         @* МАТЕРИАЛ ПОДОШВЫ *@
                     <div id="materialOfSole" class="tab-pane" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllMaterialOfSoles");}
                         <div class="form-inline">
                             <label class="nameL" for="materialOfSoleName">Название:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSoleName">
                         </div>
-                        <div class="form-inline">
-                            <p>Тут DropDownList всех цветов</p>
-                        </div>
+                        @{Html.RenderAction("Partial_GetAllColours");}
+                        
                         <div class="form-inline">
                             <label class="componentReferenceL" for="materialOfSoleReference">Reference:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSoleReference">
@@ -192,13 +193,13 @@
 
                         @* МАТЕРИАЛ ВЕРХА *@
                     <div id="topMaterial" class="tab-pane" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllTopMaterials");}
                         <div class="form-inline">
                             <label class="componentNameL" for="topMaterialName">Тип:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterialName">
                         </div>
-                        <div class="form-inline">
-                            <p>Тут DropDownList со всеми цветами</p>
-                        </div>
+                        @{Html.RenderAction("Partial_GetAllColours");}
+                        
                         <div class="form-inline">
                             <label class="componentReferenceL" for="topMaterialReference">Reference:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterialReference">
@@ -211,12 +212,12 @@
 
                         @* КОМПЛЕКТУЮЩИЕ *@
                     <div id="component" class="tab-pane" role="tabpanel">
+                        @{Html.RenderAction("Partial_GetAllComponents");}
                         <div class="form-inline">
                             <label class="componentNameL" for="componentName">Тип:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="componentName">
                         </div>
                         <div class="form-inline">
-                            @*<p>Тут DropDownList сщ всеми цветами</p>*@
                             <label class="componentColourL" for="componentColour">Цвет:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="componentColour">
                         </div>
@@ -228,9 +229,8 @@
                             <label class="componentSizeL" for="componentSize">Размер:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="componentSize">
                         </div>
-                        <div class="form-inline">
-                            <p>Tут DropDownList со всеми материалами обтяжки</p>
-                        </div>
+                        @{Html.RenderAction("Partial_GetAllColours");}
+                        
                         <div class="form-inline">
                             <label id="componentHighL" for="componentHigh">Высота:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="componentHigh">

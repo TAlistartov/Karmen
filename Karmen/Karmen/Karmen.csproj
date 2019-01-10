@@ -173,7 +173,7 @@
     <Compile Include="Models\MaterialOfSoleModel.cs" />
     <Compile Include="Models\PadModel.cs" />
     <Compile Include="Models\PatternModel.cs" />
-    <Compile Include="Models\TopMaterial.cs" />
+    <Compile Include="Models\TopMaterialModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +187,12 @@
     <Content Include="Views\Administrator\Partial_GetAllPatterns.cshtml" />
     <Content Include="Views\Administrator\Partial_GetAllLinings.cshtml" />
     <Content Include="Views\Administrator\Partial_GetAllFootbeds.cshtml" />
+    <Content Include="Views\Administrator\Partial_GetAllPads.cshtml" />
+    <Content Include="Views\Administrator\Partial_GetAllKindOfBlocks.cshtml" />
+    <Content Include="Views\Administrator\Partial_GetAllTopMaterials.cshtml" />
+    <Content Include="Views\Administrator\Partial_GetAllFurnitures.cshtml" />
+    <Content Include="Views\Administrator\Partial_GetAllMaterialOfSoles.cshtml" />
+    <Content Include="Views\Administrator\Partial_GetAllComponents.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

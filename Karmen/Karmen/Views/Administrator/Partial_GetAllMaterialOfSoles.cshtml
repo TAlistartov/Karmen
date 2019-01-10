@@ -1,0 +1,6 @@
+﻿@model Karmen.Models.MaterialOfSoleModel
+
+<div class="form-inline">
+    <label for="materialOfSole_Ddl">Выбор из БД:</label>
+    @Html.DropDownListFor(x => x.SelectedMaterialOfSole, Model.AllMaterialsOfSoleFromDb, "-Выбор подошвы-", new { @class = "dropdown-toggle form-control mb-2 mr-sm-2 selectFromDb" })
+</div>
