@@ -81,6 +81,7 @@
     <Compile Include="Furnitures.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ISelectListItem.cs" />
     <Compile Include="KindOfBlocks.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>

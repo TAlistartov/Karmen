@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Karmen.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Karmen.Models
 {
-    public class ComponentModel
+    public class ComponentModel: ISelectListItem
     {
         public int Id { get; set; }
         public string TypeOfComponent { get; set; }
@@ -23,5 +24,11 @@ namespace Karmen.Models
 
         public List<SelectListItem> AllComponentsFromDb { get; set; }
         public string SelectedComponent { get; set; }
+
+        //Interface realisation
+        public SelectListItem MapToSelectListItem()
+        {
+            return new SelectListItem { Value = this.Id.ToString(), Text = this.TypeOfComponent };
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Karmen.Models;
 using BLL;
 using DAL;
-
+using Karmen.Helpers;
 
 namespace Karmen.Controllers
 {
@@ -14,7 +14,9 @@ namespace Karmen.Controllers
     {
         //Links
         Dal dal = new Dal();
-        Bll bll = new Bll();       
+        Bll bll = new Bll();
+        HelpMethods helpMethod = new HelpMethods();
+
 
         [HttpGet]
         public ViewResult Index()
@@ -27,42 +29,39 @@ namespace Karmen.Controllers
         [HttpGet]
         public PartialViewResult Partial_GetAllColours()
         {
-            ColourModel colour = new ColourModel();
-            var items = new List<SelectListItem>();
-            var allColours= bll.BllGetAllDataTableFromDb(new Colours());
-            foreach (var item in allColours)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Colour });
-            }
-            colour.AllColoursFromDb = items;
+            ColourModel colour = new ColourModel();           
+            //Get data from Db
+            var allColoursDal = bll.BllGetAllDataTableFromDb(new Colours());
+            //Map class on class - return List<1st parameter method>
+            var allColoursModel = helpMethod.HandMapper(new ColourModel(), allColoursDal);
+            //Here call a function for creating DropDownList             
+            colour.AllColoursFromDb=helpMethod.MakeDropDownList(allColoursModel);
             return PartialView(colour);
         }
 
         [HttpGet]
         public PartialViewResult Partial_GetAllPatterns()
         {
-            PatternModel pattern= new PatternModel();
-            var items = new List<SelectListItem>();
-            var allPaterns = bll.BllGetAllDataTableFromDb(new Patterns());                       
-            foreach (var item in allPaterns)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.CrossReference });
-            }
-            pattern.AllPatternsFromDb = items;
+            PatternModel pattern= new PatternModel();            
+            //Get data from Db
+            var allPaternsDal = bll.BllGetAllDataTableFromDb(new Patterns());
+            //Map class on class - return List<1st parameter method>
+            var allPatternsModel = helpMethod.HandMapper(new PatternModel(), allPaternsDal);
+            //Here call a function for creating DropDownList             
+            pattern.AllPatternsFromDb = helpMethod.MakeDropDownList(allPatternsModel);           
             return PartialView(pattern);
         }
 
         [HttpGet]
         public PartialViewResult Partial_GetAllLinings()
         {
-            LiningModel lining = new LiningModel();            
-            var items = new List<SelectListItem>();
-            var allLinings = bll.BllGetAllDataTableFromDb(new Linings());            
-            foreach (var item in allLinings)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Name });
-            }
-            lining.AllLiningsFromDb = items;
+            LiningModel lining = new LiningModel();
+            //Get data from Db
+            var allLiningsDal = bll.BllGetAllDataTableFromDb(new Linings());
+            //Map class on class - return List<1st parameter method>
+            var allLiningsModel = helpMethod.HandMapper(new LiningModel(), allLiningsDal);
+            //Here call a function for creating DropDownList             
+            lining.AllLiningsFromDb = helpMethod.MakeDropDownList(allLiningsModel);
             return PartialView(lining);
         }
 
@@ -70,13 +69,12 @@ namespace Karmen.Controllers
         public PartialViewResult Partial_GetAllFootbeds()
         {
             FootBedModel footbed = new FootBedModel();
-            var items = new List<SelectListItem>();
-            var allFootBeds = bll.BllGetAllDataTableFromDb(new Footbeds());
-            foreach (var item in allFootBeds)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Type });
-            }
-            footbed.AllFootBedsFromDb = items;
+            //Get data from Db
+            var allFootBedsDal = bll.BllGetAllDataTableFromDb(new Footbeds());
+            //Map class on class - return List<1st parameter method>
+            var allFootBedsModel = helpMethod.HandMapper(new FootBedModel(), allFootBedsDal);
+            //Here call a function for creating DropDownList             
+            footbed.AllFootBedsFromDb = helpMethod.MakeDropDownList(allFootBedsModel);
             return PartialView(footbed);
         }
 
@@ -84,13 +82,12 @@ namespace Karmen.Controllers
         public PartialViewResult Partial_GetAllPads()
         {
             PadModel pad = new PadModel();
-            var items = new List<SelectListItem>();
-            var allPads = bll.BllGetAllDataTableFromDb(new Pads());
-            foreach (var item in allPads)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Kind });
-            }
-            pad.AllPadsFromDb = items;
+            //Get data from Db
+            var allPadsDal = bll.BllGetAllDataTableFromDb(new Pads());
+            //Map class on class - return List<1st parameter method>
+            var allPadsModel = helpMethod.HandMapper(new PadModel(), allPadsDal);
+            //Here call a function for creating DropDownList             
+            pad.AllPadsFromDb = helpMethod.MakeDropDownList(allPadsModel);
             return PartialView(pad);
         }
 
@@ -98,13 +95,12 @@ namespace Karmen.Controllers
         public PartialViewResult Partial_GetAllKindOfBlocks()
         {
             KindOfBlockModel kindOfBlock = new KindOfBlockModel();
-            var items = new List<SelectListItem>();
-            var allKindOfBlocks = bll.BllGetAllDataTableFromDb(new KindOfBlocks());
-            foreach (var item in allKindOfBlocks)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Name });
-            }
-            kindOfBlock.AllKindsOfBlockFromDb = items;
+            //Get data from Db
+            var allKindOfBlocksDal = bll.BllGetAllDataTableFromDb(new KindOfBlocks());
+            //Map class on class - return List<1st parameter method>
+            var allKindOfBlocksModel = helpMethod.HandMapper(new KindOfBlockModel(), allKindOfBlocksDal);
+            //Here call a function for creating DropDownList             
+            kindOfBlock.AllKindsOfBlockFromDb = helpMethod.MakeDropDownList(allKindOfBlocksModel);
             return PartialView(kindOfBlock);
         }
 
@@ -112,13 +108,12 @@ namespace Karmen.Controllers
         public PartialViewResult Partial_GetAllTopMaterials()
         {
             TopMaterialModel topMaterial = new TopMaterialModel();
-            var items = new List<SelectListItem>();
-            var allTopMaterials = bll.BllGetAllDataTableFromDb(new TopMaterials());
-            foreach (var item in allTopMaterials)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Type });
-            }
-            topMaterial.AllTopMaterialsFromDb = items;
+            //Get data from Db
+            var allTopMaterialsDal = bll.BllGetAllDataTableFromDb(new TopMaterials());
+            //Map class on class - return List<1st parameter method>
+            var allTopMaterialsModel = helpMethod.HandMapper(new TopMaterialModel(), allTopMaterialsDal);
+            //Here call a function for creating DropDownList             
+            topMaterial.AllTopMaterialsFromDb = helpMethod.MakeDropDownList(allTopMaterialsModel);
             return PartialView(topMaterial);
         }
 
@@ -126,13 +121,12 @@ namespace Karmen.Controllers
         public PartialViewResult Partial_GetAllFurnitures()
         {
             FurnitureModel furniture = new FurnitureModel();
-            var items = new List<SelectListItem>();
-            var allFurnitures = bll.BllGetAllDataTableFromDb(new Furnitures());
-            foreach (var item in allFurnitures)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Type });
-            }
-            furniture.AllFurnituresFromDb = items;
+            //Get data from Db
+            var allFurnituresDal = bll.BllGetAllDataTableFromDb(new Furnitures());
+            //Map class on class - return List<1st parameter method>
+            var allFurnituresModel = helpMethod.HandMapper(new FurnitureModel(), allFurnituresDal);
+            //Here call a function for creating DropDownList             
+            furniture.AllFurnituresFromDb = helpMethod.MakeDropDownList(allFurnituresModel);
             return PartialView(furniture);
         }
 
@@ -140,13 +134,12 @@ namespace Karmen.Controllers
         public PartialViewResult Partial_GetAllMaterialOfSoles()
         {
             MaterialOfSoleModel materialOfSole = new MaterialOfSoleModel();
-            var items = new List<SelectListItem>();
-            var allMaterialsOfSole = bll.BllGetAllDataTableFromDb(new MaterialsOfSole());
-            foreach (var item in allMaterialsOfSole)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Name });
-            }
-            materialOfSole.AllMaterialsOfSoleFromDb = items;
+            //Get data from Db
+            var allMaterialsOfSoleDal = bll.BllGetAllDataTableFromDb(new MaterialsOfSole());
+            //Map class on class - return List<1st parameter method>
+            var allMaterialsOfSoleModel = helpMethod.HandMapper(new MaterialOfSoleModel(), allMaterialsOfSoleDal);
+            //Here call a function for creating DropDownList             
+            materialOfSole.AllMaterialsOfSoleFromDb = helpMethod.MakeDropDownList(allMaterialsOfSoleModel);
             return PartialView(materialOfSole);
         }
 
@@ -154,15 +147,14 @@ namespace Karmen.Controllers
         public PartialViewResult Partial_GetAllComponents()
         {
             ComponentModel component = new ComponentModel();
-            var items = new List<SelectListItem>();
-            var allComponents = bll.BllGetAllDataTableFromDb(new Components());
-            foreach (var item in allComponents)
-            {
-                items.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.TypeOfComponent });
-            }
-            component.AllComponentsFromDb = items;
+            //Get data from Db
+            var allComponentsDal = bll.BllGetAllDataTableFromDb(new Components());
+            //Map class on class - return List<1st parameter method>
+            var allComponentsModel = helpMethod.HandMapper(new ComponentModel(), allComponentsDal);
+            //Here call a function for creating DropDownList             
+            component.AllComponentsFromDb = helpMethod.MakeDropDownList(allComponentsModel);
             return PartialView(component);
         }
-        #endregion
+        #endregion        
     }
 }

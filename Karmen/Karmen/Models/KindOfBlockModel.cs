@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Karmen.Interfaces;
 
 namespace Karmen.Models
 {
-    public class KindOfBlockModel
+    public class KindOfBlockModel:ISelectListItem
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,5 +16,11 @@ namespace Karmen.Models
 
         public List<SelectListItem> AllKindsOfBlockFromDb { get; set; }
         public string SelectedKindOfBlock { get; set; }
+
+        //Interface realisation
+        public SelectListItem MapToSelectListItem()
+        {
+            return new SelectListItem { Value = this.Id.ToString(), Text = this.Name };
+        }
     }
 }
