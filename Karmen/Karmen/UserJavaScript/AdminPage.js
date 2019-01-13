@@ -1,6 +1,10 @@
 ﻿//Global variables
 var scanedId;
 var createdId;
+var listTest = [
+    //{ Id: '1', CrossReference: 'First', AdditionalInformation: 'Вот такая вот х..ня малята', UseUnuse: true}
+    { Id: '2', CrossReference: 'Second', AdditionalInformation: '', UseUnuse: false }
+];
 
 $(document).ready(function () {
      //Add buttons for Save Cut Delete in 1st load of the AdminPage
@@ -8,6 +12,7 @@ $(document).ready(function () {
     AddButtonGroup(scanedId);
     CreateIdForDropDownList(scanedId);
     DisablUndisableButtonsCutDel(scanedId, createdId);
+        
     
 
     //After changing selected punkt of List program 1) Will delete created buttonGroup
@@ -18,6 +23,8 @@ $(document).ready(function () {
         CreateIdForDropDownList(scanedId);
         //Return to start position DropDownList #dropDownAllColours in Цвет
         $('#' + createdId).val("");
+
+        CountInputFields(scanedId, listTest);
 
         // THIS PART SHOULD BE CHANGED ON THE FUNCTION
         $('#colorName').val("");
@@ -30,7 +37,54 @@ $(document).ready(function () {
        
     })     
 
-//------------------------------------------------------------- USING FUNCTION ----------------------------------------------------------------
+    //------------------------------------------------------------- USING FUNCTION ----------------------------------------------------------------
+
+
+
+
+    //Get count of all input gields in selected  list-group #board1
+    function CountInputFields(idSelectedPunkt, necessaryInformation) {
+        //Get all div's with class .form-inline inside div with id=idSelectedPunkt
+        var elemInsideMainDiv = $('div #' + idSelectedPunkt).find(".form-inline");
+        //Go through the collection
+        elemInsideMainDiv.each(function (index, element) {
+            //Search input and textarea elements 
+            var childElements = $(element).children('input, textarea');
+            //If length of founded element is >0
+            if ($(childElements).length != 0)
+            {
+                //Get Id of selected field
+                var fullIdName = $(childElements).attr("id");
+                //Split Id on Id of list group it's arr[0] and Id which are equal with Key in list necessaryInformation
+                var arr = fullIdName.split('_', 2);
+                var im=necessaryInformation[0];
+                //Go through Collection and compare collection's Key and separeted Id arr[1]
+                for (key in im)
+                {
+                    if(key==arr[1])
+                    {
+                        if (typeof im[key] == 'boolean') //if fields are bool
+                        {
+                            $('#' + fullIdName).prop("checked", im[key]);
+                            break;
+                        }
+                        else // if fields are string
+                        {
+                            $('#' + fullIdName).val(im[key]);
+                            break;
+                        }
+                        
+                    }
+                }
+            }
+                
+        })
+    }
+
+
+
+
+
 
     //Function for creating Id for DropDownList 
     function CreateIdForDropDownList(scanedId) {        
