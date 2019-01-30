@@ -1,10 +1,6 @@
 ﻿//Global variables
 var scanedId;
 var createdId;
-var listTest = [
-    //{ Id: '1', CrossReference: 'First', AdditionalInformation: 'Вот такая вот х..ня малята', UseUnuse: true}
-    { Id: '2', CrossReference: 'Second', AdditionalInformation: '', UseUnuse: false }
-];
 
 $(document).ready(function () {
      //Add buttons for Save Cut Delete in 1st load of the AdminPage
@@ -38,54 +34,7 @@ $(document).ready(function () {
     })     
 
     //------------------------------------------------------------- USING FUNCTION ----------------------------------------------------------------
-
-
-
-
-    //Get count of all input gields in selected  list-group #board1
-    function CountInputFields(idSelectedPunkt, necessaryInformation) {
-        //Get all div's with class .form-inline inside div with id=idSelectedPunkt
-        var elemInsideMainDiv = $('div #' + idSelectedPunkt).find(".form-inline");
-        //Go through the collection
-        elemInsideMainDiv.each(function (index, element) {
-            //Search input and textarea elements 
-            var childElements = $(element).children('input, textarea');
-            //If length of founded element is >0
-            if ($(childElements).length != 0)
-            {
-                //Get Id of selected field
-                var fullIdName = $(childElements).attr("id");
-                //Split Id on Id of list group it's arr[0] and Id which are equal with Key in list necessaryInformation
-                var arr = fullIdName.split('_', 2);
-                var im=necessaryInformation[0];
-                //Go through Collection and compare collection's Key and separeted Id arr[1]
-                for (key in im)
-                {
-                    if(key==arr[1])
-                    {
-                        if (typeof im[key] == 'boolean') //if fields are bool
-                        {
-                            $('#' + fullIdName).prop("checked", im[key]);
-                            break;
-                        }
-                        else // if fields are string
-                        {
-                            $('#' + fullIdName).val(im[key]);
-                            break;
-                        }
-                        
-                    }
-                }
-            }
-                
-        })
-    }
-
-
-
-
-
-
+    
     //Function for creating Id for DropDownList 
     function CreateIdForDropDownList(scanedId) {        
         createdId = scanedId + '_Ddl';
@@ -97,14 +46,25 @@ $(document).ready(function () {
             var selectId = $('#' + createdId).val();
             var selectText = $('#' + createdId + ' :selected').text();
             //Disable or Undisable buttons of actions
-            DisablUndisableButtonsCutDel(scanedId, createdId);
+            DisablUndisableButtonsCutDel(scanedId, createdId);           
+            
 
-            // THIS PART SHOULD BE CHANGED ON THE FUNCTION
-            //Filling all text inputs 
-            if (selectId == "")
-                $('#colorName').val("");
-            else
-                $('#colorName').val(selectText);
+            $.ajax({
+                type: 'POST',
+                url: "Administrator/FilteringStoreData",
+                data: { IdOfSelectedItemDDL: selectId, currentPunctId: scanedId },//IdOfSelectedItemDDL - int; currentPunctId - string
+                dataType: "json",
+                success: function (necessaryInformation) {
+                    // THIS PART SHOULD BE CHANGED ON THE FUNCTION
+                    //Filling all text inputs 
+                    CountInputFields(scanedId, necessaryInformation)
+                }
+            });
+            
+            //if (selectId == "")
+            //    $('#colorName').val("");
+            //else
+            //    $('#colorName').val(selectText);
         });
     }   
 
@@ -117,7 +77,8 @@ $(document).ready(function () {
         else {
             $("#delete_" + scanedId).prop("disabled", false);
             //$("#cut_" + scanedId).prop("disabled", false);
-        }
+        }       
+
     }
 
     //Function for inserting buttonGroup
@@ -128,4 +89,51 @@ $(document).ready(function () {
                                 //"<button id='cut_" + scanedId + "' title='пометить выбранную запись как 'не используемая'' type='button' class='btn btn-dark'><i class='fas fa-cut'></i></button>" +
                          "</div>");
     };
+
+    //Get count of all input gields in selected  list-group #board1
+    function CountInputFields(idSelectedPunkt, necessaryInformation) {
+        //Get all div's with class .form-inline inside div with id=idSelectedPunkt
+        var elemInsideMainDiv = $('div #' + idSelectedPunkt).find(".form-inline");
+        //Go through the collection
+        elemInsideMainDiv.each(function (index, element) {
+            //Search input and textarea elements 
+            var childElements = $(element).children('input, textarea');
+            //If length of founded element is >0
+            if ($(childElements).length != 0) {
+                //Get Id of selected field
+                var fullIdName = $(childElements).attr("id");
+                //Split Id on Id of list group it's arr[0] and Id which are equal with Key in list necessaryInformation
+                var arr = fullIdName.split('_', 2);
+                var im = necessaryInformation[0];
+                //If we didn't get data from server side after filtering
+                if (im == null) {
+                    $('input').val("");
+                    $('textarea').val("");
+                    $('input:checkbox').prop("checked", false)
+                }
+                else
+                {
+                //Go through Collection and compare collection's Key and separeted Id arr[1]
+                    for (key in im)
+                    {
+                        if (key == arr[1])
+                        {
+                            if (typeof im[key] == 'boolean') //if fields are bool
+                            {
+                                $('#' + fullIdName).prop("checked", im[key]);
+                                break;
+                            }
+                            else // if fields are string
+                            {                            
+                                $('#' + fullIdName).val(im[key]);
+                                break;                           
+                            }
+
+                        }
+                    }
+               }
+            }
+
+        })
+    }
 });

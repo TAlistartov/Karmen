@@ -17,6 +17,10 @@ namespace Karmen.Controllers
         Bll bll = new Bll();
         HelpMethods helpMethod = new HelpMethods();
 
+        //Model
+        static List<ColourModel> allColoursModel = new List<ColourModel>();
+        static List<PatternModel> allPatternsModel = new List<PatternModel>();
+
 
         [HttpGet]
         public ViewResult Index()
@@ -33,7 +37,7 @@ namespace Karmen.Controllers
             //Get data from Db
             var allColoursDal = bll.BllGetAllDataTableFromDb(new Colours());
             //Map class on class - return List<1st parameter method>
-            var allColoursModel = helpMethod.HandMapper(new ColourModel(), allColoursDal);
+            allColoursModel = helpMethod.HandMapper(new ColourModel(), allColoursDal);
             //Here call a function for creating DropDownList             
             colour.AllColoursFromDb=helpMethod.MakeDropDownList(allColoursModel);
             return PartialView(colour);
@@ -46,7 +50,7 @@ namespace Karmen.Controllers
             //Get data from Db
             var allPaternsDal = bll.BllGetAllDataTableFromDb(new Patterns());
             //Map class on class - return List<1st parameter method>
-            var allPatternsModel = helpMethod.HandMapper(new PatternModel(), allPaternsDal);
+            allPatternsModel = helpMethod.HandMapper(new PatternModel(), allPaternsDal);
             //Here call a function for creating DropDownList             
             pattern.AllPatternsFromDb = helpMethod.MakeDropDownList(allPatternsModel);           
             return PartialView(pattern);
@@ -156,5 +160,22 @@ namespace Karmen.Controllers
             return PartialView(component);
         }
         #endregion        
+
+        [HttpPost]
+        public JsonResult FilteringStoreData (int? IdOfSelectedItemDDL, string currentPunctId)
+        {
+            //Create a new local item with object type
+            object filteredData=null;
+            switch (currentPunctId)
+            {
+                case "color":
+                    filteredData = allColoursModel.Where(t=>t.Id==IdOfSelectedItemDDL);
+                    break;
+                case "pattern":
+                    filteredData = allPatternsModel.Where(t => t.Id == IdOfSelectedItemDDL);
+                    break;
+            }            
+            return Json(filteredData);
+        }
     }
 }
