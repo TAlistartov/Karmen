@@ -20,7 +20,7 @@ $(document).ready(function () {
         //Return to start position DropDownList #dropDownAllColours in Цвет
         $('#' + createdId).val("");
 
-        CountInputFields(scanedId, listTest);
+        //CountInputFields(scanedId, listTest);
 
         // THIS PART SHOULD BE CHANGED ON THE FUNCTION
         $('#colorName').val("");
