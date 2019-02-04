@@ -17,11 +17,6 @@ namespace Karmen.Controllers
         Bll bll = new Bll();
         HelpMethods helpMethod = new HelpMethods();
 
-        //Model
-        //static List<ColourModel> allColoursModel = new List<ColourModel>();
-        //static List<PatternModel> allPatternsModel = new List<PatternModel>();
-        //static List<LiningModel> allLiningsModel = new List<LiningModel>();       
-
         [HttpGet]
         public ViewResult Index()
         {
@@ -39,7 +34,8 @@ namespace Karmen.Controllers
             //Map class on class - return List<1st parameter method>
             DataStorePlace.allColoursModel = helpMethod.HandMapper(new ColourModel(), allColoursDal);
             //Here call a function for creating DropDownList             
-            colour.AllColoursFromDb=helpMethod.MakeDropDownList(DataStorePlace.allColoursModel);
+            DataStorePlace.AllColoursFromDb=helpMethod.MakeDropDownList(DataStorePlace.allColoursModel);
+            colour.AllColoursFromDb = DataStorePlace.AllColoursFromDb;
             return PartialView(colour);
         }
 
@@ -160,6 +156,12 @@ namespace Karmen.Controllers
             return PartialView(component);
         }
         #endregion        
+
+        [HttpPost]
+        public JsonResult SendDataToUI()
+        {
+            return Json(DataStorePlace.AllColoursFromDb);
+        }
 
         [HttpPost]
         public JsonResult FilteringStoreData (int? IdOfSelectedItemDDL, string currentPunctId)

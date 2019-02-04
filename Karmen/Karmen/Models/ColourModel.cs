@@ -13,7 +13,7 @@ namespace Karmen.Models
         public string Colour { get; set; }
 
         public List<SelectListItem> AllColoursFromDb { get; set; }
-        public string SelectedColour { get; set; }
+        public string IdColour { get; set; }
 
         //Interface realisation
         public SelectListItem MapToSelectListItem()

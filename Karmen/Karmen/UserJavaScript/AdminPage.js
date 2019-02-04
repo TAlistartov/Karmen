@@ -1,8 +1,20 @@
 ﻿//Global variables
 var scanedId;
 var createdId;
+var coloursDataFromDb;
 
 $(document).ready(function () {
+
+    //Get all colours from Db
+    $.ajax({
+        type: 'POST',
+        url: "Administrator/SendDataToUI",       
+        dataType: "json",
+        success: function (allColoursFromDb) {
+            coloursDataFromDb = allColoursFromDb;
+        }
+    });
+
      //Add buttons for Save Cut Delete in 1st load of the AdminPage
     scanedId = $('#select .active').attr("id");            
     AddButtonGroup(scanedId);
@@ -17,15 +29,34 @@ $(document).ready(function () {
     $(document).on('click', '#board1', function () {
         scanedId = $('#select .active').attr("id");
         CreateIdForDropDownList(scanedId);
+
+        //Add DDL in current div, if it has class=ddl_Colours
+        if ($('#' + scanedId).hasClass('ddl_Colours'))
+        {
+           //Delete div if it was added already
+            if ($('#' + scanedId).has(scanedId + "_div_with_DDL"))
+                $("#" + scanedId + "_div_with_DDL").remove();
+
+           //Search place for insirting div .form-inline and <label> and <select>-->DDL
+            var place = $("div .form-inline").has("#" + createdId);
+                //Add div with label and DDL
+                $("<div id='"+scanedId+"_div_with_DDL' class='form-inline'>"+
+                     "<label for='" + scanedId + "_IdColour'>Выбор цвета:</label>" +
+                  "</div>").insertAfter($(place));
+
+            //Creating variables for function CreateNewDDL
+                var idNameCreatedDDL = scanedId + "_IdColour";
+                var firstEmptyOptionDDL = "-Выбирите цвет-";
+                var cssClassForCreatedDDL = "SelectColourDDL";
+                var placeForInsertingDDL=scanedId + "_div_with_DDL"; //id of parent div
+           //Call function for creating and insirting DropDownList with all colours from Db
+                CreateNewDDL(coloursDataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, placeForInsertingDDL);
+        }
+
         //Return to start position DropDownList #dropDownAllColours in Цвет
         $('#' + createdId).val("");
 
-        //CountInputFields(scanedId, listTest);
-
-        // THIS PART SHOULD BE CHANGED ON THE FUNCTION
-        $('#colorName').val("");
-
-       $('div .scd').remove();       
+        $('div .scd').remove();
         //Add buttons save/delete/cut
        AddButtonGroup(scanedId);
         //Some buttons should be desabled
@@ -33,8 +64,48 @@ $(document).ready(function () {
        
     })     
 
+    //User clicked on save button under form
+    $(document).on('click', '#save_' + scanedId, function () {
+        //User want to SAVE a new one note to DB (if in the first DDL in form is not selected some value)
+        if ($('#' + createdId).val()=="")
+        {
+            var s = 7;
+        }
+        //User want to CHANGE already created note in DB (if in the first DDL in form is selected some value)
+        else
+        {
+            var s = 9;
+        }
+            
+    });
+
+    //User clicked on delete button under form
+    $(document).on('click', '#delete_' + scanedId, function () {
+        var s = 2;
+    })
+
     //------------------------------------------------------------- USING FUNCTION ----------------------------------------------------------------
-    
+
+    //Clear all user fields (select,input etc.)
+    function ClearAllFields() {
+        $('select').val("");
+        $('input').val("");
+        $('textarea').val("");
+        $('input:checkbox').prop("checked", false);
+    }
+
+    //Create DropDownList using jQuery
+    function CreateNewDDL(SelectListItem,IdName,FirstOption,CssClass,placeForInserting){
+        if(placeForInserting!=null)
+        {
+            var DDList = $("<select><option value>" + FirstOption + "</option></select>").attr({ "Id": IdName, "class": "dropdown-toggle form-control mb-2 mr-sm-2 " + CssClass });
+            $.each(SelectListItem, function (i, el) {
+                $("<option/>", {value:el.Value,html:el.Text}).appendTo(DDList);
+            });
+           DDList.appendTo($("#" + placeForInserting));
+        }
+    }
+
     //Function for creating Id for DropDownList 
     function CreateIdForDropDownList(scanedId) {        
         createdId = scanedId + '_Ddl';
@@ -47,7 +118,6 @@ $(document).ready(function () {
             var selectText = $('#' + createdId + ' :selected').text();
             //Disable or Undisable buttons of actions
             DisablUndisableButtonsCutDel(scanedId, createdId);           
-            
 
             $.ajax({
                 type: 'POST',
@@ -59,12 +129,8 @@ $(document).ready(function () {
                     //Filling all text inputs 
                     CountInputFields(scanedId, necessaryInformation)
                 }
-            });
-            
-            //if (selectId == "")
-            //    $('#colorName').val("");
-            //else
-            //    $('#colorName').val(selectText);
+            });           
+           
         });
     }   
 
@@ -90,33 +156,34 @@ $(document).ready(function () {
                          "</div>");
     };
 
-    //Get count of all input gields in selected  list-group #board1
+    //Get count of all input gields in selected  list-group #board1 and filling in by information
     function CountInputFields(idSelectedPunkt, necessaryInformation) {
         //Get all div's with class .form-inline inside div with id=idSelectedPunkt
         var elemInsideMainDiv = $('div #' + idSelectedPunkt).find(".form-inline");
         //Go through the collection
         elemInsideMainDiv.each(function (index, element) {
             //Search input and textarea elements 
-            var childElements = $(element).children('input, textarea');
+            var childElements = $(element).children('input, textarea, select');
             //If length of founded element is >0
             if ($(childElements).length != 0) {
                 //Get Id of selected field
                 var fullIdName = $(childElements).attr("id");
                 //Split Id on Id of list group it's arr[0] and Id which are equal with Key in list necessaryInformation
-                var arr = fullIdName.split('_', 2);
+                var splitedData = fullIdName.split('_', 2);
+                //If our Id consist of 2 parts? we took 2dh else we take 1st - for example we take 1st in IdColour - it's DDL with using colours
+                var arr = (splitedData.length == 2) ? splitedData[1] : splitedData[0];
                 var im = necessaryInformation[0];
                 //If we didn't get data from server side after filtering
                 if (im == null) {
-                    $('input').val("");
-                    $('textarea').val("");
-                    $('input:checkbox').prop("checked", false)
+                    //Call function for clearing all users fields
+                    ClearAllFields();
                 }
                 else
                 {
                 //Go through Collection and compare collection's Key and separeted Id arr[1]
                     for (key in im)
                     {
-                        if (key == arr[1])
+                        if (key == arr)
                         {
                             if (typeof im[key] == 'boolean') //if fields are bool
                             {
@@ -125,7 +192,7 @@ $(document).ready(function () {
                             }
                             else // if fields are string
                             {                            
-                                $('#' + fullIdName).val(im[key]);
+                                $('#' + fullIdName).val(''+im[key]+'');
                                 break;                           
                             }
 

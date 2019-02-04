@@ -91,7 +91,7 @@
                         </div>
                         <div class="form-inline">
                             <label class="mr-sm-2" for="lining_AdditionalInformation">Информация:</label>
-                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="additionalInformationLining" cols="22" rows="3"></textarea>
+                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="lining_AdditionalInformation" cols="22" rows="3"></textarea>
                         </div>
                         <div class="form-inline">
                             <label class="mr-sm-2" for="lining_UseUnuse">Используется:</label>
@@ -100,13 +100,13 @@
                     </div>
 
                     @* ФУРНИТУРА *@
-                    <div id="furniture" class="tab-pane" role="tabpanel">
+                    <div id="furniture" class="tab-pane ddl_Colours" role="tabpanel">
                         @{Html.RenderAction("Partial_GetAllFurnitures");}
                         <div class="form-inline">
                             <label class="furnitureL" for="furniture_Type">Фурнитура:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="furniture_Type">
                         </div>
-                        @{Html.RenderAction("Partial_GetAllColours");}
+                        @*@{Html.RenderAction("Partial_GetAllColours");}*@
                         <div class="form-inline">
                             <label class="componentReferenceL" for="furniture_CrossReference">Reference:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="furniture_CrossReference">
@@ -173,13 +173,13 @@
                     </div>
 
                         @* МАТЕРИАЛ ПОДОШВЫ *@
-                    <div id="materialOfSole" class="tab-pane" role="tabpanel">
+                    <div id="materialOfSole" class="tab-pane ddl_Colours" role="tabpanel">
                         @{Html.RenderAction("Partial_GetAllMaterialOfSoles");}
                         <div class="form-inline">
                             <label class="nameL" for="materialOfSole_Name">Название:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSole_Name">
                         </div>
-                        @{Html.RenderAction("Partial_GetAllColours");}
+                        @*@{Html.RenderAction("Partial_GetAllColours");}*@
                         
                         <div class="form-inline">
                             <label class="componentReferenceL" for="materialOfSole_CrossReference">Reference:</label>
@@ -192,13 +192,13 @@
                     </div>
 
                         @* МАТЕРИАЛ ВЕРХА *@
-                    <div id="topMaterial" class="tab-pane" role="tabpanel">
+                    <div id="topMaterial" class="tab-pane ddl_Colours" role="tabpanel">
                         @{Html.RenderAction("Partial_GetAllTopMaterials");}
                         <div class="form-inline">
                             <label class="componentNameL" for="topMaterial_Type">Тип:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterial_Type">
                         </div>
-                        @{Html.RenderAction("Partial_GetAllColours");}
+                        @*@{Html.RenderAction("Partial_GetAllColours");}*@
                         
                         <div class="form-inline">
                             <label class="componentReferenceL" for="topMaterial_CrossReference">Reference:</label>
@@ -211,18 +211,13 @@
                     </div>
 
                         @* КОМПЛЕКТУЮЩИЕ *@
-                    <div id="component" class="tab-pane" role="tabpanel">
+                    <div id="component" class="tab-pane ddl_Colours" role="tabpanel">
                         @{Html.RenderAction("Partial_GetAllComponents");}
                         <div class="form-inline">
                             <label class="componentNameL" for="component_TypeOfComponent">Тип:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="component_TypeOfComponent">
                         </div>
-                        @{Html.RenderAction("Partial_GetAllColours");}
-
-                        @*<div class="form-inline">
-                            <label class="componentColourL" for="componentColour">Цвет:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="componentColour">
-                        </div>*@
+                        @*@{Html.RenderAction("Partial_GetAllColours");}*@
 
                         <div class="form-inline">
                             <label class="componentReferenceL" for="component_CrossReference">Reference:</label>

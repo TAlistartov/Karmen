@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Karmen.Helpers
 {
@@ -10,6 +11,8 @@ namespace Karmen.Helpers
     {
         //Lists of stored data
         public static List<ColourModel> allColoursModel { get; set; }
+        public static List<SelectListItem> AllColoursFromDb { get; set; }
+
         public static List<PatternModel> allPatternsModel { get; set; }
         public static List<LiningModel> allLiningsModel { get; set; }
         public static List<FurnitureModel> allFurnituresModel { get; set; }
