@@ -27,6 +27,10 @@ $(document).ready(function () {
     //                                              2) Get current Id of selected punkt of List
     //                                              3) Add buttonGroup with new Id, which we took in 2dh punkt
     $(document).on('click', '#board1', function () {
+        //Clear all fields
+        ClearAllFields()
+
+        //Get id of selected navigation punkt
         scanedId = $('#select .active').attr("id");
         CreateIdForDropDownList(scanedId);
 
@@ -60,29 +64,50 @@ $(document).ready(function () {
         //Add buttons save/delete/cut
        AddButtonGroup(scanedId);
         //Some buttons should be desabled
-       DisablUndisableButtonsCutDel(scanedId,createdId)
+       DisablUndisableButtonsCutDel(scanedId, createdId)
+
+
+        //-------------------------------------------------------****************************************------------------------------------------------------
+
+        //1)Доработать для чекбоксов
+        //2)Вынести в отдельную ф-ию
+        //3)Исправить баг с начальной загрузкой - не работает нажатие на сохранить в разделе Цвет после перезагрузки страницы
+        //User clicked on save button under form
+       $(document).on('click', '#save_' + scanedId, function () {
+           var dataForSave = [];
+           //User want to SAVE a new one note to DB (if in the first DDL in form is not selected some value)
+           if ($('#' + createdId).val() == "") {
+               
+               var filteredDiv = $("div #" + scanedId).find(".form-inline");
+               $(filteredDiv).each(function (index, element) {
+                   //Search input and textarea elements 
+                   var childElements = $(element).children('input, textarea, select');
+                   //Get Id of selected field
+                   var fullIdName = $(childElements).attr("id");
+                   //Split Id on Id of list group it's arr[0] and Id which are equal with Key in list necessaryInformation
+                   var splitedData = fullIdName.split('_', 2);
+                   var currentField=$("#" + fullIdName).val();
+                   if (currentField!="")
+                        dataForSave[splitedData[1]] = $("#" + fullIdName).val();
+               })
+           }
+               //User want to CHANGE already created note in DB (if in the first DDL in form is selected some value)
+           else {
+               var s = 9;
+           }
+
+       });
+
+        //User clicked on delete button under form
+       $(document).on('click', '#delete_' + scanedId, function () {
+           var s = 2;
+       })
+
+        //-------------------------------------------------------****************************************------------------------------------------------------
        
     })     
 
-    //User clicked on save button under form
-    $(document).on('click', '#save_' + scanedId, function () {
-        //User want to SAVE a new one note to DB (if in the first DDL in form is not selected some value)
-        if ($('#' + createdId).val()=="")
-        {
-            var s = 7;
-        }
-        //User want to CHANGE already created note in DB (if in the first DDL in form is selected some value)
-        else
-        {
-            var s = 9;
-        }
-            
-    });
-
-    //User clicked on delete button under form
-    $(document).on('click', '#delete_' + scanedId, function () {
-        var s = 2;
-    })
+   
 
     //------------------------------------------------------------- USING FUNCTION ----------------------------------------------------------------
 
@@ -127,7 +152,7 @@ $(document).ready(function () {
                 success: function (necessaryInformation) {
                     // THIS PART SHOULD BE CHANGED ON THE FUNCTION
                     //Filling all text inputs 
-                    CountInputFields(scanedId, necessaryInformation)
+                    FillInAllFields(scanedId, necessaryInformation)
                 }
             });           
            
@@ -157,7 +182,7 @@ $(document).ready(function () {
     };
 
     //Get count of all input gields in selected  list-group #board1 and filling in by information
-    function CountInputFields(idSelectedPunkt, necessaryInformation) {
+    function FillInAllFields(idSelectedPunkt, necessaryInformation) {
         //Get all div's with class .form-inline inside div with id=idSelectedPunkt
         var elemInsideMainDiv = $('div #' + idSelectedPunkt).find(".form-inline");
         //Go through the collection
@@ -203,4 +228,5 @@ $(document).ready(function () {
 
         })
     }
+    
 });
