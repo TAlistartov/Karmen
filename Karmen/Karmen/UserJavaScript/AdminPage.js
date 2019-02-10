@@ -69,39 +69,7 @@ $(document).ready(function () {
 
         //-------------------------------------------------------****************************************------------------------------------------------------
 
-        //1)Доработать для чекбоксов
-        //2)Вынести в отдельную ф-ию
-        //3)Исправить баг с начальной загрузкой - не работает нажатие на сохранить в разделе Цвет после перезагрузки страницы
-        //User clicked on save button under form
-       $(document).on('click', '#save_' + scanedId, function () {
-           var dataForSave = [];
-           //User want to SAVE a new one note to DB (if in the first DDL in form is not selected some value)
-           if ($('#' + createdId).val() == "") {
-               
-               var filteredDiv = $("div #" + scanedId).find(".form-inline");
-               $(filteredDiv).each(function (index, element) {
-                   //Search input and textarea elements 
-                   var childElements = $(element).children('input, textarea, select');
-                   //Get Id of selected field
-                   var fullIdName = $(childElements).attr("id");
-                   //Split Id on Id of list group it's arr[0] and Id which are equal with Key in list necessaryInformation
-                   var splitedData = fullIdName.split('_', 2);
-                   var currentField=$("#" + fullIdName).val();
-                   if (currentField!="")
-                        dataForSave[splitedData[1]] = $("#" + fullIdName).val();
-               })
-           }
-               //User want to CHANGE already created note in DB (if in the first DDL in form is selected some value)
-           else {
-               var s = 9;
-           }
-
-       });
-
-        //User clicked on delete button under form
-       $(document).on('click', '#delete_' + scanedId, function () {
-           var s = 2;
-       })
+       
 
         //-------------------------------------------------------****************************************------------------------------------------------------
        
@@ -179,6 +147,27 @@ $(document).ready(function () {
                                 "<button id='delete_" + scanedId + "' title='удалить выбранную запись из БД' type='button' class='btn btn-dark'><i class='fas fa-trash-alt'></i></button>" +
                                 //"<button id='cut_" + scanedId + "' title='пометить выбранную запись как 'не используемая'' type='button' class='btn btn-dark'><i class='fas fa-cut'></i></button>" +
                          "</div>");
+
+        //Дописать Ajax запросі для СОХРАНЕНИЯ И ИЗМЕНЕНИЯ данніх
+        //User clicked on save button under form
+        $(document).on('click', '#save_' + scanedId, function () {
+            var dataForSave = [];
+            var parentDiv = "div #" + scanedId;
+            //User want to SAVE a new one note to DB (if in the first DDL in form is not selected some value)
+            if ($('#' + createdId).val() == "") {
+                GetAllFieldsAndDataFromIt(parentDiv, dataForSave);
+            }
+            //User want to CHANGE already created note in DB (if in the first DDL in form is selected some value)
+            else {
+                GetAllFieldsAndDataFromIt(parentDiv, dataForSave);
+            }
+
+        });
+
+        //User clicked on delete button under form
+        $(document).on('click', '#delete_' + scanedId, function () {
+            var s = 2;
+        })
     };
 
     //Get count of all input gields in selected  list-group #board1 and filling in by information
@@ -224,6 +213,33 @@ $(document).ready(function () {
                         }
                     }
                }
+            }
+
+        })
+    }
+
+    //Get all fields and data from selected parent div 
+    function GetAllFieldsAndDataFromIt(parentDiv,readedListOfData)
+    {
+        //Get all elements in parent DIV
+        var filteredDiv = $(parentDiv).find(".form-inline");
+        $(filteredDiv).each(function (index, element) {
+            //Search input and textarea elements 
+            var childElements = $(element).children('input, textarea, select');
+            //Get Id of selected field
+            var fullIdName = $(childElements).attr("id");
+            //Split Id on Id of list group it's arr[0] and Id which are equal with Key in list necessaryInformation
+            var splitedData = fullIdName.split('_', 2);
+            var currentField = $("#" + fullIdName).val();
+            var temp = $("#" + fullIdName);
+            //Work with checkboxes
+            if (temp[0].type == 'checkbox') {
+                readedListOfData[splitedData[1]] = $('#' + fullIdName).is(":checked") ? true : false;
+            }
+                //Work with other DOM elements
+            else {
+                if (currentField != "")
+                    readedListOfData[splitedData[1]] = $("#" + fullIdName).val();
             }
 
         })
