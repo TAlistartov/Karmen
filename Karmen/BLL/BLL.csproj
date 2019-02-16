@@ -41,6 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bll.cs" />
+    <Compile Include="Models\Colour_Bll.cs" />
+    <Compile Include="Models\Component_Bll.cs" />
+    <Compile Include="Models\FootBed_Bll.cs" />
+    <Compile Include="Models\Furniture_Bll.cs" />
+    <Compile Include="Models\KindOfBlock_Bll.cs" />
+    <Compile Include="Models\Lining_Bll.cs" />
+    <Compile Include="Models\MaterialOfSole_Bll.cs" />
+    <Compile Include="Models\Pad_Bll.cs" />
+    <Compile Include="Models\Pattren_Bll.cs" />
+    <Compile Include="Models\TopMaterial_Bll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

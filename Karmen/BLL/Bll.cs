@@ -11,6 +11,7 @@ namespace BLL
     {
         //Links
         Dal dal = new Dal();
+       
 
         //Get All Data From the necessaary tables in Db for Main DropDownList in all Punkts of Navigation
         public List<T> BllGetAllDataTableFromDb<T>(T TypeOfData)
@@ -19,9 +20,11 @@ namespace BLL
             return (dataDb);
         }
 
-        public void BllSaveNewColour(string colour)
+        public int SaveNewNoteBll<T> (T someClassForSave)
         {
-            dal.DalSaveNewColour(colour);
+            int res = 0;
+            var tmp = someClassForSave.GetType().Name;
+            return res;
         }
     }
 }

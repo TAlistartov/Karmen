@@ -151,11 +151,25 @@ $(document).ready(function () {
         //Дописать Ajax запросі для СОХРАНЕНИЯ И ИЗМЕНЕНИЯ данніх
         //User clicked on save button under form
         $(document).on('click', '#save_' + scanedId, function () {
-            var dataForSave = [];
+            var dataForSave = {};
             var parentDiv = "div #" + scanedId;
             //User want to SAVE a new one note to DB (if in the first DDL in form is not selected some value)
             if ($('#' + createdId).val() == "") {
                 GetAllFieldsAndDataFromIt(parentDiv, dataForSave);
+               
+                var jsonData = JSON.stringify(dataForSave);
+                //Ajax - SAVE NEW NOTE
+                $.ajax({
+                    type: 'POST',
+                    url: "Administrator/SaveNewNote",
+                    //contentType: "application/json; charset=utf-8",
+                    data: { jsonData: jsonData, typeOfSaveData: scanedId},
+                    traditional:true,
+                    dataType: "json",
+                    success: function (res) {
+                        alert('Запись успешно сохранена.');
+                    }
+                });
             }
             //User want to CHANGE already created note in DB (if in the first DDL in form is selected some value)
             else {
