@@ -217,7 +217,7 @@ namespace Karmen.Controllers
                 break;
 
                 case "pattern":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Pattren_Bll>(jsonData);
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Pattern_Bll>(jsonData);
                 break;
 
                 case "lining":
@@ -229,7 +229,7 @@ namespace Karmen.Controllers
                 break;
 
                 case "pad":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Pad_Bll>(jsonData);
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Pad_Bll>(jsonData);                  
                 break;
 
                 case "kindOfBlock":
@@ -237,23 +237,23 @@ namespace Karmen.Controllers
                 break;
 
                 case "topMaterial":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<TopMaterial_Bll>(jsonData);
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<TopMaterial_Bll>(jsonData);                   
                 break;
 
                 case "furniture":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Furniture_Bll>(jsonData);
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Furniture_Bll>(jsonData);                    
                 break;
 
                 case "materialOfSole":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<MaterialOfSole_Bll>(jsonData);
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<MaterialOfSole_Bll>(jsonData);                    
                 break;
 
                 case "component":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Component_Bll>(jsonData);
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Component_Bll>(jsonData);                    
                 break;
 
             }
-
+            
             return Json(bll.SaveNewNoteBll(deserializedDataForSaveInDb));
 
         }

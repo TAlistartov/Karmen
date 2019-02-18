@@ -167,7 +167,29 @@ $(document).ready(function () {
                     traditional:true,
                     dataType: "json",
                     success: function (res) {
-                        alert('Запись успешно сохранена.');
+                        switch(res)
+                        {
+                            case 0:
+                                alert('Возникла ошибка при сохранении.');
+                                break;
+                            case 1:
+                                alert('Запись успешно сохранена.');
+                                //UPDATE PartialView with DropDownList
+                                $.ajax({
+                                    type: 'GET',
+                                    url: "Administrator/Partial_GetAllColours",
+                                    success: function (dataFromServer) {
+                                        //Update data in DropDownList
+                                        $('#' + createdId).html(dataFromServer);
+                                        ClearAllFields();
+                                    }
+                                })
+                                break;
+                            case 2:
+                                alert('Такая запись уже существует.');
+                                break;
+                        }
+                        
                     }
                 });
             }

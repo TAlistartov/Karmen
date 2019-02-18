@@ -10,7 +10,7 @@ namespace BLL.Models
     {
         public int? Id { get; set; }
         public string TypeOfComponent { get; set; }
-        public int? IdColour { get; set; }
+        public int IdColour { get; set; }
         public int Size { get; set; }
         public bool UseUnuse { get; set; }
         public string CrossReference { get; set; }

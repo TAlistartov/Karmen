@@ -58,25 +58,83 @@ namespace DAL
         #endregion
 
         public int DalSaveNewColour(string colour)
-        {
+        {            
             int res = 0;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.Colour.Where(c => c.Colour == colour);
-                if (temp == null)
+                var temp = db.Colour.Any(c => c.Colour == colour);
+                if (temp == false)
                 {
                     // Add new element to Db
                     db.Colour.Add(new Colours { Colour = colour });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.Colour.Where(c => c.Colour == colour);
-                    res = (users == null) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                    var users = db.Colour.Any(c => c.Colour == colour);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
                     res = 2; //This note is already created in Db             
             }
             return (res);
         }
-           
+
+        public int DalSaveNewComponent(string typeOfComponent, int idColour, int size, bool useUnuse, string crossReference, 
+                                            string additionalInformation, int idMaterilOfCovering, int height, int width, string form, 
+                                                    string type)
+        {
+            int res = 0;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Component.Any(c => c.TypeOfComponent == typeOfComponent && c.CrossReference==crossReference);
+                if (temp == false)
+                {
+                    // Add new element to Db
+                    db.Component.Add(new Components { TypeOfComponent=typeOfComponent,
+                                                      IdColour=idColour,
+                                                      Size=size,
+                                                      UseUnuse=useUnuse,
+                                                      CrossReference=crossReference,
+                                                      AdditionalInformation=additionalInformation,
+                                                      IdMaterilOfCovering=idMaterilOfCovering,
+                                                      Height=height,
+                                                      Width=width,
+                                                      Form=form,
+                                                      Type=type
+                                                    });
+                    db.SaveChanges();
+                    // Get element from Db
+                    var users = db.Component.Any(c => c.TypeOfComponent == typeOfComponent && c.CrossReference == crossReference);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+            }
+            return (res);
+        }
+
+        public int DalSaveNewFootBed(string type, string crossReference, string additionalInformation)
+        {
+            int res = 0;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Footbed.Any(c => c.Type == type && c.CrossReference==crossReference);
+                if (temp == false)
+                {
+                    // Add new element to Db
+                    db.Footbed.Add(new Footbeds { Type = type,
+                                                  CrossReference=crossReference,
+                                                  AdditionalInformation=additionalInformation
+                                                });
+                    db.SaveChanges();
+                    // Get element from Db
+                    var users = db.Footbed.Any(c => c.Type == type && c.CrossReference == crossReference);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+            }
+            return (res);
+        }
+
     }
 }

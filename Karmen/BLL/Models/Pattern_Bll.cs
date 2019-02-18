@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Models
 {
-    public class Pattren_Bll
+    public class Pattern_Bll
     {
         public int? Id { get; set; }
         public string CrossReference { get; set; }

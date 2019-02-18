@@ -49,7 +49,7 @@
     <Compile Include="Models\Lining_Bll.cs" />
     <Compile Include="Models\MaterialOfSole_Bll.cs" />
     <Compile Include="Models\Pad_Bll.cs" />
-    <Compile Include="Models\Pattren_Bll.cs" />
+    <Compile Include="Models\Pattern_Bll.cs" />
     <Compile Include="Models\TopMaterial_Bll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
