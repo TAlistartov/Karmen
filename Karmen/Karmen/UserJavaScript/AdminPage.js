@@ -167,7 +167,10 @@ $(document).ready(function () {
                     traditional:true,
                     dataType: "json",
                     success: function (res) {
-                        switch(res)
+                        //res - it's an array of object. res[0] - it is result of saving to Db (0-Error, 1-Success, 2- note is already exist
+                        //                               res[1] - Name of Class, using for the correct defining Method's Name in controller (Updating PartialView with DropDownList)
+                                                            
+                        switch(res[0])
                         {
                             case 0:
                                 alert('Возникла ошибка при сохранении.');
@@ -177,7 +180,7 @@ $(document).ready(function () {
                                 //UPDATE PartialView with DropDownList
                                 $.ajax({
                                     type: 'GET',
-                                    url: "Administrator/Partial_GetAllColours",
+                                    url: "Administrator/Partial_GetAll" + res[1] + "s",
                                     success: function (dataFromServer) {
                                         //Update data in DropDownList
                                         $('#' + createdId).html(dataFromServer);

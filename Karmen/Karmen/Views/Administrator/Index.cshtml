@@ -31,7 +31,7 @@
         <div class="tab-pane container-fluid active" id="admin_1st_tab">
             <div class="row">
                 <div class="list-group list-group-flush col-lg-3" id="board1">
-                    <button type="button" class="list-group-item list-group-item-action active" data-toggle="list" data-target="#color" role="tab">Цвет</button>
+                    <button type="button" class="list-group-item list-group-item-action active" data-toggle="list" data-target="#colour" role="tab">Цвет</button>
                     <button type="button" class="list-group-item list-group-item-action" data-toggle="list" data-target="#pattern" role="tab">Лекало</button>
                     <button type="button" class="list-group-item list-group-item-action" data-toggle="list" data-target="#lining" role="tab">Подкладка</button>
                     <button type="button" class="list-group-item list-group-item-action" data-toggle="list" data-target="#footbed" role="tab">Стелька</button>
@@ -48,11 +48,11 @@
                 <div id="select" class="tab-content col-lg-5">
 
                     @* ЦВЕТ *@
-                    <div id="color" class="tab-pane active" role="tabpanel">
+                    <div id="colour" class="tab-pane active" role="tabpanel">
                         @{Html.RenderAction("Partial_GetAllColours");}
                         <div class="form-inline">
-                            <label class="componentColourL" for="colorName">Цвет:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="color_Colour">
+                            <label class="componentColourL" for="colourName">Цвет:</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="colour_Colour">
                         </div>
                     </div>
 

@@ -68,7 +68,7 @@ namespace Karmen.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Partial_GetAllFootbeds()
+        public PartialViewResult Partial_GetAllFootBeds()
         {
             FootBedModel footbed = new FootBedModel();
             //Get data from Db
@@ -172,7 +172,7 @@ namespace Karmen.Controllers
             object filteredData=null;
             switch (currentPunctId)
             {
-                case "color":
+                case "colour":
                     filteredData = DataStorePlace.allColoursModel.Where(t=>t.Id==IdOfSelectedItemDDL);
                     break;
                 case "pattern":
@@ -212,7 +212,7 @@ namespace Karmen.Controllers
             object deserializedDataForSaveInDb=new { };
             switch (typeOfSaveData)
             {
-                case "color":
+                case "colour":
                     deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Colour_Bll>(jsonData);
                 break;
 
@@ -253,8 +253,11 @@ namespace Karmen.Controllers
                 break;
 
             }
+            var res = bll.SaveNewNoteBll(deserializedDataForSaveInDb, out string nameOfClass);
+            object[] arrValues = new object[] {res,nameOfClass };
             
-            return Json(bll.SaveNewNoteBll(deserializedDataForSaveInDb));
+
+            return Json(arrValues);
 
         }
     }

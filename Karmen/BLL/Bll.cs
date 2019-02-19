@@ -21,10 +21,14 @@ namespace BLL
             return (dataDb);
         }
 
-        public int SaveNewNoteBll<T> (T someClassForSave)
+        public int SaveNewNoteBll<T> (T someClassForSave, out string nameOfClass)
         {
             int res = 0;
             var nameOfClassModel = someClassForSave.GetType().Name;
+            //Split the ClassName on [0] - ClassName && [1]-Bll
+            var temp= nameOfClassModel.Split(new char[] { '_' });
+            nameOfClass = temp[0];
+            //Select the necessary action
             switch (nameOfClassModel)
             {
                 case "Colour_Bll":
