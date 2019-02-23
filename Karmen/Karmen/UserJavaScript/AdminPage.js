@@ -2,18 +2,11 @@
 var scanedId;
 var createdId;
 var coloursDataFromDb;
+var callBack;
 
 $(document).ready(function () {
 
-    //Get all colours from Db
-    $.ajax({
-        type: 'POST',
-        url: "Administrator/SendDataToUI",       
-        dataType: "json",
-        success: function (allColoursFromDb) {
-            coloursDataFromDb = allColoursFromDb;
-        }
-    });
+    GetAllDataFromDbForDDL();
 
      //Add buttons for Save Cut Delete in 1st load of the AdminPage
     scanedId = $('#select .active').attr("id");            
@@ -37,24 +30,28 @@ $(document).ready(function () {
         //Add DDL in current div, if it has class=ddl_Colours
         if ($('#' + scanedId).hasClass('ddl_Colours'))
         {
-           //Delete div if it was added already
-            if ($('#' + scanedId).has(scanedId + "_div_with_DDL"))
-                $("#" + scanedId + "_div_with_DDL").remove();
+            //Update List of Colours from Db
+            GetAllDataFromDbForDDL();
+            callBack.done(function () {
+                //Delete div if it was added already
+                if ($('#' + scanedId).has(scanedId + "_div_with_DDL"))
+                    $("#" + scanedId + "_div_with_DDL").remove();
 
-           //Search place for insirting div .form-inline and <label> and <select>-->DDL
-            var place = $("div .form-inline").has("#" + createdId);
+                //Search place for insirting div .form-inline and <label> and <select>-->DDL
+                var place = $("div .form-inline").has("#" + createdId);
                 //Add div with label and DDL
-                $("<div id='"+scanedId+"_div_with_DDL' class='form-inline'>"+
+                $("<div id='" + scanedId + "_div_with_DDL' class='form-inline'>" +
                      "<label for='" + scanedId + "_IdColour'>Выбор цвета:</label>" +
                   "</div>").insertAfter($(place));
 
-            //Creating variables for function CreateNewDDL
+                //Creating variables for function CreateNewDDL
                 var idNameCreatedDDL = scanedId + "_IdColour";
                 var firstEmptyOptionDDL = "-Выбирите цвет-";
                 var cssClassForCreatedDDL = "SelectColourDDL";
-                var placeForInsertingDDL=scanedId + "_div_with_DDL"; //id of parent div
-           //Call function for creating and insirting DropDownList with all colours from Db
+                var placeForInsertingDDL = scanedId + "_div_with_DDL"; //id of parent div
+                //Call function for creating and insirting DropDownList with all colours from Db
                 CreateNewDDL(coloursDataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, placeForInsertingDDL);
+            })          
         }
 
         //Return to start position DropDownList #dropDownAllColours in Цвет
@@ -66,13 +63,6 @@ $(document).ready(function () {
         //Some buttons should be desabled
        DisablUndisableButtonsCutDel(scanedId, createdId)
 
-
-        //-------------------------------------------------------****************************************------------------------------------------------------
-
-       
-
-        //-------------------------------------------------------****************************************------------------------------------------------------
-       
     })     
 
    
@@ -150,7 +140,8 @@ $(document).ready(function () {
 
         //Дописать Ajax запросі для СОХРАНЕНИЯ И ИЗМЕНЕНИЯ данніх
         //User clicked on save button under form
-        $(document).on('click', '#save_' + scanedId, function () {
+        //$(document).on('click', '#save_' + scanedId, function () {
+        $('#save_' + scanedId).unbind().click(function () {
             var dataForSave = {};
             var parentDiv = "div #" + scanedId;
             //User want to SAVE a new one note to DB (if in the first DDL in form is not selected some value)
@@ -181,7 +172,7 @@ $(document).ready(function () {
                                 $.ajax({
                                     type: 'GET',
                                     url: "Administrator/Partial_GetAll" + res[1] + "s",
-                                    success: function (dataFromServer) {
+                                    success: function (dataFromServer) {                                        
                                         //Update data in DropDownList
                                         $('#' + createdId).html(dataFromServer);
                                         ClearAllFields();
@@ -191,7 +182,7 @@ $(document).ready(function () {
                             case 2:
                                 alert('Такая запись уже существует.');
                                 break;
-                        }
+                        }                      
                         
                     }
                 });
@@ -282,6 +273,20 @@ $(document).ready(function () {
             }
 
         })
+    }
+
+    function GetAllDataFromDbForDDL()
+    {
+        //Get all colours from Db
+        callBack=$.ajax({
+            type: 'POST',
+            url: "Administrator/SendDataToUI",
+            dataType: "json",
+            success: function (allColoursFromDb) {                
+                coloursDataFromDb = allColoursFromDb;
+            }            
+        });
+       
     }
     
 });

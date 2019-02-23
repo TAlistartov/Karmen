@@ -16,9 +16,9 @@ namespace Karmen.Models
         public bool UseUnuse { get; set; }
         public string CrossReference { get; set; }
         public string AdditionalInformation { get; set; }
-        public int IdMaterilOfCovering { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
+        public int? IdMaterilOfCovering { get; set; }
+        public int? Height { get; set; }
+        public int? Width { get; set; }
         public string Form { get; set; }
         public string Type { get; set; }
 

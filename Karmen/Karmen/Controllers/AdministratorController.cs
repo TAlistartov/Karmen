@@ -12,8 +12,23 @@ using Newtonsoft.Json;
 
 namespace Karmen.Controllers
 {
+
     public class AdministratorController : Controller
     {
+        public Dictionary<string, string> matchIdUIvsClasses = new Dictionary<string, string>()
+        {
+            ["colour"] = "Colour_Bll",
+            ["pattern"] = "Pattern_Bll",
+            ["lining"] = "Lining_Bll",
+            ["footbed"] = "FootBed_Bll",
+            ["pad"] = "Pad_Bll",
+            ["kindOfBlock"] = "KindOfBlock_Bll",
+            ["topMaterial"] = "TopMaterial_Bll",
+            ["furniture"] = "Furniture_Bll",
+            ["materialOfSole"] = "MaterialOfSole_Bll",
+            ["component"] = "Component_Bll"
+        };
+
         //Links
         Dal dal = new Dal();
         Bll bll = new Bll();
@@ -22,7 +37,7 @@ namespace Karmen.Controllers
         [HttpGet]
         public ViewResult Index()
         {
-           return View();            
+            return View();
         }
 
         //Partial Views with DropDownLists for all Navigation Punkts 
@@ -30,13 +45,13 @@ namespace Karmen.Controllers
         [HttpGet]
         public PartialViewResult Partial_GetAllColours()
         {
-            ColourModel colour = new ColourModel();           
+            ColourModel colour = new ColourModel();
             //Get data from Db
             var allColoursDal = bll.BllGetAllDataTableFromDb(new Colours());
             //Map class on class - return List<1st parameter method>
             DataStorePlace.allColoursModel = helpMethod.HandMapper(new ColourModel(), allColoursDal);
             //Here call a function for creating DropDownList             
-            DataStorePlace.AllColoursFromDb=helpMethod.MakeDropDownList(DataStorePlace.allColoursModel);
+            DataStorePlace.AllColoursFromDb = helpMethod.MakeDropDownList(DataStorePlace.allColoursModel);
             colour.AllColoursFromDb = DataStorePlace.AllColoursFromDb;
             return PartialView(colour);
         }
@@ -44,13 +59,13 @@ namespace Karmen.Controllers
         [HttpGet]
         public PartialViewResult Partial_GetAllPatterns()
         {
-            PatternModel pattern= new PatternModel();            
+            PatternModel pattern = new PatternModel();
             //Get data from Db
             var allPaternsDal = bll.BllGetAllDataTableFromDb(new Patterns());
             //Map class on class - return List<1st parameter method>
             DataStorePlace.allPatternsModel = helpMethod.HandMapper(new PatternModel(), allPaternsDal);
             //Here call a function for creating DropDownList             
-            pattern.AllPatternsFromDb = helpMethod.MakeDropDownList(DataStorePlace.allPatternsModel);           
+            pattern.AllPatternsFromDb = helpMethod.MakeDropDownList(DataStorePlace.allPatternsModel);
             return PartialView(pattern);
         }
 
@@ -166,14 +181,14 @@ namespace Karmen.Controllers
         }
 
         [HttpPost]
-        public JsonResult FilteringStoreData (int? IdOfSelectedItemDDL, string currentPunctId)
+        public JsonResult FilteringStoreData(int? IdOfSelectedItemDDL, string currentPunctId)
         {
             //Create a new local item with object type
-            object filteredData=null;
+            object filteredData = null;
             switch (currentPunctId)
             {
                 case "colour":
-                    filteredData = DataStorePlace.allColoursModel.Where(t=>t.Id==IdOfSelectedItemDDL);
+                    filteredData = DataStorePlace.allColoursModel.Where(t => t.Id == IdOfSelectedItemDDL);
                     break;
                 case "pattern":
                     filteredData = DataStorePlace.allPatternsModel.Where(t => t.Id == IdOfSelectedItemDDL);
@@ -202,63 +217,66 @@ namespace Karmen.Controllers
                 case "component":
                     filteredData = DataStorePlace.allComponentsModel.Where(t => t.Id == IdOfSelectedItemDDL);
                     break;
-            }            
+            }
             return Json(filteredData);
         }
 
         [HttpPost]
-        public JsonResult SaveNewNote (string jsonData, string typeOfSaveData)
+        public JsonResult SaveNewNote(string jsonData, string typeOfSaveData)
+
         {
-            object deserializedDataForSaveInDb=new { };
+            object deserializedDataForSaveInDb = new { };
             switch (typeOfSaveData)
             {
                 case "colour":
                     deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Colour_Bll>(jsonData);
-                break;
+                    break;
 
                 case "pattern":
                     deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Pattern_Bll>(jsonData);
-                break;
+                    break;
 
                 case "lining":
                     deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Lining_Bll>(jsonData);
-                break;
+                    break;
 
                 case "footbed":
                     deserializedDataForSaveInDb = JsonConvert.DeserializeObject<FootBed_Bll>(jsonData);
-                break;
+                    break;
 
                 case "pad":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Pad_Bll>(jsonData);                  
-                break;
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Pad_Bll>(jsonData);
+                    break;
 
                 case "kindOfBlock":
                     deserializedDataForSaveInDb = JsonConvert.DeserializeObject<KindOfBlock_Bll>(jsonData);
-                break;
+                    break;
 
                 case "topMaterial":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<TopMaterial_Bll>(jsonData);                   
-                break;
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<TopMaterial_Bll>(jsonData);
+                    break;
 
                 case "furniture":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Furniture_Bll>(jsonData);                    
-                break;
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Furniture_Bll>(jsonData);
+                    break;
 
                 case "materialOfSole":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<MaterialOfSole_Bll>(jsonData);                    
-                break;
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<MaterialOfSole_Bll>(jsonData);
+                    break;
 
                 case "component":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Component_Bll>(jsonData);                    
-                break;
+                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Component_Bll>(jsonData);
+                    break;
 
             }
+            //get result of saving new Note and name of saving Class
             var res = bll.SaveNewNoteBll(deserializedDataForSaveInDb, out string nameOfClass);
-            object[] arrValues = new object[] {res,nameOfClass };
-            
+            //Add result of saving and name of Class to object
+            object[] arrValues = new object[] { res, nameOfClass };
 
             return Json(arrValues);
 
         }
+
     }
 }

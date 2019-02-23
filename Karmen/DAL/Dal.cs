@@ -79,7 +79,7 @@ namespace DAL
         }
 
         public int DalSaveNewComponent(string typeOfComponent, int idColour, int size, bool useUnuse, string crossReference, 
-                                            string additionalInformation, int idMaterilOfCovering, int height, int width, string form, 
+                                            string additionalInformation, int? idMaterilOfCovering, int? height, int? width, string form, 
                                                     string type)
         {
             int res = 0;
@@ -128,6 +128,194 @@ namespace DAL
                     db.SaveChanges();
                     // Get element from Db
                     var users = db.Footbed.Any(c => c.Type == type && c.CrossReference == crossReference);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+            }
+            return (res);
+        }
+
+        public int  DalSaveNewFurniture(int idColour, string type, bool useUnuse, string crossReference)
+        {
+            int res = 0;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Furniture.Any(c => c.Type == type && c.CrossReference == crossReference);
+                if (temp == false)
+                {
+                    // Add new element to Db
+                    db.Furniture.Add(new Furnitures
+                    {
+                        IdColour=idColour,
+                        Type = type,
+                        UseUnuse=useUnuse,
+                        CrossReference = crossReference                        
+                    });
+                    db.SaveChanges();
+                    // Get element from Db
+                    var users = db.Furniture.Any(c => c.Type == type && c.CrossReference == crossReference);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+            }
+            return (res);
+        }
+
+        public int DalSaveNewKindOfBlock(string name, string additionalInformation, string crossReference)
+        {
+            int res = 0;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.KindOfBlock.Any(c => c.Name == name && c.CrossReference == crossReference);
+                if (temp == false)
+                {
+                    // Add new element to Db
+                    db.KindOfBlock.Add(new KindOfBlocks
+                    {
+                        Name = name,
+                        AdditionalInformation = additionalInformation,                        
+                        CrossReference = crossReference
+                    });
+                    db.SaveChanges();
+                    // Get element from Db
+                    var users = db.KindOfBlock.Any(c => c.Name == name && c.CrossReference == crossReference);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+            }
+            return (res);
+        }
+
+        public int DalSaveNewLining(string name, string season, string additionalInformation, string crossReference, bool useUnuse)
+        {
+            int res = 0;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Lining.Any(c => c.Name == name && c.CrossReference == crossReference);
+                if (temp == false)
+                {
+                    // Add new element to Db
+                    db.Lining.Add(new Linings
+                    {
+                        Name = name,
+                        Season = season,
+                        AdditionalInformation=additionalInformation,
+                        CrossReference = crossReference,
+                        UseUnuse=useUnuse
+                    });
+                    db.SaveChanges();
+                    // Get element from Db
+                    var users = db.Lining.Any(c => c.Name == name && c.CrossReference == crossReference);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+            }
+            return (res);
+        }
+
+        public int DalSaveNewMaterialOfSole(string name, int idColour, string crossReference, bool useUnuse)
+        {
+            int res = 0;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.MaterialOfSole.Any(c => c.Name == name && c.CrossReference == crossReference);
+                if (temp == false)
+                {
+                    // Add new element to Db
+                    db.MaterialOfSole.Add(new MaterialsOfSole
+                    {
+                        Name = name,
+                        IdColour = idColour,                        
+                        CrossReference = crossReference,
+                        UseUnuse = useUnuse
+                    });
+                    db.SaveChanges();
+                    // Get element from Db
+                    var users = db.MaterialOfSole.Any(c => c.Name == name && c.CrossReference == crossReference);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+            }
+            return (res);
+        }
+
+        public int DalSaveNewPad(string kind, double padSize, bool useUnuse, string additionalInformation)
+        {
+            int res = 0;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Pad.Any(c => c.Kind == kind && c.PadSize == padSize);
+                if (temp == false)
+                {
+                    // Add new element to Db
+                    db.Pad.Add(new Pads
+                    {
+                        Kind = kind,
+                        PadSize = padSize,                        
+                        UseUnuse = useUnuse,
+                        AdditionalInformation=additionalInformation
+                    });
+                    db.SaveChanges();
+                    // Get element from Db
+                    var users = db.Pad.Any(c => c.Kind == kind && c.PadSize == padSize);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+            }
+            return (res);
+        }
+
+        public int DalSaveNewPattern(string crossReference, bool useUnuse, string additionalInformation)
+        {
+            int res = 0;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Pattern.Any(c => c.CrossReference == crossReference);
+                if (temp == false)
+                {
+                    // Add new element to Db
+                    db.Pattern.Add(new Patterns
+                    {
+                        CrossReference = crossReference,
+                        UseUnuse = useUnuse,
+                        AdditionalInformation = additionalInformation
+                    });
+                    db.SaveChanges();
+                    // Get element from Db
+                    var users = db.Pattern.Any(c => c.CrossReference == crossReference);
+                    res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
+                }
+                else
+                    res = 2; //This note is already created in Db             
+            }
+            return (res);
+        }
+
+        public int DalSaveNewTopMaterial(int idColour, string type, bool useUnuse, string crossReference)
+        {
+            int res = 0;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.TopMaterial.Any(c => c.Type == type && c.CrossReference == crossReference);
+                if (temp == false)
+                {
+                    // Add new element to Db
+                    db.TopMaterial.Add(new TopMaterials
+                    {
+                        IdColour=idColour,
+                        Type=type,
+                        CrossReference = crossReference,
+                        UseUnuse = useUnuse                        
+                    });
+                    db.SaveChanges();
+                    // Get element from Db
+                    var users = db.TopMaterial.Any(c => c.Type == type && c.CrossReference == crossReference);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
