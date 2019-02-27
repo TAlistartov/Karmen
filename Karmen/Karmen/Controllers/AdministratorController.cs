@@ -9,26 +9,14 @@ using BLL.Models;
 using DAL;
 using Karmen.Helpers;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace Karmen.Controllers
 {
 
     public class AdministratorController : Controller
     {
-        public Dictionary<string, string> matchIdUIvsClasses = new Dictionary<string, string>()
-        {
-            ["colour"] = "Colour_Bll",
-            ["pattern"] = "Pattern_Bll",
-            ["lining"] = "Lining_Bll",
-            ["footbed"] = "FootBed_Bll",
-            ["pad"] = "Pad_Bll",
-            ["kindOfBlock"] = "KindOfBlock_Bll",
-            ["topMaterial"] = "TopMaterial_Bll",
-            ["furniture"] = "Furniture_Bll",
-            ["materialOfSole"] = "MaterialOfSole_Bll",
-            ["component"] = "Component_Bll"
-        };
-
+       
         //Links
         Dal dal = new Dal();
         Bll bll = new Bll();
@@ -222,61 +210,35 @@ namespace Karmen.Controllers
         }
 
         [HttpPost]
-        public JsonResult SaveNewNote(string jsonData, string typeOfSaveData)
-
+        public JsonResult SaveNewNote (string jsonData, string typeOfSaveData)
         {
+            string saveAction = "SaveNew";
             object deserializedDataForSaveInDb = new { };
-            switch (typeOfSaveData)
-            {
-                case "colour":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Colour_Bll>(jsonData);
-                    break;
-
-                case "pattern":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Pattern_Bll>(jsonData);
-                    break;
-
-                case "lining":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Lining_Bll>(jsonData);
-                    break;
-
-                case "footbed":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<FootBed_Bll>(jsonData);
-                    break;
-
-                case "pad":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Pad_Bll>(jsonData);
-                    break;
-
-                case "kindOfBlock":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<KindOfBlock_Bll>(jsonData);
-                    break;
-
-                case "topMaterial":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<TopMaterial_Bll>(jsonData);
-                    break;
-
-                case "furniture":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Furniture_Bll>(jsonData);
-                    break;
-
-                case "materialOfSole":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<MaterialOfSole_Bll>(jsonData);
-                    break;
-
-                case "component":
-                    deserializedDataForSaveInDb = JsonConvert.DeserializeObject<Component_Bll>(jsonData);
-                    break;
-
-            }
+            //Call deserialization Method
+            deserializedDataForSaveInDb = helpMethod.DeserializationJsonData(jsonData,typeOfSaveData);
             //get result of saving new Note and name of saving Class
-            var res = bll.SaveNewNoteBll(deserializedDataForSaveInDb, out string nameOfClass);
+            var res = bll.SaveNewOrChangeSelectedNoteBll(deserializedDataForSaveInDb, saveAction, out string nameOfClass);
             //Add result of saving and name of Class to object
             object[] arrValues = new object[] { res, nameOfClass };
 
             return Json(arrValues);
-
         }
+
+        //[HttpPost]
+        //public JsonResult ChangeDataSelectedNote (string jsonData, string typeOfSaveData)
+        //{
+        //string changeAction="ChangeExisted";
+        //    object deserializedDataForChangeInDb = new { };
+        //    //Call deserialization Method
+        //    deserializedDataForChangeInDb = helpMethod.DeserializationJsonData(jsonData, typeOfSaveData);
+        //    //get result of saving new Note and name of saving Class
+        //    var res = bll.ChangeDataSelectedNoteBll(deserializedDataForChangeInDb, changeAction ,out string nameOfClass);
+        //    //Add result of saving and name of Class to object
+        //    object[] arrValues = new object[] { res, nameOfClass };
+
+        //    return Json(arrValues);
+        //}
+
 
     }
 }

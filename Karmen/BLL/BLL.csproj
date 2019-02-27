@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bll.cs" />
+    <Compile Include="Helpers\HelpMethodsBll.cs" />
     <Compile Include="Models\Colour_Bll.cs" />
     <Compile Include="Models\Component_Bll.cs" />
     <Compile Include="Models\FootBed_Bll.cs" />

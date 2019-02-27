@@ -1,8 +1,11 @@
-﻿using Karmen.Interfaces;
+﻿using BLL.Models;
+using Karmen.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +13,23 @@ namespace Karmen.Helpers
 {
     public class HelpMethods
     {
+        public Type Col { get; set; }
+        //Dictionary of matchig id selected punkt in UI --> class name model
+         public Dictionary<string, Type> matchIdUIvsClasses = new Dictionary<string, Type>()
+        {
+             //{"colour", typeof(Colour_Bll) }
+             ["colour"] = typeof(Colour_Bll),
+             ["pattern"] = typeof(Pattern_Bll),
+             ["lining"] = typeof(Lining_Bll),
+             ["footbed"] = typeof(FootBed_Bll),
+             ["pad"] = typeof(Pad_Bll),
+             ["kindOfBlock"] = typeof(KindOfBlock_Bll),
+             ["topMaterial"] = typeof(TopMaterial_Bll),
+             ["furniture"] = typeof(Furniture_Bll),
+             ["materialOfSole"] = typeof(MaterialOfSole_Bll),
+             ["component"] = typeof(Component_Bll)
+         };
+        
         //Map function
         public List<A> HandMapper<A, B>(A OutClassType, List<B> InputDataList) where A : new()
                                                                                     where B : class
@@ -48,6 +68,24 @@ namespace Karmen.Helpers
                 items.Add(item.MapToSelectListItem());
             }
             return items;
+        }       
+
+        public object DeserializationJsonData(string jsonData, string typeOfSaveData)
+        {
+            var deserializatedData = new object { };
+            foreach (KeyValuePair<string,Type> keyValue in matchIdUIvsClasses)
+            {
+                if (keyValue.Key== typeOfSaveData)
+                {
+                    var method = typeof(JsonConvert).GetMethods().FirstOrDefault(
+                            x => x.Name.Equals("DeserializeObject", StringComparison.OrdinalIgnoreCase) &&
+                                x.IsGenericMethod && x.GetParameters().Length == 1 &&
+                                    x.GetParameters()[0].ParameterType == typeof(string));
+                    var classType = method.MakeGenericMethod(keyValue.Value);
+                    deserializatedData=  classType.Invoke(null, new object[] { jsonData });
+                }               
+            }
+            return deserializatedData;            
         }
     }
 }

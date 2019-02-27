@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Models;
 
 namespace DAL
 {
@@ -57,19 +58,23 @@ namespace DAL
         }
         #endregion
 
-        public int DalSaveNewColour(string colour)
+        //Save New Data for all tables of DB
+        #region
+        public int DalSaveNewColour(object colour)
         {            
             int res = 0;
+            Colour_Dal colour_dal = new Colour_Dal();
+            colour_dal = colour as Colour_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.Colour.Any(c => c.Colour == colour);
+                var temp = db.Colour.Any(c => c.Colour == colour_dal.Colour);
                 if (temp == false)
                 {
                     // Add new element to Db
-                    db.Colour.Add(new Colours { Colour = colour });
+                    db.Colour.Add(new Colours { Colour = colour_dal.Colour });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.Colour.Any(c => c.Colour == colour);
+                    var users = db.Colour.Any(c => c.Colour == colour_dal.Colour);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -78,32 +83,32 @@ namespace DAL
             return (res);
         }
 
-        public int DalSaveNewComponent(string typeOfComponent, int idColour, int size, bool useUnuse, string crossReference, 
-                                            string additionalInformation, int? idMaterilOfCovering, int? height, int? width, string form, 
-                                                    string type)
+        public int DalSaveNewComponent(object component)
         {
             int res = 0;
+            Component_Dal component_dal = new Component_Dal();
+            component_dal = component as Component_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.Component.Any(c => c.TypeOfComponent == typeOfComponent && c.CrossReference==crossReference);
+                var temp = db.Component.Any(c => c.TypeOfComponent == component_dal.TypeOfComponent && c.CrossReference== component_dal.CrossReference);
                 if (temp == false)
                 {
                     // Add new element to Db
-                    db.Component.Add(new Components { TypeOfComponent=typeOfComponent,
-                                                      IdColour=idColour,
-                                                      Size=size,
-                                                      UseUnuse=useUnuse,
-                                                      CrossReference=crossReference,
-                                                      AdditionalInformation=additionalInformation,
-                                                      IdMaterilOfCovering=idMaterilOfCovering,
-                                                      Height=height,
-                                                      Width=width,
-                                                      Form=form,
-                                                      Type=type
-                                                    });
+                    db.Component.Add(new Components { TypeOfComponent= component_dal.TypeOfComponent,
+                                                      IdColour= component_dal.IdColour,
+                                                      Size= component_dal.Size,
+                                                      UseUnuse= component_dal.UseUnuse,
+                                                      CrossReference= component_dal.CrossReference,
+                                                      AdditionalInformation= component_dal.AdditionalInformation,
+                                                      IdMaterilOfCovering= component_dal.IdMaterilOfCovering,
+                                                      Height= component_dal.Height,
+                                                      Width= component_dal.Width,
+                                                      Form= component_dal.Form,
+                                                      Type= component_dal.Type
+                    });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.Component.Any(c => c.TypeOfComponent == typeOfComponent && c.CrossReference == crossReference);
+                    var users = db.Component.Any(c => c.TypeOfComponent == component_dal.TypeOfComponent && c.CrossReference == component_dal.CrossReference);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -112,22 +117,24 @@ namespace DAL
             return (res);
         }
 
-        public int DalSaveNewFootBed(string type, string crossReference, string additionalInformation)
+        public int DalSaveNewFootBed(object footBed)
         {
             int res = 0;
+            FootBed_Dal footBed_dal = new FootBed_Dal();
+            footBed_dal = footBed as FootBed_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.Footbed.Any(c => c.Type == type && c.CrossReference==crossReference);
+                var temp = db.Footbed.Any(c => c.Type == footBed_dal.Type && c.CrossReference== footBed_dal.CrossReference);
                 if (temp == false)
                 {
                     // Add new element to Db
-                    db.Footbed.Add(new Footbeds { Type = type,
-                                                  CrossReference=crossReference,
-                                                  AdditionalInformation=additionalInformation
-                                                });
+                    db.Footbed.Add(new Footbeds { Type = footBed_dal.Type,
+                                                  CrossReference= footBed_dal.CrossReference,
+                                                  AdditionalInformation= footBed_dal.AdditionalInformation
+                    });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.Footbed.Any(c => c.Type == type && c.CrossReference == crossReference);
+                    var users = db.Footbed.Any(c => c.Type == footBed_dal.Type && c.CrossReference == footBed_dal.CrossReference);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -136,25 +143,27 @@ namespace DAL
             return (res);
         }
 
-        public int  DalSaveNewFurniture(int idColour, string type, bool useUnuse, string crossReference)
+        public int  DalSaveNewFurniture(object furniture)
         {
             int res = 0;
+            Furniture_Dal furniture_dal = new Furniture_Dal();
+            furniture_dal = furniture as Furniture_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.Furniture.Any(c => c.Type == type && c.CrossReference == crossReference);
+                var temp = db.Furniture.Any(c => c.Type == furniture_dal.Type && c.CrossReference == furniture_dal.CrossReference);
                 if (temp == false)
                 {
                     // Add new element to Db
                     db.Furniture.Add(new Furnitures
                     {
-                        IdColour=idColour,
-                        Type = type,
-                        UseUnuse=useUnuse,
-                        CrossReference = crossReference                        
+                        IdColour= furniture_dal.IdColour,
+                        Type = furniture_dal.Type,
+                        UseUnuse= furniture_dal.UseUnuse,
+                        CrossReference = furniture_dal.CrossReference
                     });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.Furniture.Any(c => c.Type == type && c.CrossReference == crossReference);
+                    var users = db.Furniture.Any(c => c.Type == furniture_dal.Type && c.CrossReference == furniture_dal.CrossReference);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -163,24 +172,26 @@ namespace DAL
             return (res);
         }
 
-        public int DalSaveNewKindOfBlock(string name, string additionalInformation, string crossReference)
+        public int DalSaveNewKindOfBlock(object kindOfBlock)
         {
             int res = 0;
+            KindOfBlock_Dal kindOfBlock_dal = new KindOfBlock_Dal();
+            kindOfBlock_dal = kindOfBlock as KindOfBlock_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.KindOfBlock.Any(c => c.Name == name && c.CrossReference == crossReference);
+                var temp = db.KindOfBlock.Any(c => c.Name == kindOfBlock_dal.Name && c.CrossReference == kindOfBlock_dal.CrossReference);
                 if (temp == false)
                 {
                     // Add new element to Db
                     db.KindOfBlock.Add(new KindOfBlocks
                     {
-                        Name = name,
-                        AdditionalInformation = additionalInformation,                        
-                        CrossReference = crossReference
+                        Name = kindOfBlock_dal.Name,
+                        AdditionalInformation = kindOfBlock_dal.AdditionalInformation,                        
+                        CrossReference = kindOfBlock_dal.CrossReference
                     });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.KindOfBlock.Any(c => c.Name == name && c.CrossReference == crossReference);
+                    var users = db.KindOfBlock.Any(c => c.Name == kindOfBlock_dal.Name && c.CrossReference == kindOfBlock_dal.CrossReference);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -189,26 +200,28 @@ namespace DAL
             return (res);
         }
 
-        public int DalSaveNewLining(string name, string season, string additionalInformation, string crossReference, bool useUnuse)
+        public int DalSaveNewLining(object lining)
         {
             int res = 0;
+            Lining_Dal lining_dal = new Lining_Dal();
+            lining_dal = lining as Lining_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.Lining.Any(c => c.Name == name && c.CrossReference == crossReference);
+                var temp = db.Lining.Any(c => c.Name == lining_dal.Name && c.CrossReference == lining_dal.CrossReference);
                 if (temp == false)
                 {
                     // Add new element to Db
                     db.Lining.Add(new Linings
                     {
-                        Name = name,
-                        Season = season,
-                        AdditionalInformation=additionalInformation,
-                        CrossReference = crossReference,
-                        UseUnuse=useUnuse
+                        Name = lining_dal.Name,
+                        Season = lining_dal.Season,
+                        AdditionalInformation= lining_dal.AdditionalInformation,
+                        CrossReference = lining_dal.CrossReference,
+                        UseUnuse= lining_dal.UseUnuse
                     });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.Lining.Any(c => c.Name == name && c.CrossReference == crossReference);
+                    var users = db.Lining.Any(c => c.Name == lining_dal.Name && c.CrossReference == lining_dal.CrossReference);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -217,25 +230,27 @@ namespace DAL
             return (res);
         }
 
-        public int DalSaveNewMaterialOfSole(string name, int idColour, string crossReference, bool useUnuse)
+        public int DalSaveNewMaterialOfSole(object materialOfSole)
         {
             int res = 0;
+            MaterialOfSole_Dal materialOfSole_dal = new MaterialOfSole_Dal();
+            materialOfSole_dal = materialOfSole as MaterialOfSole_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.MaterialOfSole.Any(c => c.Name == name && c.CrossReference == crossReference);
+                var temp = db.MaterialOfSole.Any(c => c.Name == materialOfSole_dal.Name && c.CrossReference == materialOfSole_dal.CrossReference);
                 if (temp == false)
                 {
                     // Add new element to Db
                     db.MaterialOfSole.Add(new MaterialsOfSole
                     {
-                        Name = name,
-                        IdColour = idColour,                        
-                        CrossReference = crossReference,
-                        UseUnuse = useUnuse
+                        Name = materialOfSole_dal.Name,
+                        IdColour = materialOfSole_dal.IdColour,                        
+                        CrossReference = materialOfSole_dal.CrossReference,
+                        UseUnuse = materialOfSole_dal.UseUnuse
                     });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.MaterialOfSole.Any(c => c.Name == name && c.CrossReference == crossReference);
+                    var users = db.MaterialOfSole.Any(c => c.Name == materialOfSole_dal.Name && c.CrossReference == materialOfSole_dal.CrossReference);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -244,25 +259,27 @@ namespace DAL
             return (res);
         }
 
-        public int DalSaveNewPad(string kind, double padSize, bool useUnuse, string additionalInformation)
+        public int DalSaveNewPad(object pad)
         {
             int res = 0;
+            Pad_Dal pad_dal = new Pad_Dal();
+            pad_dal = pad as Pad_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.Pad.Any(c => c.Kind == kind && c.PadSize == padSize);
+                var temp = db.Pad.Any(c => c.Kind == pad_dal.Kind && c.PadSize == pad_dal.PadSize);
                 if (temp == false)
                 {
                     // Add new element to Db
                     db.Pad.Add(new Pads
                     {
-                        Kind = kind,
-                        PadSize = padSize,                        
-                        UseUnuse = useUnuse,
-                        AdditionalInformation=additionalInformation
+                        Kind = pad_dal.Kind,
+                        PadSize = pad_dal.PadSize,                        
+                        UseUnuse = pad_dal.UseUnuse,
+                        AdditionalInformation= pad_dal.AdditionalInformation
                     });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.Pad.Any(c => c.Kind == kind && c.PadSize == padSize);
+                    var users = db.Pad.Any(c => c.Kind == pad_dal.Kind && c.PadSize == pad_dal.PadSize);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -271,24 +288,26 @@ namespace DAL
             return (res);
         }
 
-        public int DalSaveNewPattern(string crossReference, bool useUnuse, string additionalInformation)
+        public int DalSaveNewPattern(object pattern)
         {
             int res = 0;
+            Pattern_Dal pattern_dal = new Pattern_Dal();
+            pattern_dal = pattern as Pattern_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.Pattern.Any(c => c.CrossReference == crossReference);
+                var temp = db.Pattern.Any(c => c.CrossReference == pattern_dal.CrossReference);
                 if (temp == false)
                 {
                     // Add new element to Db
                     db.Pattern.Add(new Patterns
                     {
-                        CrossReference = crossReference,
-                        UseUnuse = useUnuse,
-                        AdditionalInformation = additionalInformation
+                        CrossReference = pattern_dal.CrossReference,
+                        UseUnuse = pattern_dal.UseUnuse,
+                        AdditionalInformation = pattern_dal.AdditionalInformation
                     });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.Pattern.Any(c => c.CrossReference == crossReference);
+                    var users = db.Pattern.Any(c => c.CrossReference == pattern_dal.CrossReference);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -297,25 +316,27 @@ namespace DAL
             return (res);
         }
 
-        public int DalSaveNewTopMaterial(int idColour, string type, bool useUnuse, string crossReference)
+        public int DalSaveNewTopMaterial(object topMaterial)
         {
             int res = 0;
+            TopMaterial_Dal topMaterial_Dal = new TopMaterial_Dal();
+            topMaterial_Dal = topMaterial as TopMaterial_Dal;
             using (KarmenDbContext db = new KarmenDbContext())
             {
-                var temp = db.TopMaterial.Any(c => c.Type == type && c.CrossReference == crossReference);
+                var temp = db.TopMaterial.Any(c => c.Type == topMaterial_Dal.Type && c.CrossReference == topMaterial_Dal.CrossReference);
                 if (temp == false)
                 {
                     // Add new element to Db
                     db.TopMaterial.Add(new TopMaterials
                     {
-                        IdColour=idColour,
-                        Type=type,
-                        CrossReference = crossReference,
-                        UseUnuse = useUnuse                        
+                        IdColour= topMaterial_Dal.IdColour,
+                        Type= topMaterial_Dal.Type,
+                        CrossReference = topMaterial_Dal.CrossReference,
+                        UseUnuse = topMaterial_Dal.UseUnuse                        
                     });
                     db.SaveChanges();
                     // Get element from Db
-                    var users = db.TopMaterial.Any(c => c.Type == type && c.CrossReference == crossReference);
+                    var users = db.TopMaterial.Any(c => c.Type == topMaterial_Dal.Type && c.CrossReference == topMaterial_Dal.CrossReference);
                     res = (users == false) ? 0 : 1; //0 - Saving Error; 1 - Saving is correct                    
                 }
                 else
@@ -323,6 +344,7 @@ namespace DAL
             }
             return (res);
         }
-
+        #endregion
+       
     }
 }

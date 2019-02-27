@@ -94,6 +94,16 @@
     <Compile Include="MaterialsOfSole.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Colour_Dal.cs" />
+    <Compile Include="Models\Component_Dal.cs" />
+    <Compile Include="Models\FootBed_Dal.cs" />
+    <Compile Include="Models\Furniture_Dal.cs" />
+    <Compile Include="Models\KindOfBlock_Dal.cs" />
+    <Compile Include="Models\Lining_Dal.cs" />
+    <Compile Include="Models\MaterialOfSole_Dal.cs" />
+    <Compile Include="Models\Pad_Dal.cs" />
+    <Compile Include="Models\Pattern_Dal.cs" />
+    <Compile Include="Models\TopMaterial_Dal.cs" />
     <Compile Include="Pads.cs">
       <DependentUpon>DbKarmenModel.tt</DependentUpon>
     </Compile>

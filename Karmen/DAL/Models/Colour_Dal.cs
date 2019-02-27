@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Models
+namespace DAL.Models
 {
-    public class Colour_Bll
+    public class Colour_Dal
     {
         public int? Id { get; set; }
-        public string Colour { get; set; }       
+        public string Colour { get; set; }
     }
 }
