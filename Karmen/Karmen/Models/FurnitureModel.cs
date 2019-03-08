@@ -16,7 +16,7 @@ namespace Karmen.Models
         public string CrossReference { get; set; }
 
         public List<SelectListItem> AllFurnituresFromDb { get; set; }
-        public string SelectedFurniture { get; set; }
+        //public string SelectedFurniture { get; set; }
 
         //Interface realisation
         public SelectListItem MapToSelectListItem()

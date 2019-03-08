@@ -23,5 +23,24 @@ namespace Karmen.Helpers
         public static List<TopMaterialModel> allTopMaterialsModel { get; set; }
         public static List<ComponentModel> allComponentsModel { get; set; }
 
+        //Dictionary for seasons
+        //public static Dictionary<int, string> seasons = new Dictionary<int, string>()
+        //{
+        //    {0,"зима"},
+        //    {1,"весна"},
+        //    {2,"лето"},
+        //    {3,"осень"},
+        //    {4,"всесезоннка"}
+        //};
+        public static List<SelectListItem> season = new List<SelectListItem>()
+        {
+            new SelectListItem(){ Text="зима", Value="зима"},
+            new SelectListItem(){ Text="весна", Value="весна"},
+            new SelectListItem(){ Text="лето", Value="лето"},
+            new SelectListItem(){ Text="осень", Value="осень"},
+            new SelectListItem(){ Text="всесезонка", Value="всесезонка"}
+        };
+        
+
     }
 }

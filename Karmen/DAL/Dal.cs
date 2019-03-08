@@ -345,6 +345,217 @@ namespace DAL
             return (res);
         }
         #endregion
-       
+
+        //Change Existed Data for all tables of DB
+        #region
+        public int DalChangeExistedColour(object colour)
+        {
+            int res = 0;
+            Colour_Dal colour_dal = new Colour_Dal();
+            colour_dal = colour as Colour_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Colour.FirstOrDefault(c => c.Id == colour_dal.Id);
+                //Change selected data
+                temp.Colour = colour_dal.Colour;
+                //Save changes
+                db.SaveChanges();
+            }
+            res = 1;
+            return (res);
+        }
+
+        public int DalChangeExistedComponent(object component)
+        {
+            int res = 0;
+            Component_Dal component_dal = new Component_Dal();
+            component_dal = component as Component_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Component.FirstOrDefault(c => c.Id == component_dal.Id);
+                //Change selected data
+                temp.TypeOfComponent = component_dal.TypeOfComponent;
+                temp.IdColour = component_dal.IdColour;
+                temp.Size = component_dal.Size;
+                temp.UseUnuse = component_dal.UseUnuse;
+                temp.CrossReference = component_dal.CrossReference;
+                temp.AdditionalInformation = component_dal.AdditionalInformation;
+                temp.IdMaterilOfCovering = component_dal.IdMaterilOfCovering;
+                temp.Height = component_dal.Height;
+                temp.Width = component_dal.Width;
+                temp.Form = component_dal.Form;
+                temp.Type = component_dal.Type;
+                //Save changes   
+                db.SaveChanges();
+                            
+            }
+            res = 1;
+            return (res);
+        }
+
+        public int DalChangeExistedFootBed(object footBed)
+        {
+            int res = 0;
+            FootBed_Dal footBed_dal = new FootBed_Dal();
+            footBed_dal = footBed as FootBed_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Footbed.FirstOrDefault(c => c.Id == footBed_dal.Id);
+
+                //Change selected data
+                temp.Type = footBed_dal.Type;
+                temp.CrossReference = footBed_dal.CrossReference;
+                temp.AdditionalInformation = footBed_dal.AdditionalInformation;
+                //Save changes
+                db.SaveChanges();
+                   
+            }
+            res = 1;
+            return (res);
+        }
+
+        public int DalChangeExistedFurniture(object furniture)
+        {
+            int res = 0;
+            Furniture_Dal furniture_dal = new Furniture_Dal();
+            furniture_dal = furniture as Furniture_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Furniture.FirstOrDefault(c => c.Id == furniture_dal.Id);
+
+                // Change data
+                temp.IdColour = furniture_dal.IdColour;
+                temp.Type = furniture_dal.Type;
+                temp.UseUnuse = furniture_dal.UseUnuse;
+                temp.CrossReference = furniture_dal.CrossReference;
+                //Save changes    
+                db.SaveChanges();                    
+            }
+            res = 1;
+            return (res);
+        }
+
+        public int DalChangeExistedKindOfBlock(object kindOfBlock)
+        {
+            int res = 0;
+            KindOfBlock_Dal kindOfBlock_dal = new KindOfBlock_Dal();
+            kindOfBlock_dal = kindOfBlock as KindOfBlock_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.KindOfBlock.FirstOrDefault(c => c.Id == kindOfBlock_dal.Id);
+
+                // Change data
+                temp.Name = kindOfBlock_dal.Name;
+                temp.AdditionalInformation = kindOfBlock_dal.AdditionalInformation;
+                temp.CrossReference = kindOfBlock_dal.CrossReference;
+                //Save changes    
+                db.SaveChanges();                      
+            }
+            res = 1;
+            return (res);
+        }
+
+        public int DalChangeExistedLining(object lining)
+        {
+            int res = 0;
+            Lining_Dal lining_dal = new Lining_Dal();
+            lining_dal = lining as Lining_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Lining.FirstOrDefault(c => c.Id == lining_dal.Id);
+
+                // Change data
+                temp.Name = lining_dal.Name;
+                temp.Season = lining_dal.Season;
+                temp.AdditionalInformation = lining_dal.AdditionalInformation;
+                temp.CrossReference = lining_dal.CrossReference;
+                temp.UseUnuse = lining_dal.UseUnuse;
+                //Save changes    
+                db.SaveChanges();
+                           
+            }
+            res = 1;
+            return (res);
+        }
+
+        public int DalChangeExistedMaterialOfSole(object materialOfSole)
+        {
+            int res = 0;
+            MaterialOfSole_Dal materialOfSole_dal = new MaterialOfSole_Dal();
+            materialOfSole_dal = materialOfSole as MaterialOfSole_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.MaterialOfSole.FirstOrDefault(c => c.Id == materialOfSole_dal.Id);
+                // Change data
+                temp.Name = materialOfSole_dal.Name;
+                temp.IdColour = materialOfSole_dal.IdColour;
+                temp.CrossReference = materialOfSole_dal.CrossReference;
+                temp.UseUnuse = materialOfSole_dal.UseUnuse;
+                //Save changes
+                db.SaveChanges();                          
+            }
+            res = 1;
+            return (res);
+        }
+
+        public int DalChangeExistedPad(object pad)
+        {
+            int res = 0;
+            Pad_Dal pad_dal = new Pad_Dal();
+            pad_dal = pad as Pad_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Pad.FirstOrDefault(c => c.Id == pad_dal.Id);
+                // Change data
+                temp.Kind = pad_dal.Kind;
+                temp.PadSize = pad_dal.PadSize;
+                temp.UseUnuse = pad_dal.UseUnuse;
+                temp.AdditionalInformation = pad_dal.AdditionalInformation;
+                //Save changes   
+                db.SaveChanges();                              
+            }
+            res = 1;
+            return (res);
+        }
+
+        public int DalChangeExistedPattern(object pattern)
+        {
+            int res = 0;
+            Pattern_Dal pattern_dal = new Pattern_Dal();
+            pattern_dal = pattern as Pattern_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.Pattern.FirstOrDefault(c => c.Id == pattern_dal.Id);
+                // Change data
+                temp.CrossReference = pattern_dal.CrossReference;
+                temp.UseUnuse = pattern_dal.UseUnuse;
+                temp.AdditionalInformation = pattern_dal.AdditionalInformation;
+                //Save changes   
+                db.SaveChanges();                              
+            }
+            res = 1;
+            return (res);
+        }
+
+        public int DalChangeExistedTopMaterial(object topMaterial)
+        {
+            int res = 0;
+            TopMaterial_Dal topMaterial_Dal = new TopMaterial_Dal();
+            topMaterial_Dal = topMaterial as TopMaterial_Dal;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var temp = db.TopMaterial.FirstOrDefault(c => c.Id == topMaterial_Dal.Id);
+                //Change data
+                temp.IdColour = topMaterial_Dal.IdColour;
+                temp.Type = topMaterial_Dal.Type;
+                temp.CrossReference = topMaterial_Dal.CrossReference;
+                temp.UseUnuse = topMaterial_Dal.UseUnuse;
+                //Save changes  
+                db.SaveChanges();                    
+            }
+            res = 1;
+            return (res);
+        }
+        #endregion
     }
 }

@@ -8,7 +8,7 @@ namespace DAL.Models
 {
     public class Pad_Dal
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Kind { get; set; }
         public double PadSize { get; set; }
         public bool UseUnuse { get; set; }

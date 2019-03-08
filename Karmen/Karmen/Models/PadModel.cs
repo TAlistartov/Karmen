@@ -16,7 +16,7 @@ namespace Karmen.Models
         public string AdditionalInformation { get; set; }
 
         public List<SelectListItem> AllPadsFromDb { get; set; }
-        public string SelectedPad { get; set; }
+        //public string SelectedPad { get; set; }
 
         //Interface realisation
         public SelectListItem MapToSelectListItem()

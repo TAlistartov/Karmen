@@ -8,28 +8,43 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Karmen.Models;
 
 namespace Karmen.Helpers
 {
     public class HelpMethods
     {
-        public Type Col { get; set; }
-        //Dictionary of matchig id selected punkt in UI --> class name model
+         //Dictionary of matchig id selected punkt in UI --> class name model
          public Dictionary<string, Type> matchIdUIvsClasses = new Dictionary<string, Type>()
         {
              //{"colour", typeof(Colour_Bll) }
-             ["colour"] = typeof(Colour_Bll),
-             ["pattern"] = typeof(Pattern_Bll),
-             ["lining"] = typeof(Lining_Bll),
-             ["footbed"] = typeof(FootBed_Bll),
-             ["pad"] = typeof(Pad_Bll),
-             ["kindOfBlock"] = typeof(KindOfBlock_Bll),
-             ["topMaterial"] = typeof(TopMaterial_Bll),
-             ["furniture"] = typeof(Furniture_Bll),
-             ["materialOfSole"] = typeof(MaterialOfSole_Bll),
-             ["component"] = typeof(Component_Bll)
+             ["colour"] = typeof(ColourModel),
+             ["pattern"] = typeof(PatternModel),
+             ["lining"] = typeof(LiningModel),
+             ["footbed"] = typeof(FootBedModel),
+             ["pad"] = typeof(PadModel),
+             ["kindOfBlock"] = typeof(KindOfBlockModel),
+             ["topMaterial"] = typeof(TopMaterialModel),
+             ["furniture"] = typeof(FurnitureModel),
+             ["materialOfSole"] = typeof(MaterialOfSoleModel),
+             ["component"] = typeof(ComponentModel)
          };
-        
+
+        //Dictionary of matchig Model Classes UI --> BLL Classes
+        public Dictionary<Type, Type> matchClassesBllvsClassesDal = new Dictionary<Type, Type>()
+        {
+            { typeof(ColourModel),typeof(Colour_Bll)},
+            { typeof(PatternModel),typeof(Pattern_Bll)},
+            { typeof(LiningModel),typeof(Lining_Bll)},
+            { typeof(FootBedModel),typeof(FootBed_Bll)},
+            { typeof(PadModel),typeof(Pad_Bll)},
+            { typeof(KindOfBlockModel),typeof(KindOfBlock_Bll)},
+            { typeof(TopMaterialModel),typeof(TopMaterial_Bll)},
+            { typeof(FurnitureModel),typeof(Furniture_Bll)},
+            { typeof(MaterialOfSoleModel),typeof(MaterialOfSole_Bll)},
+            { typeof(ComponentModel),typeof(Component_Bll)}
+        };
+
         //Map function
         public List<A> HandMapper<A, B>(A OutClassType, List<B> InputDataList) where A : new()
                                                                                     where B : class
@@ -68,9 +83,21 @@ namespace Karmen.Helpers
                 items.Add(item.MapToSelectListItem());
             }
             return items;
-        }       
+        }
 
-        public object DeserializationJsonData(string jsonData, string typeOfSaveData)
+        ////Help method for DropDownList Creating
+        //public List<SelectListItem> MakeDropDownList(Dictionary<int,string> seasons)
+        //{
+        //    var items = new List<SelectListItem>();
+        //    foreach (KeyValuePair<int, string> keyValue in seasons)
+        //    {
+        //        items.Add(new SelectListItem { Text = keyValue.Value , Value=keyValue.Key.ToString()});
+        //    }
+        //    return items;
+        //}
+
+        //Deserialisation Json format to object
+        public object DeserializationJsonData(string jsonData, string typeOfSaveData) 
         {
             var deserializatedData = new object { };
             foreach (KeyValuePair<string,Type> keyValue in matchIdUIvsClasses)
@@ -85,7 +112,10 @@ namespace Karmen.Helpers
                     deserializatedData=  classType.Invoke(null, new object[] { jsonData });
                 }               
             }
+
             return deserializatedData;            
         }
+
+
     }
 }

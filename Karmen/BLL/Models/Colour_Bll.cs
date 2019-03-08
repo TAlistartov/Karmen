@@ -8,7 +8,7 @@ namespace BLL.Models
 {
     public class Colour_Bll
     {
-        public int? Id { get; set; }
-        public string Colour { get; set; }       
+        public int Id { get; set; }
+        public string Colour { get; set; }        
     }
 }

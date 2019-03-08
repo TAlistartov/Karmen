@@ -8,7 +8,7 @@ namespace BLL.Models
 {
     public class Lining_Bll
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Season { get; set; }
         public string AdditionalInformation { get; set; }

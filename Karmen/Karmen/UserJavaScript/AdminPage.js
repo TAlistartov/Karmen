@@ -1,12 +1,12 @@
 ﻿//Global variables
 var scanedId;
 var createdId;
-var coloursDataFromDb;
+var DataFromDb;
 var callBack;
 
 $(document).ready(function () {
 
-    GetAllDataFromDbForDDL();
+    GetAllDataFromDbForDDL('SendDataToUI', 'colour');
 
      //Add buttons for Save Cut Delete in 1st load of the AdminPage
     scanedId = $('#select .active').attr("id");            
@@ -30,8 +30,9 @@ $(document).ready(function () {
         //Add DDL in current div, if it has class=ddl_Colours
         if ($('#' + scanedId).hasClass('ddl_Colours'))
         {
+            var nameActionMethodInController = 'SendDataToUI'; //Name of action method from Controller (Server Side)
             //Update List of Colours from Db
-            GetAllDataFromDbForDDL();
+            GetAllDataFromDbForDDL(nameActionMethodInController, scanedId);
             callBack.done(function () {
                 //Delete div if it was added already
                 if ($('#' + scanedId).has(scanedId + "_div_with_DDL"))
@@ -50,8 +51,28 @@ $(document).ready(function () {
                 var cssClassForCreatedDDL = "SelectColourDDL";
                 var placeForInsertingDDL = scanedId + "_div_with_DDL"; //id of parent div
                 //Call function for creating and insirting DropDownList with all colours from Db
-                CreateNewDDL(coloursDataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, placeForInsertingDDL);
+                CreateNewDDL(DataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, placeForInsertingDDL);
             })          
+        }
+
+        //Add DDL in current div, if it has class=ddl_Season
+        if ($('#' + scanedId).hasClass('ddl_Season')) {
+            var nameActionMethodInController = 'SendDataToUI'; //Name of action method from Controller (Server Side)
+            //Update List of Colours from Db
+            GetAllDataFromDbForDDL(nameActionMethodInController, scanedId);
+            callBack.done(function () {
+                //Delete div if it was added already
+                if ($('#' + scanedId).has(scanedId + "_Season"))
+                    $("#" + scanedId + "_Season").remove();
+
+                //Creating variables for function CreateNewDDL
+                var idNameCreatedDDL = scanedId + "_Season";
+                var firstEmptyOptionDDL = "-Выбирите сезон-";
+                var cssClassForCreatedDDL = "SelectSeasonDDL";
+                var placeForInsertingDDL = scanedId + "_div_with_SeasonDDL"; //id of parent div
+                //Call function for creating and insirting DropDownList with all colours from Db
+                CreateNewDDL(DataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, placeForInsertingDDL);
+            });
         }
 
         //Return to start position DropDownList #dropDownAllColours in Цвет
@@ -91,7 +112,7 @@ $(document).ready(function () {
 
     //Function for creating Id for DropDownList 
     function CreateIdForDropDownList(scanedId) {        
-        createdId = scanedId + '_Ddl';
+        createdId = scanedId + '_Id';//*********************************************************************<<<<<<<<<<--------------------'_Ddl'
         //Add Id to the first element (in our case DropDownList) of created notes
         $("#" + scanedId + " .dropdown-toggle").filter(':first').attr('id', createdId);
 
@@ -190,6 +211,40 @@ $(document).ready(function () {
             //User want to CHANGE already created note in DB (if in the first DDL in form is selected some value)
             else {
                 GetAllFieldsAndDataFromIt(parentDiv, dataForSave);
+                var jsonData = JSON.stringify(dataForSave);
+                //Ajax - SAVE NEW NOTE
+                $.ajax({
+                    type: 'POST',
+                    url: "Administrator/ChangeDataSelectedNote",
+                    //contentType: "application/json; charset=utf-8",
+                    data: { jsonData: jsonData, typeOfSaveData: scanedId },
+                    traditional: true,
+                    dataType: "json",
+                    success: function (res) {
+                        //res - it's an array of object. res[0] - it is result of saving to Db (0-Error, 1-Success, 2- note is already exist
+                        //                               res[1] - Name of Class, using for the correct defining Method's Name in controller (Updating PartialView with DropDownList)
+
+                        switch (res[0]) {
+                            case 0:
+                                alert('Возникла ошибка при изменении.');
+                                break;
+                            case 1:
+                                alert('Запись успешно изменена.');
+                                //UPDATE PartialView with DropDownList
+                                $.ajax({
+                                    type: 'GET',
+                                    url: "Administrator/Partial_GetAll" + res[1] + "s",
+                                    success: function (dataFromServer) {
+                                        //Update data in DropDownList
+                                        $('#' + createdId).html(dataFromServer);
+                                        ClearAllFields();
+                                    }
+                                })
+                                break;                            
+                        }
+
+                    }
+                });
             }
 
         });
@@ -275,15 +330,16 @@ $(document).ready(function () {
         })
     }
 
-    function GetAllDataFromDbForDDL()
+    function GetAllDataFromDbForDDL(functionName, scanedId)
     {
         //Get all colours from Db
         callBack=$.ajax({
             type: 'POST',
-            url: "Administrator/SendDataToUI",
+            url: "Administrator/"+functionName,
             dataType: "json",
-            success: function (allColoursFromDb) {                
-                coloursDataFromDb = allColoursFromDb;
+            data: { scanedId: scanedId },
+            success: function (data) {                
+                DataFromDb = data;
             }            
         });
        

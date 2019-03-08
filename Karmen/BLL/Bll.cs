@@ -26,6 +26,7 @@ namespace BLL
             return (dataDb);
         }
 
+        //Save or Change Note to||in DB 
         public int SaveNewOrChangeSelectedNoteBll<T> (T someClassForSave, string necessaryAction, out string nameOfClass)
         {          
             var nameOfClassModel = someClassForSave.GetType().Name;
@@ -34,7 +35,7 @@ namespace BLL
             //Get type of incoming anonym class (for example Colour_Bll or Component_Bll etc.)
             var typeOfClass =someClassForSave.GetType();
             //Mapping Bll Class to Dal Class
-            var dataToDal = help.HandMappingUseReflection(typeOfClass,someClassForSave);
+            var dataToDal = help.HandMappingUseReflection(typeOfClass,someClassForSave,help.matchClassesBllvsClassesDal,false);
             //Call necessary action Method from Dal
             var r=help.SelectActionMethod(typeOfClass, necessaryAction, dataToDal);
             int res = (Int32)r;//Convert object to int

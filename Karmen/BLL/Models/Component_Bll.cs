@@ -8,7 +8,7 @@ namespace BLL.Models
 {
     public class Component_Bll
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string TypeOfComponent { get; set; }
         public int IdColour { get; set; }
         public int Size { get; set; }

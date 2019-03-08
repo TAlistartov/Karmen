@@ -23,7 +23,7 @@ namespace Karmen.Models
         public string Type { get; set; }
 
         public List<SelectListItem> AllComponentsFromDb { get; set; }
-        public string SelectedComponent { get; set; }
+        //public string SelectedComponent { get; set; }
 
         //Interface realisation
         public SelectListItem MapToSelectListItem()

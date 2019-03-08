@@ -17,7 +17,7 @@ namespace Karmen.Models
         public bool UseUnuse { get; set; }
 
         public List<SelectListItem> AllLiningsFromDb { get; set; }
-        public string SelectedLining { get; set; }
+        //public string SelectedLining { get; set; }
 
         //Interface realisation
         public SelectListItem MapToSelectListItem()

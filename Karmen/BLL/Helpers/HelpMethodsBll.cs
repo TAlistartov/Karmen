@@ -42,10 +42,10 @@ namespace BLL.Helpers
         };
 
         //Maping Bll Class on equal Dal Class
-        public object HandMappingUseReflection <B> ( Type typeOfClass, B someClassForSave) 
+        public object HandMappingUseReflection <B> ( Type typeOfClass, B someClassForSave,Dictionary<Type,Type> mappingRule,bool useUnuseConvertString) 
         {
             object inst = null;
-            foreach (KeyValuePair<Type, Type> keyValue in matchClassesBllvsClassesDal)
+            foreach (KeyValuePair<Type, Type> keyValue in mappingRule)
             {
                 if (keyValue.Key == typeOfClass)
                 {
@@ -57,13 +57,22 @@ namespace BLL.Helpers
                                                new { dp.Name, dp.PropertyType }
                                            select new { sp, dp };
 
-                    inst = Activator.CreateInstance(keyValue.Value);
-                   
+                    inst = Activator.CreateInstance(keyValue.Value);               
                     //Get fields
                     foreach (var match in commonproperties)
                     {
+                        if (useUnuseConvertString)
+                        {
+                            var value = match.dp.GetValue(someClassForSave, null);
+                            //If this value has STRING type then convert ToLower register, else don't do nothing
+                            var convertedValue = (value.GetType() == typeof(string)) ? value.ToString().ToLower() : value;
+                            //Get equal field and set value
+                            match.sp.SetValue(inst, convertedValue, null);
+                        }
+                        else
                         //Get equal field and set value
                         match.sp.SetValue(inst, match.dp.GetValue(someClassForSave, null), null);
+                                                
                     }
 
                 }

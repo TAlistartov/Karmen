@@ -75,15 +75,15 @@
                     </div>
 
                     @* ПОДКЛАДКА *@
-                    <div id="lining" class="tab-pane" role="tabpanel">
+                    <div id="lining" class="tab-pane ddl_Season" role="tabpanel">
                         @{Html.RenderAction("Partial_GetAllLinings");}
                         <div class="form-inline">
                             <label class="nameL" for="lining_Name">Название:</label>
                             <input type="text" class="form-control mb-2 mr-sm-2" id="lining_Name">
                         </div>
-                        <div class="form-inline">
-                            <label class="seasonL" for="lining_Season">Сезон:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="lining_Season">
+                        <div class="form-inline" id="lining_div_with_SeasonDDL">                            
+                                <label class="seasonL" for="lining_Season">Сезон:</label>
+                                @*<input type="text" class="form-control mb-2 mr-sm-2" id="lining_Season">*@                            
                         </div>
                         <div class="form-inline">
                             <label class="componentReferenceL" for="lining_CrossReference">Reference:</label>

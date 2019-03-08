@@ -1,6 +1,6 @@
 ﻿@model Karmen.Models.ColourModel
 
 <div class="form-inline">
-    <label for="color_Ddl">Выбор из БД:</label>
-    @Html.DropDownListFor(x => x.IdColour, Model.AllColoursFromDb, "-Выберите цвет-", new { @class = "dropdown-toggle form-control mb-2 mr-sm-2 selectFromDb" })
+    <label for="colour_Id">Выбор из БД:</label>
+    @Html.DropDownListFor(x => x.Id, Model.AllColoursFromDb, "-Выберите цвет-", new { @class = "dropdown-toggle form-control mb-2 mr-sm-2 selectFromDb" })
 </div>

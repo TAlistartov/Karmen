@@ -10,6 +10,7 @@ using DAL;
 using Karmen.Helpers;
 using Newtonsoft.Json;
 using System.Reflection;
+using BLL.Helpers;
 
 namespace Karmen.Controllers
 {
@@ -21,6 +22,7 @@ namespace Karmen.Controllers
         Dal dal = new Dal();
         Bll bll = new Bll();
         HelpMethods helpMethod = new HelpMethods();
+        HelpMethodsBll helpMethodBll = new HelpMethodsBll();
 
         [HttpGet]
         public ViewResult Index()
@@ -163,9 +165,19 @@ namespace Karmen.Controllers
         #endregion        
 
         [HttpPost]
-        public JsonResult SendDataToUI()
+        public JsonResult SendDataToUI(string scanedId)
         {
-            return Json(DataStorePlace.AllColoursFromDb);
+            List<SelectListItem> returnData=new List<SelectListItem>();
+            switch (scanedId)
+            {
+                case "colour":
+                    returnData = DataStorePlace.AllColoursFromDb;
+                    break;
+                case "lining":
+                    returnData = DataStorePlace.season;
+                    break;
+            }
+            return Json(returnData);
         }
 
         [HttpPost]
@@ -212,32 +224,40 @@ namespace Karmen.Controllers
         [HttpPost]
         public JsonResult SaveNewNote (string jsonData, string typeOfSaveData)
         {
-            string saveAction = "SaveNew";
+            string saveAction = "SaveNew"; //Name's part of Action in DAL
             object deserializedDataForSaveInDb = new { };
-            //Call deserialization Method
-            deserializedDataForSaveInDb = helpMethod.DeserializationJsonData(jsonData,typeOfSaveData);
+            object mappedData = new { };
+            //Call deserialization Method for mapping data from user page on Classes of Model
+            deserializedDataForSaveInDb = helpMethod.DeserializationJsonData(jsonData,typeOfSaveData);            
+            //Mapping data UI Models --> BLL Classes
+            var typeOfClass = deserializedDataForSaveInDb.GetType();
+            mappedData = helpMethodBll.HandMappingUseReflection(typeOfClass, deserializedDataForSaveInDb, helpMethod.matchClassesBllvsClassesDal,true);
             //get result of saving new Note and name of saving Class
-            var res = bll.SaveNewOrChangeSelectedNoteBll(deserializedDataForSaveInDb, saveAction, out string nameOfClass);
+            var res = bll.SaveNewOrChangeSelectedNoteBll(mappedData, saveAction, out string nameOfClass);
             //Add result of saving and name of Class to object
             object[] arrValues = new object[] { res, nameOfClass };
 
             return Json(arrValues);
         }
 
-        //[HttpPost]
-        //public JsonResult ChangeDataSelectedNote (string jsonData, string typeOfSaveData)
-        //{
-        //string changeAction="ChangeExisted";
-        //    object deserializedDataForChangeInDb = new { };
-        //    //Call deserialization Method
-        //    deserializedDataForChangeInDb = helpMethod.DeserializationJsonData(jsonData, typeOfSaveData);
-        //    //get result of saving new Note and name of saving Class
-        //    var res = bll.ChangeDataSelectedNoteBll(deserializedDataForChangeInDb, changeAction ,out string nameOfClass);
-        //    //Add result of saving and name of Class to object
-        //    object[] arrValues = new object[] { res, nameOfClass };
+        [HttpPost]
+        public JsonResult ChangeDataSelectedNote(string jsonData, string typeOfSaveData)
+        {
+            string changeAction = "ChangeExisted"; //Name's part of Action in DAL
+            object deserializedDataForChangeInDb = new { };
+            object mappedData = new { };
+            //Call deserialization Method
+            deserializedDataForChangeInDb = helpMethod.DeserializationJsonData(jsonData, typeOfSaveData);
+            //Mapping data UI Models --> BLL Classes
+            var typeOfClass = deserializedDataForChangeInDb.GetType();
+            mappedData = helpMethodBll.HandMappingUseReflection(typeOfClass, deserializedDataForChangeInDb, helpMethod.matchClassesBllvsClassesDal,true);
+            //get result of saving new Note and name of saving Class
+            var res = bll.SaveNewOrChangeSelectedNoteBll(mappedData, changeAction, out string nameOfClass);
+            //Add result of saving and name of Class to object
+            object[] arrValues = new object[] { res, nameOfClass };
 
-        //    return Json(arrValues);
-        //}
+            return Json(arrValues);
+        }
 
 
     }

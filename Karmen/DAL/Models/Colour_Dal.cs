@@ -8,7 +8,7 @@ namespace DAL.Models
 {
     public class Colour_Dal
     {
-        public int? Id { get; set; }
-        public string Colour { get; set; }
+        public int Id { get; set; }
+        public string Colour { get; set; }        
     }
 }

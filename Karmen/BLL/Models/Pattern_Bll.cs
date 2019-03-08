@@ -8,7 +8,7 @@ namespace BLL.Models
 {
     public class Pattern_Bll
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string CrossReference { get; set; }
         public string AdditionalInformation { get; set; }
         public bool UseUnuse { get; set; }

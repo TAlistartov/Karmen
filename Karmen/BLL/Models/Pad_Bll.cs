@@ -8,7 +8,7 @@ namespace BLL.Models
 {
     public class Pad_Bll
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Kind { get; set; }
         public double PadSize { get; set; }
         public bool UseUnuse { get; set; }

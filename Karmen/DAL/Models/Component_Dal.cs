@@ -8,7 +8,7 @@ namespace DAL.Models
 {
     public class Component_Dal
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string TypeOfComponent { get; set; }
         public int IdColour { get; set; }
         public int Size { get; set; }

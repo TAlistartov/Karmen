@@ -8,7 +8,7 @@ namespace DAL.Models
 {
     public class Pattern_Dal
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string CrossReference { get; set; }
         public string AdditionalInformation { get; set; }
         public bool UseUnuse { get; set; }

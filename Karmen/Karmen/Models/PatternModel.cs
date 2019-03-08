@@ -15,7 +15,7 @@ namespace Karmen.Models
         public bool UseUnuse { get; set; }
 
         public List<SelectListItem> AllPatternsFromDb { get; set; }
-        public string SelectedPattern { get; set; }
+        //public string SelectedPattern { get; set; }
 
         //Interface realisation
         public SelectListItem MapToSelectListItem()

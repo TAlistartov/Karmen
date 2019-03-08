@@ -1,7 +1,7 @@
 ﻿@model Karmen.Models.PadModel
 
 <div class="form-inline">
-    <label for="pad_Ddl">Выбор из БД:</label>
-    @Html.DropDownListFor(x => x.SelectedPad, Model.AllPadsFromDb, "-Выберите личину-", new { @class = "dropdown-toggle form-control mb-2 mr-sm-2 selectFromDb" })
+    <label for="pad_Id">Выбор из БД:</label>
+    @Html.DropDownListFor(x => x.Id, Model.AllPadsFromDb, "-Выберите личину-", new { @class = "dropdown-toggle form-control mb-2 mr-sm-2 selectFromDb" })
 </div>
 
