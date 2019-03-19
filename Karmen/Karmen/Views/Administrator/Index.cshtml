@@ -54,7 +54,7 @@
                             @{Html.RenderAction("Partial_GetAllColours");}
                             <div class="form-inline">
                                 <label class="componentColourL" for="colour_Colour">Цвет:</label>
-                                <input type="text" class="form-control mb-2 mr-sm-2" id="colour_Colour" name="a">                                
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="colour_Colour" name="color">                                
                             </div>
                         </form>
                     </div>
@@ -62,20 +62,21 @@
 
                     @* ЛЕКАЛО *@
                     <div id="pattern" class="tab-pane" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllPatterns");}
-                        <div class="form-inline">
-                            <label class="componentReferenceL" for="pattern_CrossReference">Reference:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="pattern_CrossReference">
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="pattern_AdditionalInformation">Информация:</label>
-                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="pattern_AdditionalInformation" cols="22" rows="3"></textarea>
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="pattern_UseUnuse">Используется:</label>
-                            <input type="checkbox" class="mb-0 mr-sm-2" id="pattern_UseUnuse">
-                        </div>
-
+                        <form class="form-horizontal"  action="#" id="patternForm">
+                            @{Html.RenderAction("Partial_GetAllPatterns");}
+                            <div class="form-inline">
+                                <label class="componentReferenceL" for="pattern_CrossReference">Reference:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="pattern_CrossReference" name="patternCrossReference">
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="pattern_AdditionalInformation">Информация:</label>
+                                <textarea type="text" class="form-control mb-2 mr-sm-2" id="pattern_AdditionalInformation" cols="22" rows="3" name="patternAdditionalInformation"></textarea>
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="pattern_UseUnuse">Используется:</label>
+                                <input type="checkbox" class="mb-0 mr-sm-2" id="pattern_UseUnuse" name="patternUseUnuse">
+                            </div>
+                         </form>
                     </div>
 
                     @* ПОДКЛАДКА *@
