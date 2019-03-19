@@ -221,15 +221,16 @@ namespace Karmen.Controllers
             return Json(filteredData);
         }
 
-        [HttpPost]
+       
+        [HttpPost]        
         public JsonResult SaveNewNote (string jsonData, string typeOfSaveData)
         {
             string saveAction = "SaveNew"; //Name's part of Action in DAL
             object deserializedDataForSaveInDb = new { };
             object mappedData = new { };
             //Call deserialization Method for mapping data from user page on Classes of Model
-            deserializedDataForSaveInDb = helpMethod.DeserializationJsonData(jsonData,typeOfSaveData);            
-            //Mapping data UI Models --> BLL Classes
+            deserializedDataForSaveInDb = helpMethod.DeserializationJsonData(jsonData,typeOfSaveData);
+            //Mapping data UI Models --> BLL Classes           
             var typeOfClass = deserializedDataForSaveInDb.GetType();
             mappedData = helpMethodBll.HandMappingUseReflection(typeOfClass, deserializedDataForSaveInDb, helpMethod.matchClassesBllvsClassesDal,true);
             //get result of saving new Note and name of saving Class

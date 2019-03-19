@@ -48,13 +48,17 @@
                 <div id="select" class="tab-content col-lg-5">
 
                     @* ЦВЕТ *@
+                    
                     <div id="colour" class="tab-pane active" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllColours");}
-                        <div class="form-inline">
-                            <label class="componentColourL" for="colourName">Цвет:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="colour_Colour">
-                        </div>
+                        <form class="form-horizontal" action="#" id="colourForm" role="form">
+                            @{Html.RenderAction("Partial_GetAllColours");}
+                            <div class="form-inline">
+                                <label class="componentColourL" for="colour_Colour">Цвет:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="colour_Colour" name="a">                                
+                            </div>
+                        </form>
                     </div>
+                    
 
                     @* ЛЕКАЛО *@
                     <div id="pattern" class="tab-pane" role="tabpanel">

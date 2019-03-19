@@ -5,6 +5,92 @@ var DataFromDb;
 var callBack;
 
 $(document).ready(function () {
+              
+    //Validate different forms    
+    $("#colourForm").validate({
+        rules: {
+            color: { required: true, maxlength: 5 }
+        },
+        messages: {
+            color: { required: "Не может быть пустым.", maxlength: "Не более 5 символов." },
+
+        },
+        
+        submitHandler: function () {            
+            var dataForSave = {};
+            var parentDiv = "div #" + scanedId;
+            //User want to SAVE a new one note to DB (if in the first DDL in form is not selected some value)
+            if ($('#' + createdId).val() == "") {
+                var necessaryAction='SaveNewNote';
+                GetAllFieldsAndDataFromIt(parentDiv, dataForSave);
+
+                var jsonData = JSON.stringify(dataForSave);
+
+                //Ajax - SAVE NEW NOTE (With call back)
+                SaveChangeNewData(jsonData, scanedId,necessaryAction, function (res) {
+                    //res - it's an array of object. res[0] - it is result of saving to Db (0-Error, 1-Success, 2- note is already exist
+                    //    //                               res[1] - Name of Class, using for the correct defining Method's Name in controller (Updating PartialView with DropDownList)
+                    switch (res[0]) {
+                                case 0:
+                                    alert('Возникла ошибка при сохранении.');
+                                    break;
+                                case 1:
+                                    alert('Запись успешно сохранена.');
+                                    //UPDATE PartialView with DropDownList
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: "Administrator/Partial_GetAll" + res[1] + "s",
+                                        success: function (dataFromServer) {
+                                            //Update data in DropDownList
+                                            $('#' + createdId).html(dataFromServer);
+                                            ClearAllFields();
+                                        }
+                                    })
+                                    break;
+                                case 2:
+                                    alert('Такая запись уже существует.');
+                                    break;
+                            }
+
+                });
+                
+            }
+                //User want to CHANGE already created note in DB (if in the first DDL in form is selected some value)
+            else {
+                var necessaryAction = 'ChangeDataSelectedNote';
+                GetAllFieldsAndDataFromIt(parentDiv, dataForSave);
+                var jsonData = JSON.stringify(dataForSave);
+
+                //Ajax - SAVE NEW NOTE (With call back)
+                SaveChangeNewData(jsonData, scanedId, necessaryAction, function (res) {
+                    //res - it's an array of object. res[0] - it is result of saving to Db (0-Error, 1-Success, 2- note is already exist
+                    //                               res[1] - Name of Class, using for the correct defining Method's Name in controller (Updating PartialView with DropDownList)
+
+                    switch (res[0]) {
+                        case 0:
+                            alert('Возникла ошибка при изменении.');
+                            break;
+                        case 1:
+                            alert('Запись успешно изменена.');
+                            //UPDATE PartialView with DropDownList
+                            $.ajax({
+                                type: 'GET',
+                                url: "Administrator/Partial_GetAll" + res[1] + "s",
+                                success: function (dataFromServer) {
+                                    //Update data in DropDownList
+                                    $('#' + createdId).html(dataFromServer);
+                                    ClearAllFields();
+                                }
+                            })
+                            break;
+                    }
+                });
+                
+            }          
+        }
+    });
+    
+
 
     GetAllDataFromDbForDDL('SendDataToUI', 'colour');
 
@@ -12,9 +98,7 @@ $(document).ready(function () {
     scanedId = $('#select .active').attr("id");            
     AddButtonGroup(scanedId);
     CreateIdForDropDownList(scanedId);
-    DisablUndisableButtonsCutDel(scanedId, createdId);
-        
-    
+    DisablUndisableButtonsCutDel(scanedId, createdId);    
 
     //After changing selected punkt of List program 1) Will delete created buttonGroup
     //                                              2) Get current Id of selected punkt of List
@@ -96,6 +180,8 @@ $(document).ready(function () {
         $('input').val("");
         $('textarea').val("");
         $('input:checkbox').prop("checked", false);
+        //Disable or Undisable buttons of actions
+        DisablUndisableButtonsCutDel(scanedId, createdId);
     }
 
     //Create DropDownList using jQuery
@@ -151,103 +237,14 @@ $(document).ready(function () {
 
     }
 
+
     //Function for inserting buttonGroup
     function AddButtonGroup(scanedId) {
         $('#' + scanedId + ' div:last').after("<div class='btn-group scd' role='group' aria-label='Basic example'>" +
-                                "<button id='save_" + scanedId + "' title='сохранить новую или измененную запись' type='button' class='btn btn-dark'><i class='fas fa-save'></i></button>" +
+                                "<button id='save_" + scanedId + "' title='сохранить новую или измененную запись' type='submit' class='btn btn-dark'><i class='fas fa-save'></i></button>" +
                                 "<button id='delete_" + scanedId + "' title='удалить выбранную запись из БД' type='button' class='btn btn-dark'><i class='fas fa-trash-alt'></i></button>" +
                                 //"<button id='cut_" + scanedId + "' title='пометить выбранную запись как 'не используемая'' type='button' class='btn btn-dark'><i class='fas fa-cut'></i></button>" +
-                         "</div>");
-
-        //Дописать Ajax запросі для СОХРАНЕНИЯ И ИЗМЕНЕНИЯ данніх
-        //User clicked on save button under form
-        //$(document).on('click', '#save_' + scanedId, function () {
-        $('#save_' + scanedId).unbind().click(function () {
-            var dataForSave = {};
-            var parentDiv = "div #" + scanedId;
-            //User want to SAVE a new one note to DB (if in the first DDL in form is not selected some value)
-            if ($('#' + createdId).val() == "") {
-                GetAllFieldsAndDataFromIt(parentDiv, dataForSave);
-               
-                var jsonData = JSON.stringify(dataForSave);
-                //Ajax - SAVE NEW NOTE
-                $.ajax({
-                    type: 'POST',
-                    url: "Administrator/SaveNewNote",
-                    //contentType: "application/json; charset=utf-8",
-                    data: { jsonData: jsonData, typeOfSaveData: scanedId},
-                    traditional:true,
-                    dataType: "json",
-                    success: function (res) {
-                        //res - it's an array of object. res[0] - it is result of saving to Db (0-Error, 1-Success, 2- note is already exist
-                        //                               res[1] - Name of Class, using for the correct defining Method's Name in controller (Updating PartialView with DropDownList)
-                                                            
-                        switch(res[0])
-                        {
-                            case 0:
-                                alert('Возникла ошибка при сохранении.');
-                                break;
-                            case 1:
-                                alert('Запись успешно сохранена.');
-                                //UPDATE PartialView with DropDownList
-                                $.ajax({
-                                    type: 'GET',
-                                    url: "Administrator/Partial_GetAll" + res[1] + "s",
-                                    success: function (dataFromServer) {                                        
-                                        //Update data in DropDownList
-                                        $('#' + createdId).html(dataFromServer);
-                                        ClearAllFields();
-                                    }
-                                })
-                                break;
-                            case 2:
-                                alert('Такая запись уже существует.');
-                                break;
-                        }                      
-                        
-                    }
-                });
-            }
-            //User want to CHANGE already created note in DB (if in the first DDL in form is selected some value)
-            else {
-                GetAllFieldsAndDataFromIt(parentDiv, dataForSave);
-                var jsonData = JSON.stringify(dataForSave);
-                //Ajax - SAVE NEW NOTE
-                $.ajax({
-                    type: 'POST',
-                    url: "Administrator/ChangeDataSelectedNote",
-                    //contentType: "application/json; charset=utf-8",
-                    data: { jsonData: jsonData, typeOfSaveData: scanedId },
-                    traditional: true,
-                    dataType: "json",
-                    success: function (res) {
-                        //res - it's an array of object. res[0] - it is result of saving to Db (0-Error, 1-Success, 2- note is already exist
-                        //                               res[1] - Name of Class, using for the correct defining Method's Name in controller (Updating PartialView with DropDownList)
-
-                        switch (res[0]) {
-                            case 0:
-                                alert('Возникла ошибка при изменении.');
-                                break;
-                            case 1:
-                                alert('Запись успешно изменена.');
-                                //UPDATE PartialView with DropDownList
-                                $.ajax({
-                                    type: 'GET',
-                                    url: "Administrator/Partial_GetAll" + res[1] + "s",
-                                    success: function (dataFromServer) {
-                                        //Update data in DropDownList
-                                        $('#' + createdId).html(dataFromServer);
-                                        ClearAllFields();
-                                    }
-                                })
-                                break;                            
-                        }
-
-                    }
-                });
-            }
-
-        });
+                         "</div>");            
 
         //User clicked on delete button under form
         $(document).on('click', '#delete_' + scanedId, function () {
@@ -329,7 +326,7 @@ $(document).ready(function () {
 
         })
     }
-
+    //Refresh data
     function GetAllDataFromDbForDDL(functionName, scanedId)
     {
         //Get all colours from Db
@@ -344,5 +341,26 @@ $(document).ready(function () {
         });
        
     }
+
+    //Ajax - SAVE NEW  OR CHANGE SELECTED NOTE
+    function SaveChangeNewData(jsonDataForSave,scanedIdOfSaveData,necessaryAction,handleResult) {
+        
+        $.ajax({
+            type: 'POST',
+            url: "Administrator/" + necessaryAction,
+            //contentType: "application/json; charset=utf-8",
+            data: { jsonData: jsonDataForSave, typeOfSaveData: scanedIdOfSaveData },
+            traditional: true,
+            dataType: "json",
+            success: function (res) {
+                //Call Back
+                handleResult(res);
+            }            
+        });
+    }   
     
 });
+
+
+
+
