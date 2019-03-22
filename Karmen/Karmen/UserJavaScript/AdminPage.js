@@ -48,11 +48,12 @@ $(document).ready(function () {
 
                 //Creating variables for function CreateNewDDL
                 var idNameCreatedDDL = scanedId + "_IdColour";
+                var nameDDL = scanedId + "IdColour";
                 var firstEmptyOptionDDL = "-Выбирите цвет-";
                 var cssClassForCreatedDDL = "SelectColourDDL";
                 var placeForInsertingDDL = scanedId + "_div_with_DDL"; //id of parent div
                 //Call function for creating and insirting DropDownList with all colours from Db
-                CreateNewDDL(DataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, placeForInsertingDDL);
+                CreateNewDDL(DataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, nameDDL, placeForInsertingDDL);
             })          
         }
 
@@ -68,11 +69,12 @@ $(document).ready(function () {
 
                 //Creating variables for function CreateNewDDL
                 var idNameCreatedDDL = scanedId + "_Season";
+                var nameDDL = scanedId + "Season";
                 var firstEmptyOptionDDL = "-Выбирите сезон-";
                 var cssClassForCreatedDDL = "SelectSeasonDDL";
                 var placeForInsertingDDL = scanedId + "_div_with_SeasonDDL"; //id of parent div
                 //Call function for creating and insirting DropDownList with all colours from Db
-                CreateNewDDL(DataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, placeForInsertingDDL);
+                CreateNewDDL(DataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, nameDDL, placeForInsertingDDL);
             });
         }
 
@@ -102,10 +104,10 @@ $(document).ready(function () {
     }
 
     //Create DropDownList using jQuery
-    function CreateNewDDL(SelectListItem,IdName,FirstOption,CssClass,placeForInserting){
+    function CreateNewDDL(SelectListItem,IdName,FirstOption,CssClass,NameDDL,placeForInserting){
         if(placeForInserting!=null)
         {
-            var DDList = $("<select><option value>" + FirstOption + "</option></select>").attr({ "Id": IdName, "class": "dropdown-toggle form-control mb-2 mr-sm-2 " + CssClass });
+            var DDList = $("<select><option value>" + FirstOption + "</option></select>").attr({ "Id": IdName, "name": NameDDL, "class": "dropdown-toggle form-control mb-2 mr-sm-2 " + CssClass });
             $.each(SelectListItem, function (i, el) {
                 $("<option/>", {value:el.Value,html:el.Text}).appendTo(DDList);
             });
@@ -171,6 +173,21 @@ $(document).ready(function () {
                     break;
                 case 'patternForm':
                     $("#" + createdFormId).validate(v_patternForm);
+                    break;
+                case 'liningForm':
+                    $("#" + createdFormId).validate(v_liningForm);
+                    break;
+                case 'furnitureForm':
+                    $("#" + createdFormId).validate(v_furnitureForm);
+                    break;
+                case 'footbedForm':
+                    $("#" + createdFormId).validate(v_footBedForm);
+                    break;
+                case 'padForm':
+                    $("#" + createdFormId).validate(v_padForm);
+                    break;
+                case 'kindOfBlockForm':
+                    $("#" + createdFormId).validate(v_kindOfBlockForm);
                     break;
             }
         });
@@ -318,6 +335,93 @@ $(document).ready(function () {
         }
     };
 
+    //Form for Partial View Lining
+    var v_liningForm = {
+        rules: {
+            liningName: { required: true,maxlength: 50 },
+            liningSeason: { required: true, maxlength: 30 },
+            liningCrossReference: { maxlength: 50 },
+            liningAdditionalInformation:{ maxlength: 100 }
+        },
+        messages: {
+            liningName: { required: "Не может быть пустым.", maxlength: "Не более 50 символов." },
+            liningSeason: { required: "Не может быть пустым.", maxlength: "Не более 30 символов." },
+            liningCrossReference: {maxlength: "Не более 50 символов." },
+            liningAdditionalInformation: { maxlength: "Не более 100 символов." }
+        },
+        submitHandler: function () {
+            submitHandlerForm();
+        }
+    };
+
+    //Form for Partial View Furniture
+    var v_furnitureForm = {
+        rules: {
+            furnitureType: { required: true, maxlength: 30 },
+            furnitureCrossReference: { maxlength: 50 },
+            furnitureIdColour:{required: true}
+        },
+        messages: {
+            furnitureType: { required: "Не может быть пустым.", maxlength: "Не более 30 символов." },
+            furnitureCrossReference: { maxlength: "Не более 50 символов." },
+            furnitureIdColour:{required: "Не может быть пустым."}
+        },
+        submitHandler: function () {
+            submitHandlerForm();
+        }
+    };
+
+    //Form for Partial View FootBed
+    var v_footBedForm = {
+        rules: {
+            footbedType: { required: true, maxlength: 50 },
+            footbedCrossReference: { maxlength: 50 },
+            footbedAdditionalInformation: { maxlength: 100 }
+        },
+        messages: {
+            footbedType: { required: "Не может быть пустым.", maxlength:"Не более 50 символов." },
+            footbedCrossReference: { maxlength: "Не более 50 символов." },
+            footbedAdditionalInformation: { maxlength: "Не более 100 символов."}
+        },
+        submitHandler: function () {
+            submitHandlerForm();
+        }
+    };
+
+    //Form for Partial View Pad
+    //<<<<<<<<<<<<<<<----Write an additional validation function
+    var v_padForm = {
+        rules: {
+            padKind: { required: true, maxlength: 50 },
+            padPadSize: { required: true },    //<<<<<<<<<<<<<<<<<--------This Note is Float write an additional validation function
+            padAdditionalInformation: { maxlength: 100 }
+        },
+        messages: {
+            padKind: { required: "Не может быть пустым.", maxlength: "Не более 50 символов." },
+            padPadSize: { required: "Не может быть пустым." },    //<<<<<<<<<<<<<<<<<--------This Note is Float write an additional validation function
+            padAdditionalInformation: { maxlength: "Не более 100 символов." }
+        },
+        submitHandler: function () {
+            submitHandlerForm();
+        }
+    };
+
+    //Form for Partial View kindOfBlock
+    var v_kindOfBlockForm = {
+        rules: {
+            kindOfBlockName: { required: true, maxlength: 50 },
+            kindOfBlockCrossReference: { maxlength: 50 },    
+            kindOfBlockAdditionalInformation: { maxlength: 100 }
+        },
+        messages: {
+            kindOfBlockName: { required: "Не может быть пустым.", maxlength: "Не более 50 символов." },
+            kindOfBlockCrossReference: { maxlength: "Не более 50 символов." },
+            padAdditionalInformation: { maxlength: "Не более 100 символов." }
+        },
+        submitHandler: function () {
+            submitHandlerForm();
+        }
+    };
    
     //Save or Change the form After validation
     function submitHandlerForm() {

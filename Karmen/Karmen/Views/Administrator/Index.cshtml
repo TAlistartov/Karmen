@@ -81,100 +81,110 @@
 
                     @* ПОДКЛАДКА *@
                     <div id="lining" class="tab-pane ddl_Season" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllLinings");}
-                        <div class="form-inline">
-                            <label class="nameL" for="lining_Name">Название:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="lining_Name">
-                        </div>
-                        <div class="form-inline" id="lining_div_with_SeasonDDL">                            
+                        <form class="form-horizontal" action="#" id="liningForm">
+                            @{Html.RenderAction("Partial_GetAllLinings");}
+                            <div class="form-inline">
+                                <label class="nameL" for="lining_Name">Название:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="lining_Name" name="liningName">
+                            </div>
+                            <div class="form-inline" id="lining_div_with_SeasonDDL">
                                 <label class="seasonL" for="lining_Season">Сезон:</label>
-                                @*<input type="text" class="form-control mb-2 mr-sm-2" id="lining_Season">*@                            
-                        </div>
-                        <div class="form-inline">
-                            <label class="componentReferenceL" for="lining_CrossReference">Reference:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="lining_CrossReference">
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="lining_AdditionalInformation">Информация:</label>
-                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="lining_AdditionalInformation" cols="22" rows="3"></textarea>
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="lining_UseUnuse">Используется:</label>
-                            <input type="checkbox" class="mb-0 mr-sm-2" id="lining_UseUnuse">
-                        </div>
+                                @*<input type="text" class="form-control mb-2 mr-sm-2" id="lining_Season">*@
+                            </div>
+                            <div class="form-inline">
+                                <label class="componentReferenceL" for="lining_CrossReference">Reference:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="lining_CrossReference" name="liningCrossReference">
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="lining_AdditionalInformation">Информация:</label>
+                                <textarea type="text" class="form-control mb-2 mr-sm-2" id="lining_AdditionalInformation" name="liningAdditionalInformation" cols="22" rows="3"></textarea>
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="lining_UseUnuse">Используется:</label>
+                                <input type="checkbox" class="mb-0 mr-sm-2" id="lining_UseUnuse">
+                            </div>
+                          </form>
                     </div>
 
                     @* ФУРНИТУРА *@
                     <div id="furniture" class="tab-pane ddl_Colours" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllFurnitures");}
-                        <div class="form-inline">
-                            <label class="furnitureL" for="furniture_Type">Фурнитура:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="furniture_Type">
-                        </div>
-                        @*@{Html.RenderAction("Partial_GetAllColours");}*@
-                        <div class="form-inline">
-                            <label class="componentReferenceL" for="furniture_CrossReference">Reference:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="furniture_CrossReference">
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="furniture_UseUnuse">Используется:</label>
-                            <input type="checkbox" class="mb-0 mr-sm-2" id="furniture_UseUnuse">
-                        </div>
+                        <form class="form-horizontal" action="#" id="furnitureForm">
+                            @{Html.RenderAction("Partial_GetAllFurnitures");}
+                            <div class="form-inline">
+                                <label class="furnitureL" for="furniture_Type">Фурнитура:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="furniture_Type" name="furnitureType">
+                            </div>
+                            @*@{Html.RenderAction("Partial_GetAllColours");}*@
+                            <div class="form-inline">
+                                <label class="componentReferenceL" for="furniture_CrossReference">Reference:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="furniture_CrossReference" name="furnitureCrossReference">
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="furniture_UseUnuse">Используется:</label>
+                                <input type="checkbox" class="mb-0 mr-sm-2" id="furniture_UseUnuse">
+                            </div>
+                         </form>
                     </div>
 
                         @* СТЕЛЬКА *@
                     <div id="footbed" class="tab-pane" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllFootbeds");}
-                        <div class="form-inline">
-                            <label class="componentNameL" for="footbed_Type">Тип:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="footbed_Type">
-                        </div>
-                        <div class="form-inline">
-                            <label class="componentReferenceL" for="footbed_CrossReference">Reference:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="footbed_CrossReference">
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="footbed_AdditionalInformation">Информация:</label>
-                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="footbed_AdditionalInformation" cols="22" rows="3"></textarea>
-                        </div>
+                        <form class="form-horizontal" action="#" id="footbedForm">
+                            @{Html.RenderAction("Partial_GetAllFootbeds");}
+                            <div class="form-inline">
+                                <label class="componentNameL" for="footbed_Type">Тип:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="footbed_Type" name="footbedType">
+                            </div>
+                            <div class="form-inline">
+                                <label class="componentReferenceL" for="footbed_CrossReference">Reference:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="footbed_CrossReference" name="footbedCrossReference">
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="footbed_AdditionalInformation">Информация:</label>
+                                <textarea type="text" class="form-control mb-2 mr-sm-2" id="footbed_AdditionalInformation" name="footbedAdditionalInformation" cols="22" rows="3"></textarea>
+                            </div>
+                        </form>
                     </div>
 
                         @* ЛИЧИНА *@
                     <div id="pad" class="tab-pane" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllPads");}
-                        <div class="form-inline">
-                            <label class="componentNameL" for="pad_Kind">Вид:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="pad_Kind">
-                        </div>
-                        <div class="form-inline">
-                            <label class="componentSizeL" for="pad_PadSize">Размер:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="pad_PadSize">
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="pad_AdditionalInformation">Информация:</label>
-                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="pad_AdditionalInformation" cols="22" rows="3"></textarea>
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="pad_UseUnuse">Используется:</label>
-                            <input type="checkbox" class="mb-0 mr-sm-2" id="pad_UseUnuse">
-                        </div>
+                        <form class="form-horizontal" action="#" id="padForm">
+                            @{Html.RenderAction("Partial_GetAllPads");}
+                            <div class="form-inline">
+                                <label class="componentNameL" for="pad_Kind">Вид:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="pad_Kind" name="padKind">
+                            </div>
+                            <div class="form-inline">
+                                <label class="componentSizeL" for="pad_PadSize">Размер:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="pad_PadSize" name="padPadSize">
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="pad_AdditionalInformation">Информация:</label>
+                                <textarea type="text" class="form-control mb-2 mr-sm-2" id="pad_AdditionalInformation" name="padAdditionalInformation" cols="22" rows="3"></textarea>
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="pad_UseUnuse">Используется:</label>
+                                <input type="checkbox" class="mb-0 mr-sm-2" id="pad_UseUnuse">
+                            </div>
+                        </form>
                     </div>
 
                         @* ВИД КОЛОДКИ *@
                     <div id="kindOfBlock" class="tab-pane" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllKindOfBlocks");}
-                        <div class="form-inline">
-                            <label class="nameL" for="kindOfBlock_Name">Название:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlock_Name">
-                        </div>
-                        <div class="form-inline">
-                            <label class="componentReferenceL" for="kindOfBlock_CrossReference">Reference:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlock_CrossReference">
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="kindOfBlock_AdditionalInformation">Информация:</label>
-                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlock_AdditionalInformation" cols="22" rows="3"></textarea>
-                        </div>
+                        <form class="form-horizontal" action="#" id="kindOfBlockForm">
+                            @{Html.RenderAction("Partial_GetAllKindOfBlocks");}
+                            <div class="form-inline">
+                                <label class="nameL" for="kindOfBlock_Name">Название:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlock_Name" name="kindOfBlockName">
+                            </div>
+                            <div class="form-inline">
+                                <label class="componentReferenceL" for="kindOfBlock_CrossReference">Reference:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlock_CrossReference" name="kindOfBlockCrossReference">
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="kindOfBlock_AdditionalInformation">Информация:</label>
+                                <textarea type="text" class="form-control mb-2 mr-sm-2" id="kindOfBlock_AdditionalInformation" name="kindOfBlockAdditionalInformation" cols="22" rows="3"></textarea>
+                            </div>
+                         </form>
                     </div>
 
                         @* МАТЕРИАЛ ПОДОШВЫ *@
