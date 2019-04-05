@@ -4,6 +4,7 @@ var createdFormId;
 var createdId;
 var DataFromDb;
 var callBack;
+var temp;
 
 $(document).ready(function () {   
 
@@ -21,7 +22,7 @@ $(document).ready(function () {
     //                                              3) Add buttonGroup with new Id, which we took in 2dh punkt
     $(document).on('click', '#board1', function () {
         //Clear all fields
-        ClearAllFields()
+        ClearAllFields();
 
         //Get id of selected navigation punkt
         scanedId = $('#select .active').attr("id");
@@ -53,7 +54,7 @@ $(document).ready(function () {
                 var cssClassForCreatedDDL = "SelectColourDDL";
                 var placeForInsertingDDL = scanedId + "_div_with_DDL"; //id of parent div
                 //Call function for creating and insirting DropDownList with all colours from Db
-                CreateNewDDL(DataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, nameDDL, placeForInsertingDDL);
+                CreateNewDDL(DataFromDb[0], idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, nameDDL, placeForInsertingDDL);
             })          
         }
 
@@ -74,9 +75,34 @@ $(document).ready(function () {
                 var cssClassForCreatedDDL = "SelectSeasonDDL";
                 var placeForInsertingDDL = scanedId + "_div_with_SeasonDDL"; //id of parent div
                 //Call function for creating and insirting DropDownList with all colours from Db
-                CreateNewDDL(DataFromDb, idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, nameDDL, placeForInsertingDDL);
+                CreateNewDDL(DataFromDb[0], idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, nameDDL, placeForInsertingDDL);
             });
         }
+
+
+        //-------------------------------------------------------------------8888888888888------------------------------------------------------------
+        //Add DDL in current div, if it has class=ddl_Season
+        if ($('#' + scanedId).hasClass('ddl_MaterialOfCovering')) {
+            var nameActionMethodInController = 'SendDataToUI'; //Name of action method from Controller (Server Side)
+            //Update List of Colours from Db
+            GetAllDataFromDbForDDL(nameActionMethodInController, scanedId);
+            callBack.done(function () {
+                //Delete div if it was added already
+                if ($('#' + scanedId).has(scanedId + "_IdMaterilOfCovering"))
+                    $("#" + scanedId + "_IdMaterilOfCovering").remove();
+
+                //Creating variables for function CreateNewDDL
+                var idNameCreatedDDL = scanedId + "_IdMaterilOfCovering";
+                var nameDDL = scanedId + "IdMaterilOfCovering";
+                var firstEmptyOptionDDL = "-Материал обтяжки-";
+                var cssClassForCreatedDDL = "SelectIdMaterilOfCoveringDDL";
+                var placeForInsertingDDL = scanedId + "_div_with_MaterialOfCoveringDDL"; //id of parent div
+                //Call function for creating and insirting DropDownList with all colours from Db
+                CreateNewDDL(DataFromDb[1], idNameCreatedDDL, firstEmptyOptionDDL, cssClassForCreatedDDL, nameDDL, placeForInsertingDDL);
+            });
+        }
+
+        //-------------------------------------------------------------------8888888888888------------------------------------------------------------
 
         //Return to start position DropDownList #dropDownAllColours in Цвет
         $('#' + createdId).val("");
@@ -189,12 +215,36 @@ $(document).ready(function () {
                 case 'kindOfBlockForm':
                     $("#" + createdFormId).validate(v_kindOfBlockForm);
                     break;
+                case 'materialOfSoleForm':
+                    $("#" + createdFormId).validate(v_materialOfSoleForm);
+                    break;
+                case 'topMaterialForm':
+                    $("#" + createdFormId).validate(v_topMaterialForm);
+                    break;
+                case 'componentForm':
+                    $("#" + createdFormId).validate(v_componentForm);
+                    break;
             }
         });
 
         //User clicked on delete button under form
         $(document).on('click', '#delete_' + scanedId, function () {
-            var s = 2;
+            //Create Id of the main DDL in PartialView
+            var createdId = scanedId + "_Id";
+            //Get selected value in this DDL 
+            var selectValueInMainDDL = $("#" + createdId).val();
+            //Call function for deliting
+            DeleteSelectedNote(selectValueInMainDDL, scanedId);            
+            callBack.done(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: "Administrator/Partial_GetAll" + temp,
+                    success: function (dataFromServer) {
+                        //Update data in DropDownList
+                        $('#' + createdId).html(dataFromServer);                        
+                    }
+                })
+            });
         })
     };
 
@@ -304,6 +354,30 @@ $(document).ready(function () {
             }            
         });
     }
+    function DeleteSelectedNote(IdForDeliting, scanedId) {        
+        //Ajax DELETE selected Note
+        callBack = $.ajax({
+            type: 'POST',
+            url: "Administrator/DeleteSelectedNote",
+            //contentType: "application/json; charset=utf-8",
+            data: { idSelectedNote: IdForDeliting, typeOfSaveData: scanedId },
+            traditional: true,
+            dataType: "json",
+            success: function (res) {
+                temp = res[0];
+                if (res[1] == true) {
+                    ClearAllFields();
+                    alert("Запись успешно удалена.");
+                }
+                else
+                    alert("Возникла ошибка при удалении.");
+            },
+            error: function () {
+                alert("Возникла ошибка при удалении.");
+            }
+        });        
+    }
+    
       
    
     //FORMS VALIDATION    
@@ -388,17 +462,19 @@ $(document).ready(function () {
         }
     };
 
-    //Form for Partial View Pad
-    //<<<<<<<<<<<<<<<----Write an additional validation function
+    //Form for Partial View Pad    
     var v_padForm = {
         rules: {
             padKind: { required: true, maxlength: 50 },
-            padPadSize: { required: true },    //<<<<<<<<<<<<<<<<<--------This Note is Float write an additional validation function
+            padPadSize: {
+                required: true,
+                //name of JS function below
+                regex: /(\d{1,3}\.\d{1,2})|(\d{1,3}\.\d{1,2})|(^(?:\d+|\d{1,3}(?:\.\d{3})+)?(?:\.\d+)?$)/ },
             padAdditionalInformation: { maxlength: 100 }
         },
         messages: {
             padKind: { required: "Не может быть пустым.", maxlength: "Не более 50 символов." },
-            padPadSize: { required: "Не может быть пустым." },    //<<<<<<<<<<<<<<<<<--------This Note is Float write an additional validation function
+            padPadSize: { required: "Не может быть пустым." },
             padAdditionalInformation: { maxlength: "Не более 100 символов." }
         },
         submitHandler: function () {
@@ -422,7 +498,87 @@ $(document).ready(function () {
             submitHandlerForm();
         }
     };
+
+    //Form for Partial View materialOfSoleForm
+    var v_materialOfSoleForm = {
+        rules: {
+            materialOfSoleName: { required: true, maxlength: 50 },
+            materialOfSoleCrossReference: { maxlength: 50 },
+            materialOfSoleIdColour: { required: true }
+        },
+        messages: {
+            materialOfSoleName: { required: "Не может быть пустым.", maxlength: "Не более 50 символов." },
+            materialOfSoleCrossReference: { maxlength: "Не более 50 символов." },
+            materialOfSoleIdColour: { required: "Не может быть пустым." }
+        },
+        submitHandler: function () {
+            submitHandlerForm();
+        }
+    };
+
+    //Form for Partial View topMaterialForm
+    var v_topMaterialForm = {
+        rules: {
+            topMaterialType: { required: true, maxlength: 30 },
+            topMaterialCrossReference: { maxlength: 50 },
+            materialOfSoleIdColour: { required: true }
+        },
+        messages: {
+            topMaterialType: { required: "Не может быть пустым.", maxlength: "Не более 30 символов." },
+            topMaterialCrossReference: { maxlength: "Не более 50 символов." },
+            materialOfSoleIdColour: { required: "Не может быть пустым." }
+        },
+        submitHandler: function () {
+            submitHandlerForm();
+        }
+    };
+
+    //Form for Partial View topMaterialForm
+    var v_componentForm = {
+        rules: {            
+            componentIdColour: { required: true },
+            componentTypeOfComponent: { required: true, maxlength: 50 },
+            componentCrossReference: { maxlength: 50 },
+            componentSize: { required: true, number: true, regexInteger: /(\?<=\s|^)[-+]?\d+(?=\s|$)/ },
+            componentHeight: { number: true, regexInteger: /(\?<=\s|^)[-+]?\d+(?=\s|$)/ },
+            componentWidth: { number: true, regexInteger: /(\?<=\s|^)[-+]?\d+(?=\s|$)/ },
+            componentForm: { maxlength: 30 },
+            componentType: { maxlength: 30 },
+            componentAdditionalInformation: { maxlength: 100}
+
+
+        },
+        messages: {            
+            componentIdColour: { required: "Не может быть пустым." },
+            componentTypeOfComponent: { required: "Не может быть пустым.", maxlength: "Не более 50 символов." },
+            componentCrossReference: { maxlength: "Не более 50 символов." },
+            componentSize: { required: "Не может быть пустым.", number: "Только целые числа." },
+            componentHeight: { number: "Только целые числа." },
+            componentWidth: { number: "Только целые числа." },
+            componentForm: { maxlength: "Не более 30 символов." },
+            componentType: { maxlength: "Не более 30 символов." },
+            componentAdditionalInformation: { maxlength: "Не более 100 символов." }
+
+        },
+        submitHandler: function () {
+            submitHandlerForm();
+        }
+    };
    
+    //Add method of Regular expression for Float NUMBER
+    $.validator.addMethod('regex', function (value, element, regexp) {        
+        var check = false;
+        return this.optional(element) || regexp.test(value);
+    },
+            "Не верный фомат.");
+
+    //Add method of Regular expression for Float NUMBER
+    $.validator.addMethod('regexInteger', function (value, element, regexp) {
+        var check = false;
+        return this.optional(element) || regexp.test(value);
+    },
+            "Только целые числа.");
+
     //Save or Change the form After validation
     function submitHandlerForm() {
 

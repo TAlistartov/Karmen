@@ -189,83 +189,94 @@
 
                         @* МАТЕРИАЛ ПОДОШВЫ *@
                     <div id="materialOfSole" class="tab-pane ddl_Colours" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllMaterialOfSoles");}
-                        <div class="form-inline">
-                            <label class="nameL" for="materialOfSole_Name">Название:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSole_Name">
-                        </div>
-                        @*@{Html.RenderAction("Partial_GetAllColours");}*@
-                        
-                        <div class="form-inline">
-                            <label class="componentReferenceL" for="materialOfSole_CrossReference">Reference:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSole_CrossReference">
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="materialOfSole_UseUnuse">Используется:</label>
-                            <input type="checkbox" class="mb-0 mr-sm-2" id="materialOfSole_UseUnuse">
-                        </div>
+                        <form class="form-horizontal" action="#" id="materialOfSoleForm">
+                            @{Html.RenderAction("Partial_GetAllMaterialOfSoles");}
+                            <div class="form-inline">
+                                <label class="nameL" for="materialOfSole_Name">Название:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSole_Name" name="materialOfSoleName">
+                            </div>
+                            @*@{Html.RenderAction("Partial_GetAllColours");}*@
+
+                            <div class="form-inline">
+                                <label class="componentReferenceL" for="materialOfSole_CrossReference">Reference:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="materialOfSole_CrossReference" name="materialOfSoleCrossReference">
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="materialOfSole_UseUnuse">Используется:</label>
+                                <input type="checkbox" class="mb-0 mr-sm-2" id="materialOfSole_UseUnuse">
+                            </div>
+                         </form>
                     </div>
 
                         @* МАТЕРИАЛ ВЕРХА *@
                     <div id="topMaterial" class="tab-pane ddl_Colours" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllTopMaterials");}
-                        <div class="form-inline">
-                            <label class="componentNameL" for="topMaterial_Type">Тип:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterial_Type">
-                        </div>
-                        @*@{Html.RenderAction("Partial_GetAllColours");}*@
-                        
-                        <div class="form-inline">
-                            <label class="componentReferenceL" for="topMaterial_CrossReference">Reference:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterial_CrossReference">
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="topMaterial_UseUnuse">Используется:</label>
-                            <input type="checkbox" class="mb-0 mr-sm-2" id="topMaterial_UseUnuse">
-                        </div>
+                        <form class="form-horizontal" action="#" id="topMaterialForm">
+                            @{Html.RenderAction("Partial_GetAllTopMaterials");}
+                            <div class="form-inline">
+                                <label class="componentNameL" for="topMaterial_Type">Тип:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterial_Type" name="topMaterialType">
+                            </div>
+                            @*@{Html.RenderAction("Partial_GetAllColours");}*@
+
+                            <div class="form-inline">
+                                <label class="componentReferenceL" for="topMaterial_CrossReference">Reference:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="topMaterial_CrossReference" name="topMaterialCrossReference">
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="topMaterial_UseUnuse">Используется:</label>
+                                <input type="checkbox" class="mb-0 mr-sm-2" id="topMaterial_UseUnuse">
+                            </div>
+                        </form>
                     </div>
 
                         @* КОМПЛЕКТУЮЩИЕ *@
-                    <div id="component" class="tab-pane ddl_Colours" role="tabpanel">
-                        @{Html.RenderAction("Partial_GetAllComponents");}
-                        <div class="form-inline">
-                            <label class="componentNameL" for="component_TypeOfComponent">Тип:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="component_TypeOfComponent">
-                        </div>
-                        @*@{Html.RenderAction("Partial_GetAllColours");}*@
+                    <div id="component" class="tab-pane ddl_Colours ddl_MaterialOfCovering" role="tabpanel">
+                        <form class="form-horizontal" action="#" id="componentForm">
+                            @{Html.RenderAction("Partial_GetAllComponents");}
+                            <div class="form-inline">
+                                <label class="componentNameL" for="component_TypeOfComponent">Тип:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="component_TypeOfComponent" name="componentTypeOfComponent">
+                            </div>
+                            <div class="form-inline" id="component_div_with_MaterialOfCoveringDDL">
+                                <label class="componentIdMaterilOfCoveringL" for="component_IdMaterilOfCovering">Обтяжка:</label>
+                                @*<input type="text" class="form-control mb-2 mr-sm-2" id="lining_Season">*@
+                            </div>
 
-                        <div class="form-inline">
-                            <label class="componentReferenceL" for="component_CrossReference">Reference:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="component_CrossReference">
-                        </div>
-                        <div class="form-inline">
-                            <label class="componentSizeL" for="component_Size">Размер:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="component_Size">
-                        </div>
-                        <div class="form-inline">
-                            <label id="componentHighL" for="component_Height">Высота:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="component_Height">
-                        </div>
-                        <div class="form-inline">
-                            <label id="componentWidthL" for="component_Width">Ширина:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="component_Width">
-                        </div>
-                        <div class="form-inline">
-                            <label id="componentFormL" for="component_Form">Форма:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="component_Form">
-                        </div>
-                        <div class="form-inline">
-                            <label class="componentViewL" for="component_Type">Вид:</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="component_Type">
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="component_AdditionalInformation">Информация:</label>
-                            <textarea type="text" class="form-control mb-2 mr-sm-2" id="component_AdditionalInformation" cols="22" rows="3"></textarea>
-                        </div>
-                        <div class="form-inline">
-                            <label class="mr-sm-2" for="component_UseUnuse">Используется:</label>
-                            <input type="checkbox" class="mb-0 mr-sm-2" id="component_UseUnuse">
-                        </div>
+                            @*@{Html.RenderAction("Partial_GetAllColours");}*@
+
+                            <div class="form-inline">
+                                <label class="componentReferenceL" for="component_CrossReference">Reference:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="component_CrossReference" name="componentCrossReference">
+                            </div>
+                            <div class="form-inline">
+                                <label class="componentSizeL" for="component_Size">Размер:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="component_Size" name="componentSize">
+                            </div>
+                            <div class="form-inline">
+                                <label id="componentHighL" for="component_Height">Высота:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="component_Height" name="componentHeight">
+                            </div>
+                            <div class="form-inline">
+                                <label id="componentWidthL" for="component_Width">Ширина:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="component_Width" name="componentWidth">
+                            </div>
+                            <div class="form-inline">
+                                <label id="componentFormL" for="component_Form">Форма:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="component_Form" name="componentForm">
+                            </div>
+                            <div class="form-inline">
+                                <label class="componentViewL" for="component_Type">Вид:</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="component_Type" name="componentType">
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="component_AdditionalInformation">Информация:</label>
+                                <textarea type="text" class="form-control mb-2 mr-sm-2" id="component_AdditionalInformation" name="componentAdditionalInformation" cols="22" rows="3"></textarea>
+                            </div>
+                            <div class="form-inline">
+                                <label class="mr-sm-2" for="component_UseUnuse">Используется:</label>
+                                <input type="checkbox" class="mb-0 mr-sm-2" id="component_UseUnuse">
+                            </div>
+                        </form>
                     </div>
 
                     </div>

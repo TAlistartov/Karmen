@@ -20,8 +20,12 @@ namespace Karmen.Helpers
         public static List<PadModel> allPadsModel { get; set; }
         public static List<KindOfBlockModel> allKindOfBlocksModel { get; set; }
         public static List<MaterialOfSoleModel> allMaterialsOfSoleModel { get; set; }
+
         public static List<TopMaterialModel> allTopMaterialsModel { get; set; }
+        public static List<SelectListItem> AllTopMaterialsFromDb { get; set; }
+
         public static List<ComponentModel> allComponentsModel { get; set; }
+        public static List<SelectListItem> AllComponentsFromDb { get; set; }
 
         //Dictionary for seasons
         //public static Dictionary<int, string> seasons = new Dictionary<int, string>()

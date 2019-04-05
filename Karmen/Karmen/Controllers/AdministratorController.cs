@@ -119,8 +119,9 @@ namespace Karmen.Controllers
             var allTopMaterialsDal = bll.BllGetAllDataTableFromDb(new TopMaterials());
             //Map class on class - return List<1st parameter method>
             DataStorePlace.allTopMaterialsModel = helpMethod.HandMapper(new TopMaterialModel(), allTopMaterialsDal);
-            //Here call a function for creating DropDownList             
-            topMaterial.AllTopMaterialsFromDb = helpMethod.MakeDropDownList(DataStorePlace.allTopMaterialsModel);
+            //Here call a function for creating DropDownList    
+            DataStorePlace.AllTopMaterialsFromDb= helpMethod.MakeDropDownList(DataStorePlace.allTopMaterialsModel);
+            topMaterial.AllTopMaterialsFromDb = DataStorePlace.AllTopMaterialsFromDb;
             return PartialView(topMaterial);
         }
 
@@ -158,8 +159,9 @@ namespace Karmen.Controllers
             var allComponentsDal = bll.BllGetAllDataTableFromDb(new Components());
             //Map class on class - return List<1st parameter method>
             DataStorePlace.allComponentsModel = helpMethod.HandMapper(new ComponentModel(), allComponentsDal);
-            //Here call a function for creating DropDownList             
-            component.AllComponentsFromDb = helpMethod.MakeDropDownList(DataStorePlace.allComponentsModel);
+            //Here call a function for creating DropDownList 
+            DataStorePlace.AllComponentsFromDb = helpMethod.MakeDropDownList(DataStorePlace.allComponentsModel);
+            component.AllComponentsFromDb = DataStorePlace.AllComponentsFromDb;
             return PartialView(component);
         }
         #endregion        
@@ -167,17 +169,34 @@ namespace Karmen.Controllers
         [HttpPost]
         public JsonResult SendDataToUI(string scanedId)
         {
-            List<SelectListItem> returnData=new List<SelectListItem>();
+            //List<SelectListItem> returnData=new List<SelectListItem>();
+            object[] arr = new object[] { };
             switch (scanedId)
             {
                 case "colour":
-                    returnData = DataStorePlace.AllColoursFromDb;
-                    break;
+                case "topMaterial":
+                case "furniture":
+                case "materialOfSole":
+                    {
+                        // returnData = DataStorePlace.AllColoursFromDb;
+                        arr = new object[] { DataStorePlace.AllColoursFromDb };
+                        break;
+                    };
+                case "component":
+                    {
+                        // returnData = DataStorePlace.AllColoursFromDb;
+                        arr = new object[] { DataStorePlace.AllColoursFromDb, DataStorePlace.AllTopMaterialsFromDb };
+                        break;
+                    };
                 case "lining":
-                    returnData = DataStorePlace.season;
-                    break;
-            }
-            return Json(returnData);
+                    {
+                        arr = new object[] { DataStorePlace.season };
+                        //returnData = DataStorePlace.season;
+                        break;
+                    };                    
+            }           
+            
+            return Json(arr);
         }
 
         [HttpPost]
@@ -258,6 +277,12 @@ namespace Karmen.Controllers
             object[] arrValues = new object[] { res, nameOfClass };
 
             return Json(arrValues);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteSelectedNote(int idSelectedNote, string typeOfSaveData)
+        {            
+            return Json(bll.BllDeleteSelectedNote(idSelectedNote, typeOfSaveData));
         }
 
 

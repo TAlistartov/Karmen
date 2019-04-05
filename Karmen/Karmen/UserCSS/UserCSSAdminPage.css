@@ -31,6 +31,9 @@
 .furnitureL {
     margin-right: 4.5%;
 }
+.componentIdMaterilOfCoveringL {
+    margin-right: 7.7%;
+}
 .scd{
     margin-left:31.5%;
 }
@@ -48,6 +51,10 @@
     width: 37.3% !important;
 }
 
+.SelectIdMaterilOfCoveringDDL {
+    margin-left: 0.0%;
+    width: 37.3% !important;
+}
 .error {
     color: #f30810;
     padding-bottom: 2%;

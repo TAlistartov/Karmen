@@ -375,7 +375,7 @@ namespace DAL
                 var temp = db.Component.FirstOrDefault(c => c.Id == component_dal.Id);
                 //Change selected data
                 temp.TypeOfComponent = component_dal.TypeOfComponent;
-                temp.IdColour = component_dal.IdColour;
+                temp.IdColour = component_dal.IdColour;                
                 temp.Size = component_dal.Size;
                 temp.UseUnuse = component_dal.UseUnuse;
                 temp.CrossReference = component_dal.CrossReference;
@@ -554,6 +554,209 @@ namespace DAL
                 db.SaveChanges();                    
             }
             res = 1;
+            return (res);
+        }
+        #endregion
+
+        //Delete selected note
+        #region
+        public bool DalDeleteSelectedColour(int id)
+        {
+           bool res = false;            
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.Colour.FirstOrDefault(c => c.Id == id);
+                
+                if (note != null)
+                {
+                    db.Colour.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                    var users = db.Colour.Any(c => c.Id == id);
+                    res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }            
+                
+            return (res);
+        }
+
+        public bool DalDeleteSelectedComponent(int id)
+        {
+            bool res = false;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.Component.FirstOrDefault(c => c.Id == id);
+
+                if (note != null)
+                {
+                    db.Component.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                var users = db.Component.Any(c => c.Id == id);
+                res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }
+
+            return (res);
+        }
+
+        public bool DalDeleteSelectedFootBed(int id)
+        {
+            bool res = false;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.Footbed.FirstOrDefault(c => c.Id == id);
+
+                if (note != null)
+                {
+                    db.Footbed.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                var users = db.Footbed.Any(c => c.Id == id);
+                res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }
+
+            return (res);
+        }
+
+        public bool DalDeleteSelectedFurniture(int id)
+        {
+            bool res = false;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.Furniture.FirstOrDefault(c => c.Id == id);
+
+                if (note != null)
+                {
+                    db.Furniture.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                var users = db.Furniture.Any(c => c.Id == id);
+                res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }
+
+            return (res);
+        }
+
+        public bool DalDeleteSelectedKindOfBlock(int id)
+        {
+            bool res = false;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.KindOfBlock.FirstOrDefault(c => c.Id == id);
+
+                if (note != null)
+                {
+                    db.KindOfBlock.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                var users = db.KindOfBlock.Any(c => c.Id == id);
+                res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }
+
+            return (res);
+        }
+
+        public bool DalDeleteSelectedLining(int id)
+        {
+            bool res = false;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.Lining.FirstOrDefault(c => c.Id == id);
+
+                if (note != null)
+                {
+                    db.Lining.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                var users = db.Lining.Any(c => c.Id == id);
+                res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }
+
+            return (res);
+        }
+
+        public bool DalDeleteSelectedMaterialOfSole(int id)
+        {
+            bool res = false;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.MaterialOfSole.FirstOrDefault(c => c.Id == id);
+
+                if (note != null)
+                {
+                    db.MaterialOfSole.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                var users = db.MaterialOfSole.Any(c => c.Id == id);
+                res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }
+
+            return (res);
+        }
+
+        public bool DalDeleteSelectedPad(int id)
+        {
+            bool res = false;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.Pad.FirstOrDefault(c => c.Id == id);
+
+                if (note != null)
+                {
+                    db.Pad.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                var users = db.Pad.Any(c => c.Id == id);
+                res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }
+
+            return (res);
+        }
+
+        public bool DalDeleteSelectedPattern(int id)
+        {
+            bool res = false;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.Pattern.FirstOrDefault(c => c.Id == id);
+
+                if (note != null)
+                {
+                    db.Pattern.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                var users = db.Pattern.Any(c => c.Id == id);
+                res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }
+
+            return (res);
+        }
+
+        public bool DalDeleteSelectedTopMaterial(int id)
+        {
+            bool res = false;
+            using (KarmenDbContext db = new KarmenDbContext())
+            {
+                var note = db.TopMaterial.FirstOrDefault(c => c.Id == id);
+
+                if (note != null)
+                {
+                    db.TopMaterial.Remove(note);
+                    db.SaveChanges();
+                }
+                // Get element from Db
+                var users = db.TopMaterial.Any(c => c.Id == id);
+                res = (users == false) ? true : false; //true - deleting Ok; false - deleting Error                           
+            }
+
             return (res);
         }
         #endregion

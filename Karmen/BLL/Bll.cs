@@ -43,5 +43,47 @@ namespace BLL
             return res;                    
 
         }
+
+        //Delete selected note
+        public object BllDeleteSelectedNote (int idSelectedNote, string typeOfSaveData)
+        {
+            //object result = false;
+            object[] result=new object[] { };
+            switch (typeOfSaveData)
+            {
+                case "colour":
+                    //"Colours" - it's part of Action Name of AdministratorController Partial_GetAllColours(). It's need for calling this method from JS
+                    result = new object[] {"Colours", dal.DalDeleteSelectedColour(idSelectedNote) }; 
+                    break;
+                case "pattern":
+                    result = new object[] { "Patterns", dal.DalDeleteSelectedPattern(idSelectedNote) };
+                    break;
+                case "lining":
+                    result = new object[] { "Linings", dal.DalDeleteSelectedLining(idSelectedNote) };
+                    break;
+                case "footbed":
+                    result = new object[] { "FootBeds", dal.DalDeleteSelectedFootBed(idSelectedNote) };
+                    break;
+                case "pad":
+                    result = new object[] { "Pads", dal.DalDeleteSelectedPad(idSelectedNote) };
+                    break;
+                case "kindOfBlock":
+                    result = new object[] { "KindOfBlocks", dal.DalDeleteSelectedKindOfBlock(idSelectedNote) };
+                    break;
+                case "topMaterial":
+                    result = new object[] { "TopMaterials", dal.DalDeleteSelectedTopMaterial(idSelectedNote) };
+                    break;
+                case "furniture":
+                    result = new object[] { "Furnitures", dal.DalDeleteSelectedFurniture(idSelectedNote) };
+                    break;
+                case "materialOfSole":
+                    result = new object[] { "MaterialOfSoles", dal.DalDeleteSelectedMaterialOfSole(idSelectedNote) };
+                    break;
+                case "component":
+                    result = new object[] { "Components", dal.DalDeleteSelectedComponent(idSelectedNote) };
+                    break;
+            }
+            return (result);
+    }
     }
 }
